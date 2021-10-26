@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import globalFont from "../../UI/types";
 
 
 export const WelcomePageCointainer = styled.main`
@@ -51,7 +52,7 @@ export const BtnContainer = styled.div`
   width: 650px;
   @media (max-width: 1024px) {
     margin: 0;
-    height: 5vh;
+    height: 7vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -80,8 +81,7 @@ export const LogoIcon = styled.img`
     `
 
 export const WelcomePageHeader = styled.h1`
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen;
-  font-style: normal;
+  font-family: ${globalFont};
   font-weight: 300;
   font-size: 48px;
   line-height: 22px;
@@ -89,10 +89,13 @@ export const WelcomePageHeader = styled.h1`
   @media (max-width: 1024px) {
   font-size: 42px;
   }
+  @media (max-width: 680px) {
+    font-size: 32px;
+    width: unset;
+  }
     `
 export const WelcomePageText = styled.h2`
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen;
-  font-style: normal;
+  font-family: ${globalFont};
   font-weight: 200;
   font-size: 36px;
   line-height: 50px;
@@ -103,9 +106,14 @@ export const WelcomePageText = styled.h2`
     font-size: 32px;
     width: unset;
   }
+  @media (max-width: 680px) {
+    font-size: 22px;
+    width: unset;
+  }
     `
 export const Divider = styled.div`
   opacity: 0.5;
   border: 1px solid #D9DBE9;
   width:100%;
+  max-width: 1920px;
     `

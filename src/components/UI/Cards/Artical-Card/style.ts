@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import globalFont from "../../types";
 
 export const CardHeaderContainer = styled.div`
   display: flex;
@@ -8,14 +9,20 @@ export const CardHeaderContainer = styled.div`
 export const CardContentContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 1rem;
+  padding: 1rem;
   height: 13rem;
   justify-content: space-between;
+  @media (max-width: 600px) {
+    height: 300px;
+    padding:0.5rem
+  }
+  @media (max-width: 680px) and (min-width: 376px) {
+    height: 100%;
+  }
 `
 
 export const Title = styled.h2`
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-style: normal;
+  font-family: ${globalFont};
   font-weight: bold;
   font-size: 18px;
   line-height: 21px;
@@ -26,9 +33,7 @@ export const Title = styled.h2`
 
 
 export const SubTitle = styled.h4`
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-style: normal;
-  font-weight: normal;
+  font-family: ${globalFont};
   font-size: 14px;
   line-height: 22px;
   margin:0;
@@ -37,9 +42,8 @@ export const SubTitle = styled.h4`
 
 export const Date = styled.h4`
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
-  font-style: normal;
-  font-weight: normal;
+  font-family: ${globalFont}; 
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;  */
   font-size: 14px;
   line-height: 22px; 
   display: flex;
@@ -55,6 +59,17 @@ export const Img = styled.img`
   height: 100%;
   object-fit: cover;
   border-radius: 20px 0 0 20px;
+  @media (max-width: 680px) {
+    border-radius: 20px 20px 0px 0px;
+    width: 100%;
+    height: 185px;
+  }
+  @media (max-width: 680px) and (min-width: 376px) {
+    height: 45%;
+  }
+  @media (max-width: 680px) and (min-width: 500px) {
+    height: 50%;
+  }
 `
 
 export const CardContent = styled.p`

@@ -31,7 +31,7 @@ const Search = ({ children, type, dropDownOptions }: SearchProps) => {
   return (
     <SearchBarContainer>
       <SearchInputContainer>
-        <LogoIcon src={searchIcon} />
+        <Icon src={searchIcon} />
         <SearchInput
           placeholder="Search"
           onFocus={toggleLastSearches}
@@ -48,14 +48,6 @@ const Search = ({ children, type, dropDownOptions }: SearchProps) => {
             <div>RECENT SEARCHES</div>
             <div>CLEAR</div>
           </LastSearchesHeaders>
-          <LastSearchesOptionContainer>
-            <Option>audi</Option>
-            <Icon src={closeIcon} />
-          </LastSearchesOptionContainer>
-          <LastSearchesOptionContainer>
-            <Option>audi</Option>
-            <Icon src={closeIcon} />
-          </LastSearchesOptionContainer>
           <LastSearchesOptionContainer>
             <Option>audi</Option>
             <Icon src={closeIcon} />

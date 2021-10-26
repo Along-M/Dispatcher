@@ -34,7 +34,7 @@ export enum FilterCategories  {
     LIGHT_GRAY = "#D9DBE9",
   }
   // export enum Fonts {
-  //   GLOBAL_FONT = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen',
+  //   GLOBAL_FONT = -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
   //   CYAN_BLUE = "#0058B9",
   //   WHITE = "#FFFFFF",
   //   GHOST_WHITE = "#F8F8FF",
@@ -43,3 +43,7 @@ export enum FilterCategories  {
   //   BRIGHT_PURPLE_BLUE = "#F3F3FF",
   //   LIGHT_GRAY = "#D9DBE9",
   // }
+
+  const globalFont = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen';
+  
+export default globalFont;

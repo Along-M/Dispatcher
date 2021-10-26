@@ -14,9 +14,9 @@ const Button = ({ variant, onClick, withIcon, children }: ButtonProps) => {
   return (
     <StyledBtn className={btnVarient} onClick={onClick}>
       {children}
-      {withIcon && (
+      {withIcon ? (
         <ArrowIcon src={ArrowRightIcon} className="icon-primary-btn" />
-      )}
+      ) : null}
     </StyledBtn>
   );
 };

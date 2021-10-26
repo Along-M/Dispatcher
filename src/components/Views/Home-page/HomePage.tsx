@@ -5,8 +5,12 @@ import DataCardList from "../../UI/Cards/Data-Card-list/DataCardList";
 import Filter from "../../UI/Filter/Filter";
 import Header from "../../UI/Header/Header";
 import { FilterCategories } from "../../UI/types";
-import { MainBodyCointainer, CardsContainer, FiltersContainer } from "./style";
+import { MainBodyCointainer, CardsContainer } from "./style";
 import Data from "../../../Data";
+import FilterList from "../../UI/Filter-List/FilterList";
+import { SearchSideBarContainer } from "../../UI/Mobile-search-sidebar/style";
+import Search from "../../UI/Search/Search";
+import MobileSearchBar from "../../UI/Mobile-search-sidebar/MobileSearchBar";
 
 // const data = Data;
 
@@ -18,12 +22,9 @@ const HomePage = ({ children }: HomePageProps) => {
   return (
     <>
       <Header />
+      <MobileSearchBar />
       <MainBodyCointainer>
-        <FiltersContainer>
-          <Filter variant="filter" type={FilterCategories.COUNTRY} />
-          <Filter variant="filter" type={FilterCategories.CATEGORY} />
-          <Filter variant="filter" type={FilterCategories.SOURCES} />
-        </FiltersContainer>
+        <FilterList></FilterList>
         <CardsHeaders></CardsHeaders>
         <CardsContainer>
           <ArticalCardList data={Data} />

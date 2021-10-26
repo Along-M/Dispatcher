@@ -1,11 +1,12 @@
 import styled from "styled-components";
+import globalFont from "../types";
+
 
 
 export const FilterCointainer = styled.div`
   width: 175px;
   height: 47px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen;
-  font-style: normal;
+  font-family: ${globalFont};
   font-weight: 500;
   font-size: 14px;
   line-height: 1.4rem;
@@ -13,10 +14,11 @@ export const FilterCointainer = styled.div`
   border-radius: 10px;
   background: #ffff;
   z-index: 1;
+  @media (max-width: 1024px) {
+  display: none;
+}
   &.nav-bar-filter-container {
-    /* height: 3rem; */
     width: 40%;
-    /* height: 50px; */
   }
 `
 
@@ -37,7 +39,6 @@ export const DropdownSelect = styled.div`
 `;
 
 export const DropdownArrowIcon = styled.img`
-  /* margin-right: 10px; */
   ` 
 export const OptionsContainer = styled.div`
     height: 125px;
@@ -57,8 +58,6 @@ export const OptionsContainer = styled.div`
 
 export const Option = styled.option`
   font-family: Mulish;
-  font-style: normal;
-  font-weight: normal;
   font-size: 12px;
   line-height: 1rem;
   letter-spacing: 0.1px;
@@ -73,9 +72,7 @@ export const Option = styled.option`
   `;
 
 export const FilterHeader = styled.span`
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen;
-    font-style: normal;
-    font-weight: normal;
+    font-family: ${globalFont};
     font-size: 14px;
     line-height: 22px;
     color: #5A5A89;

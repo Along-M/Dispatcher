@@ -4,13 +4,14 @@ import {
   Icon,
   LogoContainer,
   RightIconsContainer,
-  UserAvatarDiv,
+  UserAvatar,
+  MobileSearchIcon,
 } from "./style";
 // import logoIcon from "../../../assets/icons/LOGO.svg";
 import logoIcon from "../../../assets/icons/DispatcherLogo.svg";
-import userAvataIcon from "../../../assets/icons/UserAvatar.svg";
 import settingsIcon from "../../../assets/icons/settings.svg";
 import notificationIcon from "../../../assets/icons/notifications.svg";
+import searchIcon from "../../../assets/icons/search.svg";
 import Search from "../Search/Search";
 
 export interface HeaderProps {
@@ -25,10 +26,10 @@ const Header = ({ children }: HeaderProps) => {
       </LogoContainer>
       <Search></Search>
       <RightIconsContainer>
+        <MobileSearchIcon src={searchIcon} className="notification-icon" />
         <Icon src={settingsIcon} className="settings-icon" />
         <Icon src={notificationIcon} className="notification-icon" />
-        <UserAvatarDiv>AG</UserAvatarDiv>
-        {/* <Icon src={userAvataIcon} className="user-avatar-icon" /> */}
+        <UserAvatar>AG</UserAvatar>
       </RightIconsContainer>
     </HeaderContainer>
   );

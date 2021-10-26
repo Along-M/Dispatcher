@@ -1,10 +1,21 @@
 import styled from "styled-components";
+import globalFont from "../types";
 
 
 export const SearchBarContainer = styled.div`
-  width: 76.5%;
+  width: 100%;
+  max-width:1920px;
   z-index:2;
   margin-top:12.5px;
+  @media (max-width: 1024px) {
+    width: unset;
+  }
+  @media (max-width: 680px) {
+    display:none;
+  }
+  @media (min-width: 1920px) {
+    width: 97%;
+  }
   `
 export const SearchInputContainer = styled.div`
   align-items: center;
@@ -18,9 +29,7 @@ export const SearchInputContainer = styled.div`
 
 export const SearchInput = styled.input`
   display: flex;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen;
-  font-style: normal;
-  font-weight: normal;
+  font-family: ${globalFont};
   font-size: 14px;
   line-height: 22px;
   width: 60%;
@@ -29,6 +38,10 @@ export const SearchInput = styled.input`
 `
 
 export const Icon = styled.img`
+    background: white;
+    border-radius: 10px 0px 0px 10px;
+    padding-right: 5px;
+    padding-left: 5px;
     `
 export const LogoIcon = styled(Icon)`
     background: white;
@@ -42,6 +55,9 @@ export const Divider = styled.div`
     margin-top: 5px;
     margin-bottom: 5px;
     height: 30px;
+    @media (max-width: 1024px) {
+    display: none;
+  }
 `
 export const LastSearchesContainer = styled.div`
     border-radius: 10px;
@@ -54,8 +70,7 @@ export const LastSearchesContainer = styled.div`
 export const LastSearchesHeaders = styled.div`
   display: flex;
   justify-content: space-between;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen;
-  font-style: normal;
+  font-family: ${globalFont};
   font-weight: bold;
   font-size: 12px;
   line-height: 22px;
@@ -68,8 +83,7 @@ export const LastSearchesHeaders = styled.div`
 export const LastSearchesOptionContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen;
-  font-style: normal;
+  font-family: ${globalFont};
   font-weight: bold;
   font-size: 12px;
   line-height: 16px;

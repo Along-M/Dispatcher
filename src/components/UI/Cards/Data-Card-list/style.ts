@@ -6,6 +6,11 @@ export const CardListContainer = styled.section`
   align-items: center;
   background: #F8F8FF;
   gap: 1.5rem;
-  /* width: 30%; */
-  /* max-width: 29%; */
+  width: 30%;
+  @media (max-width: 1024px) {
+    display: none;
+  }
+  @media (min-width: 1024px) and (max-width: 1400px) {
+    width: 26%;
+  }
 `;

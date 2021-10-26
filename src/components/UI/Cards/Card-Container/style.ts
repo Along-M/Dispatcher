@@ -1,39 +1,35 @@
 import styled from "styled-components";
 
-// export const CardContainer = styled.div`
-//   display: flex;
-//   /* flex-direction: row; */
-//   /* align-items: center; */
-//   background: #FFFFFF;
-//   border: 1px solid #D9DBE9;
-//   box-shadow: 0px 32px 64px rgba(0, 0, 0, 0.05);
-//   border-radius: 20px;
-//   height: 15rem;
-//   max-width: 100%;
-//   &.data-card {
-//     width: 360px;
-//     height: 310px;
-//     flex-direction: column;
-//     align-items: baseline;
-//     padding: 1.6rem;
-//     background-color: red;
-//     border: 5px solid red
-//   }
-// `;
-
-
 export const CardContainer = styled.div`
   display: flex;
   background: #FFFFFF;
   box-shadow: 0px 32px 64px rgba(0, 0, 0, 0.05);
   border-radius: 20px;
   height: 15rem;
-  max-width: 100%;
+  @media (max-width: 680px) {
+    flex-direction: column;
+    height: 500px;
+  }
+  @media (max-width: 680px) and (min-width: 376px) {
+    flex-direction: column;
+    height: 550px;
+  }
+  @media (max-width: 680px) and (min-width: 500px) {
+    height: 650px ;
+  }
   &.data-card {
-    width: 360px;
-    height: 310px;
+    width: 90%;
+    height: 360px;
     flex-direction: column;
     align-items: baseline;
-    padding: 1.6rem;
+    padding: 1rem;
+    @media (min-width: 1025px) and (max-device-width:1500px) {
+      width: 90%;
+      height:260px;
+    }
+    @media (min-width: 1920px) {
+      width: 360px;
+      /* height:260px; */
+    }
   }
 `;
