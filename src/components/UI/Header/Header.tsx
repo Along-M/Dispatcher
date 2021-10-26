@@ -13,6 +13,7 @@ import settingsIcon from "../../../assets/icons/settings.svg";
 import notificationIcon from "../../../assets/icons/notifications.svg";
 import searchIcon from "../../../assets/icons/search.svg";
 import Search from "../Search/Search";
+import MobileSearchBar from "../Mobile-search-sidebar/MobileSearchBar";
 
 export interface HeaderProps {
   children?: React.ReactChild | React.ReactChild[];
@@ -21,6 +22,7 @@ export interface HeaderProps {
 const Header = ({ children }: HeaderProps) => {
   return (
     <HeaderContainer>
+      <MobileSearchBar />
       <LogoContainer>
         <Icon src={logoIcon} />
       </LogoContainer>

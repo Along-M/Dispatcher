@@ -5,9 +5,21 @@ import globalFont from "../types";
 
 export const SearchSideBarContainer = styled.div`
   display: flex;
+  flex-direction: column;
   height: 100vh;
-  width: 100%;
   background-color: #F8F8FF;
+  width: 80%;
+  position: fixed;
+  z-index: 1;
+  right: 0;
+  top:0;
+  overflow-x: hidden;
+  transition: 0.5s;
+`
+
+export const LastSearchesContainer = styled.div`
+  /* width: 100%; */
+  padding: 0 20px;
 `
 
 export const SearchInputContainer = styled.div`

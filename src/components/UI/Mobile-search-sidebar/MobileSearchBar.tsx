@@ -6,7 +6,9 @@ import {
   SearchInputContainer,
   SearchInput,
   ArrowIcon,
+  LastSearchesContainer,
 } from "./style";
+import LastSearchResults from "../last-search-results/LastSearchResults";
 
 export interface MobileSearchBarProps {
   children?: React.ReactChild | React.ReactChild[];
@@ -31,6 +33,9 @@ const MobileSearchBar = ({ children }: MobileSearchBarProps) => {
         <ArrowIcon src={ArrowLeft} />
         <SearchInput placeholder="Search" />
       </SearchInputContainer>
+      <LastSearchesContainer>
+        <LastSearchResults />
+      </LastSearchesContainer>
     </SearchSideBarContainer>
   );
 };

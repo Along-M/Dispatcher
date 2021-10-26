@@ -22,7 +22,7 @@ const HomePage = ({ children }: HomePageProps) => {
   return (
     <>
       <Header />
-      <MobileSearchBar />
+      {/* <MobileSearchBar /> */}
       <MainBodyCointainer>
         <FilterList></FilterList>
         <CardsHeaders></CardsHeaders>
