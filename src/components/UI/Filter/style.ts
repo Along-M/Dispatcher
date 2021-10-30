@@ -15,11 +15,17 @@ export const FilterCointainer = styled.div`
   background: #ffff;
   z-index: 1;
   @media (max-width: 1024px) {
-  display: none;
-}
-  &.nav-bar-filter-container {
-    width: 40%;
+  &.mobile-sort-by-container {
+    display: block !important;
+    height: 45px;
+    width: 175px;
+    border-radius: unset; 
+    display: flex;
+    align-items: center;
+    z-index: 0;
+    padding-left: 5px;
   }
+}
 `
 
 
@@ -30,21 +36,23 @@ export const DropdownSelect = styled.div`
   height: 47px;
   border-radius: 10px;
   padding: 0 15px;
-  /* &.nav-bar-filter {
-    border-radius: 0px 10px 10px 0;
-    justify-content: space-evenly;
-    margin:0;
-    height: 100%;
-  } */
+  &.mobile-sort-by-drop-down {
+    /* border-radius: 0px 10px 10px 0; */
+    justify-content: unset;
+    padding:0;
+  }
 `;
 
 export const DropdownArrowIcon = styled.img`
+  @media (max-width: 1024px) {
+    padding-left:10px;
+  }
   ` 
 export const OptionsContainer = styled.div`
-    height: 125px;
+    height: 75px;
     background: white;
     border-radius: 5px;
-    overflow: scroll;
+    overflow-y: scroll;
     margin-top: 5px;
     &::-webkit-scrollbar {
     background: none;
@@ -54,7 +62,12 @@ export const OptionsContainer = styled.div`
     border-radius: 6px;
     background-color: #5A5A89;
   }
-  `;
+  @media (max-width: 1024px) { 
+    width: 60%;
+    margin-left: -15px;
+    margin-top: 0;
+  }
+`;
 
 export const Option = styled.option`
   font-family: Mulish;
@@ -68,6 +81,9 @@ export const Option = styled.option`
   align-items: center;
   :hover{
     background: rgba(223, 224, 235, 0.41);
+  }
+  @media (max-width: 1024px) { 
+    padding-left: 15px;
   }
   `;
 

@@ -4,6 +4,7 @@ export enum ButtonTypes  {
     PRIMARY = "primary-blue-btn",
     SECONDARY = "secondary-gray-btn",
     TEXTBTN = "text-transparent-btn",
+    VIEW_RESULTS = "view-results-btn"
   };
 
 export enum CardTypes  {
@@ -15,7 +16,8 @@ export enum FilterCategories  {
       SOURCES = "Sources",
       CATEGORY = "Category",
       COUNTRY = "Country",
-      TOP_HEADLINES = "Top Headlines"
+      TOP_HEADLINES = "Top Headlines",
+      MOBILE_SORT_BY = "mobile-sort-by"
   };
 
   export enum NoDataFoundTypes  {

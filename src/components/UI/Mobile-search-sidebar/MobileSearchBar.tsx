@@ -1,41 +1,35 @@
-import ArrowLeftwefw from "../../../assets/icons/back.svg";
 import ArrowLeft from "../../../assets/icons/ArrowLeft.svg";
-import Search from "../Search/Search";
+import Exit from "../../../assets/icons/exit.svg";
+import Search from "../../../assets/search.svg";
 import {
   SearchSideBarContainer,
   SearchInputContainer,
   SearchInput,
   ArrowIcon,
-  LastSearchesContainer,
+  ExitIcon,
+  SearchIcon,
+  // LastSearchesContainer,
 } from "./style";
 import LastSearchResults from "../last-search-results/LastSearchResults";
+import { useState } from "react";
 
 export interface MobileSearchBarProps {
-  children?: React.ReactChild | React.ReactChild[];
+  isOpen?: boolean;
+  closeSidebar: () => void;
 }
 
-const MobileSearchBar = ({ children }: MobileSearchBarProps) => {
-  console.log("im here");
-  // if (
-  //   /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-  //     navigator.userAgent
-  //   )
-  // ) {
-  //   // true for mobile device
-  //   console.log("mobile device");
-  // } else {
-  //   // false for not mobile device
-  //   console.log("not mobile device");
-  // }
+const MobileSearchBar = ({ isOpen, closeSidebar }: MobileSearchBarProps) => {
   return (
-    <SearchSideBarContainer>
+    <SearchSideBarContainer
+      className={isOpen ? "search-side-bar-open" : "search-side-bar-closed"}
+    >
       <SearchInputContainer>
-        <ArrowIcon src={ArrowLeft} />
+        <ArrowIcon src={ArrowLeft} onClick={closeSidebar} />
         <SearchInput placeholder="Search" />
+        <ExitIcon src={Exit} />
+        <SearchIcon src={Search} />
       </SearchInputContainer>
-      <LastSearchesContainer>
-        <LastSearchResults />
-      </LastSearchesContainer>
+      <LastSearchResults />
     </SearchSideBarContainer>
   );
 };

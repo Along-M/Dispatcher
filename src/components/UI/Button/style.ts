@@ -52,6 +52,9 @@ export const StyledBtn = styled.button`
   align-self: unset;
   width: unset;
   }
+&.view-results-btn {
+  padding:20px 20px;
+}
 `;
 
 

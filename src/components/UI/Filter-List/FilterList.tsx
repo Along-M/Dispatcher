@@ -22,10 +22,9 @@ const FilterList = ({
 }: FilterListProps) => {
   return (
     <FiltersContainer>
-      <Filter variant="filter" type={FilterCategories.COUNTRY} />
-      <Filter variant="filter" type={FilterCategories.CATEGORY} />
-      <Filter variant="filter" type={FilterCategories.SOURCES} />
-      <MobileFilterBar />
+      <Filter type={FilterCategories.COUNTRY}>Country</Filter>
+      <Filter type={FilterCategories.CATEGORY}>Category</Filter>
+      <Filter type={FilterCategories.SOURCES}>Sources</Filter>
     </FiltersContainer>
   );
 };

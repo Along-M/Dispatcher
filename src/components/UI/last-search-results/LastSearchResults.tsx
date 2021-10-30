@@ -1,6 +1,4 @@
-import { useState } from "react";
 import {
-  SearchBarContainer,
   LastSearchesContainer,
   LastSearchesHeaders,
   LastSearchesOptionContainer,
@@ -21,18 +19,24 @@ const LastSearchResults = ({
   dropDownOptions,
 }: LastSearchResultsProps) => {
   return (
-    // <LastSearchesContainer>
-    <>
+    <LastSearchesContainer>
       <LastSearchesHeaders>
         <RecentSearchedheader>RECENT SEARCHES</RecentSearchedheader>
         <ClearBtn>CLEAR</ClearBtn>
       </LastSearchesHeaders>
       <LastSearchesOptionContainer>
-        <Option>audi</Option>
+        <Option>Crypto</Option>
         <CloseIcon src={closeIcon} />
       </LastSearchesOptionContainer>
-    </>
-    // </LastSearchesContainer>
+      <LastSearchesOptionContainer>
+        <Option>China</Option>
+        <CloseIcon src={closeIcon} />
+      </LastSearchesOptionContainer>
+      <LastSearchesOptionContainer>
+        <Option>Ynet</Option>
+        <CloseIcon src={closeIcon} />
+      </LastSearchesOptionContainer>
+    </LastSearchesContainer>
   );
 };
 

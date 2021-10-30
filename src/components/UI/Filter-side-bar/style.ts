@@ -1,9 +1,21 @@
 import styled from "styled-components";
 import globalFont from "../types";
 
+export const FilterSideBarContainer = styled.div`
 
-
-export const SearchSideBarContainer = styled.div`
+position: fixed;
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: white;
+    position: fixed;
+    z-index: 99;
+    right: 0;
+    top:0;
+    overflow-x: hidden;
+    transition: 0.9s; 
+    justify-content: space-between;
 
   &.search-side-bar-closed {
     position: fixed;
@@ -16,7 +28,7 @@ export const SearchSideBarContainer = styled.div`
     right:0;
   }  
   &.search-side-bar-open {
-    position: fixed;
+    position: relative;
     width: 80%;
     display: flex;
     flex-direction: column;
@@ -29,20 +41,26 @@ export const SearchSideBarContainer = styled.div`
     overflow-x: hidden;
     transition: 0.9s;
   } 
-`
+`;
 
-export const SearchInputContainer = styled.div`
+export const FilterHeaderContainer = styled.div`
   z-index:2;
   display: flex;
   width: 100%;
   background: white;
-  padding-left:20px;
-  height: 75px;
+  height: 80px;
   align-items: center;
   justify-content: center;
   background: #FFFFFF;
-  border: 1px solid #D9DBE9;
-  box-shadow: 0px 32px 64px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid #D9DBE9;
+  font-family:  ${globalFont};
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0.25px;
+  color: #5A5A89;
+  justify-content: start;
+  padding-left:20px;
 `
 
 export const SearchInput = styled.input`
@@ -62,4 +80,11 @@ export const ExitIcon = styled.img`
 `
 export const SearchIcon = styled.img`
   padding-right:35px;
+`
+export const BtnContainer = styled.div`
+  padding: 20px 70px;
+  background-color: #F8F8FF;
+  justify-content: center;
+  display: flex;
+  
 `

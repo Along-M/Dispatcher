@@ -14,7 +14,7 @@ export const SearchBarContainer = styled.div`
     display:none;
   }
   @media (min-width: 1920px) {
-    width: 97%;
+    max-width: 1440px;
   }
   `
 export const SearchInputContainer = styled.div`
@@ -42,14 +42,7 @@ export const Icon = styled.img`
     border-radius: 10px 0px 0px 10px;
     padding-right: 5px;
     padding-left: 5px;
-    `
-export const LogoIcon = styled(Icon)`
-    background: white;
-    border-radius: 10px 0px 0px 10px;
-    padding-right: 5px;
-    padding-left: 5px;
-    `
-
+`
 export const Divider = styled.div`
     border: 1px solid #d9dbe9;
     margin-top: 5px;
@@ -61,11 +54,13 @@ export const Divider = styled.div`
 `
 export const LastSearchesContainer = styled.div`
     border-radius: 10px;
-    width: 423px;
+    width: 425px;
     background: white;
     z-index:2;
     margin-top:2px;
     position: relative;
+    height: 125px;
+    overflow: scroll;
 `
 export const LastSearchesHeaders = styled.div`
   display: flex;

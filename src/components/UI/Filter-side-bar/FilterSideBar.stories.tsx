@@ -1,13 +1,13 @@
 import { Meta, Story } from "@storybook/react";
-import MobileSearchBar, { MobileSearchBarProps } from "./MobileSearchBar";
+import FilterSideBar, { FilterSideBarProps } from "./FilterSideBar";
 
 export default {
-  component: MobileSearchBar,
-  title: "Components/Mobile-search-side-bar",
+  component: FilterSideBar,
+  title: "Components/Filter-side-bar",
 } as Meta;
 
-const Template: Story<MobileSearchBarProps> = (args) => (
-  <MobileSearchBar {...args} />
+const Template: Story<FilterSideBarProps> = (args) => (
+  <FilterSideBar {...args} />
 );
 
 export const V1 = Template.bind({});

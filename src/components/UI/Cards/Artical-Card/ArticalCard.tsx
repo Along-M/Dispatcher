@@ -10,7 +10,7 @@ import {
   CardContent,
   CardHeaderContainer,
 } from "./style";
-import Tag from "../../Tag/Tag";
+import Tag from "../../tags/Tag";
 import Button from "../../Button/Button";
 
 export interface StoryCardProps {

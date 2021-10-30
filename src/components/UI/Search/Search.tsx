@@ -1,20 +1,18 @@
 import { useState } from "react";
+import useWindowSize from "../../../helpers/custom-hooks";
+import { BrowserView, isDesktop } from "react-device-detect";
 import Filter from "../Filter/Filter";
 import { FilterCategories } from "../types";
 import {
   SearchBarContainer,
   SearchInput,
-  LogoIcon,
   Icon,
   SearchInputContainer,
   Divider,
-  LastSearchesContainer,
-  LastSearchesHeaders,
-  LastSearchesOptionContainer,
-  Option,
 } from "./style";
 import searchIcon from "../../../assets/icons/search.svg";
 import closeIcon from "../../../assets/icons/close.svg";
+import LastSearchResults from "../last-search-results/LastSearchResults";
 
 export interface SearchProps {
   dropDownOptions?: string[];
@@ -23,6 +21,7 @@ export interface SearchProps {
 }
 
 const Search = ({ children, type, dropDownOptions }: SearchProps) => {
+  const windowSize = useWindowSize();
   const [isLastSearchesOpen, setisLastSearchesOpen] = useState<boolean>(false);
   const toggleLastSearches = (): void => {
     setisLastSearchesOpen(!isLastSearchesOpen);
@@ -36,24 +35,12 @@ const Search = ({ children, type, dropDownOptions }: SearchProps) => {
           placeholder="Search"
           onFocus={toggleLastSearches}
         ></SearchInput>
-        <Divider />
-        <Filter
-          type={FilterCategories.TOP_HEADLINES}
-          variant="nav-bar-filter"
-        ></Filter>
+        {windowSize.width > 1024 && <Divider />}
+        {windowSize.width > 1024 && (
+          <Filter type={FilterCategories.TOP_HEADLINES}>Top Headlines</Filter>
+        )}
       </SearchInputContainer>
-      {isLastSearchesOpen && (
-        <LastSearchesContainer>
-          <LastSearchesHeaders>
-            <div>RECENT SEARCHES</div>
-            <div>CLEAR</div>
-          </LastSearchesHeaders>
-          <LastSearchesOptionContainer>
-            <Option>audi</Option>
-            <Icon src={closeIcon} />
-          </LastSearchesOptionContainer>
-        </LastSearchesContainer>
-      )}
+      {isLastSearchesOpen && <LastSearchResults />}
     </SearchBarContainer>
   );
 };

@@ -1,31 +1,29 @@
 import { useState } from "react";
 import DropdownArrow from "../../../assets/icons/dropdown-arrow.svg";
 import FiltersIcon from "../../../assets/icons/filter.svg";
-import {
-  MobileFilterBarText,
-  DropdownArrowIcon,
-  FilterIcon,
-  SortByContainer,
-} from "./style";
+import FilterSideBar from "../Filter-side-bar/FilterSideBar";
+import Filter from "../Filter/Filter";
+import { FilterCategories } from "../types";
+import { FilterIcon, FilterTopBarContainer } from "./style";
 
 export interface MobileFilterBarProps {
   dropDownOptions?: string[];
-  children?: React.ReactChild | React.ReactChild[];
   variant?: string;
 }
 
 const MobileFilterBar = ({
-  children,
   dropDownOptions,
   variant,
 }: MobileFilterBarProps) => {
   return (
     <>
-      <SortByContainer>
-        <MobileFilterBarText>Sort by</MobileFilterBarText>
-        <DropdownArrowIcon src={DropdownArrow} />
-      </SortByContainer>
-      <FilterIcon src={FiltersIcon} />
+      <FilterTopBarContainer>
+        <Filter type={FilterCategories.MOBILE_SORT_BY}>Sort by</Filter>
+        {/* <MobileFilterBarText>Sort by</MobileFilterBarText>
+        <DropdownArrowIcon src={DropdownArrow} /> */}
+        <FilterIcon src={FiltersIcon} />
+        <FilterSideBar />
+      </FilterTopBarContainer>
     </>
   );
 };

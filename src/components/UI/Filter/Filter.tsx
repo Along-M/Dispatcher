@@ -14,10 +14,10 @@ export interface FilterProps {
   dropDownOptions?: string[];
   children?: React.ReactChild | React.ReactChild[];
   type?: FilterCategories;
-  variant: string;
+  // variant: string;
 }
 
-const Filter = ({ children, type, dropDownOptions, variant }: FilterProps) => {
+const Filter = ({ children, type, dropDownOptions }: FilterProps) => {
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
 
   const toggleFilterOptions = () => {
@@ -27,24 +27,18 @@ const Filter = ({ children, type, dropDownOptions, variant }: FilterProps) => {
   //   return <Option>{option}</Option>;
   // });
   return (
-    <FilterCointainer className={variant + "-container"}>
-      <DropdownSelect onClick={toggleFilterOptions} className={variant}>
-        <FilterHeader className={variant + "-header"}>{type}</FilterHeader>
+    <FilterCointainer className={type + "-container"}>
+      <DropdownSelect
+        onClick={toggleFilterOptions}
+        className={type + "-drop-down"}
+      >
+        <FilterHeader className={type + "-header"}>{children}</FilterHeader>
         <DropdownArrowIcon src={DropdownArrow} />
       </DropdownSelect>
       {isFilterOpen && (
         <OptionsContainer className="option-container">
-          <Option>audi</Option>
-          <Option>audi</Option>
-          <Option>audi</Option>
-          <Option>audi</Option>
-          <Option>audi</Option>
-          <Option>audi</Option>
-          <Option>audi</Option>
-          <Option>audi</Option>
-          <Option>audi</Option>
-          <Option>audi</Option>
-          <Option>audi</Option>
+          <Option>Top Headlines</Option>
+          <Option>Everything</Option>
         </OptionsContainer>
       )}
     </FilterCointainer>
