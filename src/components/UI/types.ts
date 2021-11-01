@@ -1,3 +1,4 @@
+import Filter from "./filter/Filter"
 
 export enum ButtonTypes  {
     WELCOME = "welcome-btn",
@@ -46,6 +47,45 @@ export enum FilterCategories  {
   //   LIGHT_GRAY = "#D9DBE9",
   // }
 
+  // export enum FilterTypes {
+  //   EVERYTHING = "#5A5A89",
+  //   TOP_HEADLINES = "#5A5A89",
+  
+  // }
+  export type Filter = {[name:string]: {name: string, id: string, options: string[]}};
+
+  export type Filters = {};
+
+const sortBy:Filter = {Location: {name: 'something', id: "something", options: ['something','test']}}
+// will be in redux
+  export enum SortByCategories  {
+    TOP_HEADLINES = "Top headlines",
+    EVERYTHING = "Everything"
+  }
+  let CategoryTopHeadlinesFilters = {
+      Sources: {title: "Sources", id: "sources-filter", options: ["NBC", "Ynet","Mako","Walla", "BBC"]},
+      Country: {title: "Country",id: "country-filter", options: ["Canada","Paris","Israel", "Russia"]},
+      Category: {title: "Category", id: "category-filter", options: ["business","entertainment","general","health","science","sports","technology"]},
+  }
+  const CategoryEverythingFilters = {
+    Language: {title: "Language", id: "language-filter", options: ["Canada","Paris","Israel", "Russia"]},
+    Sources: {title: "Sort-by", id: "sorty-by-filter", options: ["Top headlines","Everything"]},
+    Dates: {title: "Dates", id: "dates-filter", options: ["20-10-21","20-10-21","20-10-21", "20-10-21"]},
+  }
+
+  const allFilters = {
+      Sources: {title: "Sources", id: "sources-filter", options: ["NBC", "Ynet","Mako","Walla", "BBC"]},
+      Country: {title: "Country",id: "country-filter", options: ["Canada","Paris","Israel", "Russia"]},
+      Category: {title: "Category", id: "category-filter", options: ["business","entertainment","general","health","science","sports","technology"]},
+      // Sources: {title: "Sources", id: "sources-filter", options: ["NBC", "Ynet","Mako","Walla", "BBC"]},
+      Language: {title: "Language", id: "language-filter", options: ["Canada","Paris","Israel", "Russia"]},
+      SortBy: {title: "Sort-by", id: "sorty-by-filter", options: ["Top headlines","Everything"]},
+      Dates: {title: "Dates", id: "dates-filter", options: ["20-10-21","20-10-21","20-10-21", "20-10-21"]},
+  }
+
+  console.log('everything filters', CategoryEverythingFilters);
+
+
   const globalFont = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen';
   
-export default globalFont;
+  export default globalFont;

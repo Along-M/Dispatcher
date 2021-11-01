@@ -1,11 +1,12 @@
 import { useState } from "react";
 import DropdownArrow from "../../assets/icons/dropdown-arrow.svg";
-import Button from "../Button/Button";
+import Button from "../button/Button";
 import { ButtonTypes } from "../types";
-import Filter from "../Filter/Filter";
+import Filter from "../filter/Filter";
 import { FilterCategories } from "../types";
 import { FiltersContainer } from "./style";
-import MobileFilterBar from "../Mobile-filter-top-bar/MobileFilterBar";
+// import MobileFilterBar from "../mobile-filter-top-bar/MobileFilterBar";
+import MobileFilterBar from "../tablet and mobile/mobile-filter-top-bar/MobileFilterBar";
 
 export interface FilterListProps {
   dropDownOptions?: string[];

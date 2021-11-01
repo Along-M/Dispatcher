@@ -1,6 +1,6 @@
 import "./App.css";
-import HomePage from "./components/Views/Home-page/HomePage";
-import WelcomePage from "./components/Views/Welcome-Page/WelcomePage";
+import HomePage from "./components/views/home-page/HomePage";
+import WelcomePage from "./components/views/welcome-page/WelcomePage";
 
 function App() {
   return (

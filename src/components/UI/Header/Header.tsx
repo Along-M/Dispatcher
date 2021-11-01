@@ -1,19 +1,20 @@
 import * as React from "react";
 import { useState } from "react";
-import { HeaderContainer } from "./style";
 import {
   Icon,
   LogoContainer,
   RightIconsContainer,
   UserAvatar,
   MobileSearchIcon,
+  HeaderContainer,
 } from "./style";
 import logoIcon from "../../../assets/icons/DispatcherLogo.svg";
 import settingsIcon from "../../../assets/icons/settings.svg";
 import notificationIcon from "../../../assets/icons/notifications.svg";
 import searchIcon from "../../../assets/icons/search.svg";
-import Search from "../Search/Search";
-import MobileSearchBar from "../Mobile-search-sidebar/MobileSearchBar";
+import Search from "../search-bar/Search";
+import MobileSearchBar from "../tablet and mobile/mobile-search-sidebar/MobileSearchBar";
+// import MobileSearchBar from "../mobile-search-sidebar/MobileSearchBar";
 
 export interface HeaderProps {
   children?: React.ReactChild | React.ReactChild[];

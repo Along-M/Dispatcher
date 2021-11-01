@@ -1,6 +1,6 @@
 import React from "react";
 import LoginLogo from "../../../assets/icons/LoginLogo.svg";
-import Button from "../../UI/Button/Button";
+import Button from "../../UI/button/Button";
 import { ButtonTypes } from "../../UI/types";
 import {
   WelcomePageCointainer,

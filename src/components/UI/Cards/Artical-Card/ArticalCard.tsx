@@ -1,5 +1,5 @@
 import * as React from "react";
-import { CardContainer } from "../Card-Container/style";
+import { CardContainer } from "../card-container/style";
 import { ButtonTypes, CardTypes } from "../../types";
 import {
   CardContentContainer,
@@ -11,7 +11,7 @@ import {
   CardHeaderContainer,
 } from "./style";
 import Tag from "../../tags/Tag";
-import Button from "../../Button/Button";
+import Button from "../../button/Button";
 
 export interface StoryCardProps {
   children?: React.ReactChild | React.ReactChild[];

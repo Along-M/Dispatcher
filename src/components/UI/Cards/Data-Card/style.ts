@@ -23,5 +23,14 @@ export const DataCardDivider = styled.div`
   @media (min-width: 1024px) and (max-width: 1500px) {
     margin-top: 0.5rem;
   }
-  
 `;
+export const ChartContainer = styled.div`
+  margin-top: 0.5rem;
+  align-self: center;
+  @media (min-width: 1024px) and (max-width: 1500px) {
+    margin-top: 0.2rem;
+    width: 90%;
+  }
+`;
+
+
