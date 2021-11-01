@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import globalFont from "../types";
+import globalFont from "../../types";
 
 
 

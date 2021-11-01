@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import globalFont from "../types";
+import globalFont from "../../types";
 
 export const FilterSideBarContainer = styled.div`
 
-position: fixed;
-    width: 65%;
+    position: fixed;
+    width: 80%;
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -43,12 +43,11 @@ position: fixed;
   } 
 `;
 
-export const FilterHeaderContainer = styled.div`
-  z-index:2;
+export const FilterHeaderContainer = styled.h2`
   display: flex;
   width: 100%;
   background: white;
-  height: 80px;
+  height: 60px;
   align-items: center;
   justify-content: center;
   background: #FFFFFF;
@@ -61,28 +60,18 @@ export const FilterHeaderContainer = styled.div`
   color: #5A5A89;
   justify-content: start;
   padding-left:20px;
+  margin: 0;
 `
 
-export const SearchInput = styled.input`
-  display: flex;
-  width: 100%;
-  font-family: ${globalFont};
-  font-size: 14px;
-  border: none;
-  outline: none;
-  border-radius: 0px;
-`
 export const ArrowIcon = styled.img`
   padding-right:15px;
 `
-export const ExitIcon = styled.img`
-  padding-right:35px;
-`
-export const SearchIcon = styled.img`
-  padding-right:35px;
+
+export const ContentContainer = styled.div`
+  
 `
 export const BtnContainer = styled.div`
-  padding: 20px 70px;
+  padding: 20px 50px;
   background-color: #F8F8FF;
   justify-content: center;
   display: flex;

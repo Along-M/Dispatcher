@@ -1,9 +1,10 @@
 import { useState } from "react";
 import DropdownArrow from "../../../assets/icons/dropdown-arrow.svg";
-import FiltersIcon from "../../../assets/icons/filter.svg";
-import FilterSideBar from "../Filter-side-bar/FilterSideBar";
-import Filter from "../Filter/Filter";
-import { FilterCategories } from "../types";
+import FiltersIcon from "../../../../assets/icons/filter.svg";
+// import FiltersIcon from "../../../assets/icons/filter.svg";
+import FilterSideBar from "../mobile-filter-sidebar/FilterSideBar";
+import Filter from "../../filter/Filter";
+import { FilterCategories } from "../../types";
 import { FilterIcon, FilterTopBarContainer } from "./style";
 
 export interface MobileFilterBarProps {

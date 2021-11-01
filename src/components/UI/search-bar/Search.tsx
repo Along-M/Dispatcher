@@ -1,7 +1,7 @@
 import { useState } from "react";
 import useWindowSize from "../../../helpers/custom-hooks";
 import { BrowserView, isDesktop } from "react-device-detect";
-import Filter from "../Filter/Filter";
+import Filter from "../filter/Filter";
 import { FilterCategories } from "../types";
 import {
   SearchBarContainer,

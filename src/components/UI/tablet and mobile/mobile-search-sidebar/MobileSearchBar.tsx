@@ -1,6 +1,6 @@
-import ArrowLeft from "../../../assets/icons/ArrowLeft.svg";
-import Exit from "../../../assets/icons/exit.svg";
-import Search from "../../../assets/search.svg";
+import ArrowLeft from "../../../../assets/icons/ArrowLeft.svg";
+import Exit from "../../../../assets/icons/exit.svg";
+import Search from "../../../../assets/search.svg";
 import {
   SearchSideBarContainer,
   SearchInputContainer,
@@ -8,9 +8,9 @@ import {
   ArrowIcon,
   ExitIcon,
   SearchIcon,
-  // LastSearchesContainer,
 } from "./style";
-import LastSearchResults from "../last-search-results/LastSearchResults";
+import LastSearchResults from "../../last-search-results/LastSearchResults";
+// import LastSearchResults from "../../../last-search-results/LastSearchResults";
 import { useState } from "react";
 
 export interface MobileSearchBarProps {
