@@ -1,7 +1,7 @@
 import * as React from "react";
 import { CardListContainer } from "./style";
 import ArticalCard from "../artical-card/ArticalCard";
-import { NoDataFoundTypes } from "../../types";
+import { NoDataFoundTypes } from "../../../../types/types";
 import NoData from "../../no-data-gif/NoData";
 
 type data = {

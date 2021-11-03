@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import globalFont from "../types";
-
+import globalFont from "../../../types/types";
 
 export const StyledBtn = styled.button`
   border-radius: 20px;
@@ -8,7 +7,7 @@ export const StyledBtn = styled.button`
   display: flex;
   flex-direction: row;
   align-items: center;
-  border: none; 
+  border: none;
   height: 36px;
   font-family: ${globalFont};
   /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
@@ -18,7 +17,7 @@ export const StyledBtn = styled.button`
   line-height: 26px;
   color: white;
   height: 36px;
-  background: #0058B9;
+  background: #0058b9;
   align-self: flex-end;
   justify-content: center;
   &:hover {
@@ -31,33 +30,32 @@ export const StyledBtn = styled.button`
     align-self: auto;
     justify-content: center;
     @media (max-width: 1024px) {
-    width: 100%
-  }
+      width: 100%;
+    }
   }
   &.secondary-gray-btn {
-    background: #D9DBE9;
-    color: #5A5A89;
+    background: #d9dbe9;
+    color: #5a5a89;
   }
   &.text-transparent-btn {
     background: none;
-    color: #5A5A89;
+    color: #5a5a89;
     &:hover {
-    background: rgba(217, 219, 233, 0.3);
+      background: rgba(217, 219, 233, 0.3);
+    }
+    &.primary-blue-btn .icon-primary-btn {
+      margin-left: 8px;
+    }
   }
-  &.primary-blue-btn .icon-primary-btn {
-    margin-left: 8px;
+  @media (max-width: 680px) {
+    align-self: unset;
+    width: unset;
   }
-}
-@media (max-width: 680px) {
-  align-self: unset;
-  width: unset;
+  &.view-results-btn {
+    padding: 20px 20px;
   }
-&.view-results-btn {
-  padding:20px 20px;
-}
 `;
-
 
 export const ArrowIcon = styled.img`
   margin-left: 10px;
-`
+`;

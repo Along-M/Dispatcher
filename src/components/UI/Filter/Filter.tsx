@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { filterActions } from "../../../store/FiltersSlice";
 import DropdownArrow from "../../../assets/icons/dropdown-arrow.svg";
-import { FilterCategories } from "../types";
+import { FilterSubCategories } from "../../../types/filterTypes";
 import {
   FilterCointainer,
   DropdownSelect,
@@ -11,36 +13,32 @@ import {
 } from "./style";
 
 export interface FilterProps {
-  dropDownOptions?: string[];
-  children?: React.ReactChild | React.ReactChild[];
-  type?: FilterCategories;
-  // variant: string;
+  title: string;
+  id: string;
+  options: string[];
+  selectedOption: string | null;
+  type: FilterSubCategories;
 }
 
-const Filter = ({ children, type, dropDownOptions }: FilterProps) => {
+const Filter = ({ title, id, options, selectedOption, type }: FilterProps) => {
+  const dispatch = useDispatch();
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
-
-  const toggleFilterOptions = () => {
+  const toggleFilterDropdown = () => {
     setIsFilterOpen(!isFilterOpen);
   };
-  // const options = dropDownOptions?.map((option) => {
-  //   return <Option>{option}</Option>;
-  // });
+
+  const optionClickHandler = () => {};
+
+  const optionsList = options?.map((option) => {
+    return <Option onClick={() => optionClickHandler}>{option}</Option>;
+  });
   return (
-    <FilterCointainer className={type + "-container"}>
-      <DropdownSelect
-        onClick={toggleFilterOptions}
-        className={type + "-drop-down"}
-      >
-        <FilterHeader className={type + "-header"}>{children}</FilterHeader>
+    <FilterCointainer id={id}>
+      <DropdownSelect onClick={toggleFilterDropdown}>
+        <FilterHeader>{selectedOption ? selectedOption : title}</FilterHeader>
         <DropdownArrowIcon src={DropdownArrow} />
       </DropdownSelect>
-      {isFilterOpen && (
-        <OptionsContainer className="option-container">
-          <Option>Top Headlines</Option>
-          <Option>Everything</Option>
-        </OptionsContainer>
-      )}
+      {isFilterOpen && <OptionsContainer>{optionsList}</OptionsContainer>}
     </FilterCointainer>
   );
 };

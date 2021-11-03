@@ -1,5 +1,5 @@
 import ArrowRightIcon from "../../../assets/icons/Arrow-Right.svg";
-import { ButtonTypes } from "../types";
+import { ButtonTypes } from "../../../types/types";
 import { StyledBtn, ArrowIcon } from "./style";
 
 export interface ButtonProps {

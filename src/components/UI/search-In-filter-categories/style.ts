@@ -12,18 +12,6 @@ export const FilterCointainer = styled.div`
   border-radius: 10px;
   background: #ffff;
   z-index: 1;
-  @media (max-width: 1024px) {
-    &#mobile-sort-by-container {
-      display: block !important;
-      height: 45px;
-      width: 175px;
-      border-radius: unset;
-      display: flex;
-      align-items: center;
-      z-index: 0;
-      padding-left: 5px;
-    }
-  }
 `;
 
 export const DropdownSelect = styled.div`
@@ -33,11 +21,6 @@ export const DropdownSelect = styled.div`
   height: 47px;
   border-radius: 10px;
   padding: 0 15px;
-  &#mobile-sort-by-drop-down {
-    /* border-radius: 0px 10px 10px 0; */
-    justify-content: unset;
-    padding: 0;
-  }
 `;
 
 export const DropdownArrowIcon = styled.img`

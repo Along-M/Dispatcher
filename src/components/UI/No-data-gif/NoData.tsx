@@ -2,7 +2,7 @@ import * as React from "react";
 import { NoChartDataIcon, NoArticalIcon, NoDataText } from "./style";
 import noDatafound from "../../../assets/icons/noDatafound.svg";
 import noArticalsfound from "../../../assets/icons/noArticalsfound.svg";
-import { NoDataFoundTypes } from "../types";
+import { NoDataFoundTypes } from "../../../types/types";
 
 export interface NoDataProps {
   type: NoDataFoundTypes;

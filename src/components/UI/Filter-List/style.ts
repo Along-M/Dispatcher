@@ -1,13 +1,12 @@
 import styled from "styled-components";
-import globalFont from "../types";
-
+import globalFont from "../../../types/types";
 
 export const FiltersContainer = styled.section`
   display: flex;
   max-width: 100%;
   gap: 1.25rem;
-  border-bottom: 1px solid #D9DBE9;
-  padding:20px 0;
+  border-bottom: 1px solid #d9dbe9;
+  padding: 20px 0;
   max-width: 1425px;
 `;
 
@@ -17,6 +16,4 @@ export const MobileSortByFilterHeader = styled.h4`
   line-height: 22px;
 `;
 
-export const DropdownArrowIcon = styled.img`
-  ` 
-
+export const DropdownArrowIcon = styled.img``;

@@ -1,8 +1,7 @@
 import { useState } from "react";
 import useWindowSize from "../../../helpers/custom-hooks";
-import { BrowserView, isDesktop } from "react-device-detect";
 import Filter from "../filter/Filter";
-import { FilterCategories } from "../types";
+import { FilterSubCategories } from "../../../types/filterTypes";
 import {
   SearchBarContainer,
   SearchInput,
@@ -13,11 +12,12 @@ import {
 import searchIcon from "../../../assets/icons/search.svg";
 import closeIcon from "../../../assets/icons/close.svg";
 import LastSearchResults from "../last-search-results/LastSearchResults";
+import SearchInFilterCategories from "../search-In-filter-categories/SearchInFilterCategories";
 
 export interface SearchProps {
   dropDownOptions?: string[];
   children?: React.ReactChild | React.ReactChild[];
-  type?: FilterCategories;
+  type?: FilterSubCategories;
 }
 
 const Search = ({ children, type, dropDownOptions }: SearchProps) => {
@@ -37,7 +37,10 @@ const Search = ({ children, type, dropDownOptions }: SearchProps) => {
         ></SearchInput>
         {windowSize.width > 1024 && <Divider />}
         {windowSize.width > 1024 && (
-          <Filter type={FilterCategories.TOP_HEADLINES}>Top Headlines</Filter>
+          <SearchInFilterCategories
+            id={"choose-filter-category"}
+            title="Top Headlines"
+          />
         )}
       </SearchInputContainer>
       {isLastSearchesOpen && <LastSearchResults />}

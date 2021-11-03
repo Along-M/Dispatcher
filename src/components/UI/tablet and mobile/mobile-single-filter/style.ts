@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import globalFont from "../../types";
-
-
+import globalFont from "../../../../types/types";
 
 export const FilterCointainer = styled.div`
   display: flex;
@@ -11,21 +9,18 @@ export const FilterCointainer = styled.div`
   z-index: 1;
   padding: 0 20px;
   align-items: center;
-  border-bottom: 1px solid #D9DBE9;
-
-`
+  border-bottom: 1px solid #d9dbe9;
+`;
 export const FilterHeader = styled.p`
   font-family: ${globalFont};
   font-size: 14px;
   line-height: 22px;
-  color:  #5A5A89;
+  color: #5a5a89;
   font-weight: 400;
-`
+`;
 export const FilterSelectedOptions = styled.span`
   font-family: ${globalFont};
   font-size: 14px;
   line-height: 22px;
-  color:  rgba(90, 90, 137, 0.5);
-
-`
-
+  color: rgba(90, 90, 137, 0.5);
+`;

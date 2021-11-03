@@ -1,7 +1,7 @@
 import { title } from "process";
 import Button from "../../button/Button";
 import MobileFilter from "../mobile-single-filter/MobileFilter";
-import { ButtonTypes } from "../../types";
+import { ButtonTypes } from "../../../../types/types";
 import {
   FilterHeaderContainer,
   FilterSideBarContainer,

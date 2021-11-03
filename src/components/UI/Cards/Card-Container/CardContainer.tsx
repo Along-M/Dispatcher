@@ -1,6 +1,6 @@
 import React from "react";
 import { CardContainer } from "./style";
-import { CardTypes } from "../../types";
+import { CardTypes } from "../../../../types/types";
 
 export interface CardContainerProps {
   children: React.ReactChild | React.ReactChild[];

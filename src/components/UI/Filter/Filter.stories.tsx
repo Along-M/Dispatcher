@@ -11,11 +11,7 @@ export default {
 const Template: Story<FilterProps> = (args) => <Filter {...args} />;
 
 export const V1 = Template.bind({});
-V1.args = {
-  children: "sfd",
-};
+V1.args = {};
 
 export const V2 = Template.bind({});
-V2.args = {
-  children: "sadfvsdfsdfsdfefdsafsdfsd",
-};
+V2.args = {};

@@ -21,20 +21,25 @@ export interface HeaderProps {
 }
 
 const Header = ({ children }: HeaderProps) => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
+  const [isSearchSidebarOpen, setIsSearchSidebarOpen] = useState<boolean>(
+    false
+  );
   const openSideBar = () => {
-    setIsSidebarOpen(true);
+    setIsSearchSidebarOpen(true);
   };
   const closeSidebar = (): void => {
-    setIsSidebarOpen(false);
+    setIsSearchSidebarOpen(false);
   };
   return (
     <HeaderContainer>
-      <MobileSearchBar isOpen={isSidebarOpen} closeSidebar={closeSidebar} />
+      <MobileSearchBar
+        isOpen={isSearchSidebarOpen}
+        closeSidebar={closeSidebar}
+      />
       <LogoContainer>
         <Icon src={logoIcon} />
       </LogoContainer>
-      <Search></Search>
+      <Search />
       <RightIconsContainer>
         <MobileSearchIcon
           src={searchIcon}

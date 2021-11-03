@@ -22,7 +22,7 @@ V1.args = {
       {
         label: "",
         data: [10, 12, 15, 10, 25, 50],
-        // borderColor: ["blue"],
+        borderColor: "blue",
         backgroundColor: "rgba(126, 134, 247, 0.15)",
       },
     ],
@@ -32,7 +32,6 @@ V1.args = {
     tension: 0.5,
     fill: true,
     pointBorderWidth: 0,
-    borderColor: ["bliue"],
   },
 };
 

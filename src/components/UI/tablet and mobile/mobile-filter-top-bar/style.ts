@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import globalFont from "../../types";
-
-
+import globalFont from "../../../../types/types";
 
 export const FilterTopBarContainer = styled.section`
   display: flex;
@@ -10,15 +8,14 @@ export const FilterTopBarContainer = styled.section`
   height: 45px;
   align-items: center;
   padding: 0 15px;
-  z-index:0;
-`
-export const FilterIcon = styled.img`
-  `  
+  z-index: 0;
+`;
+export const FilterIcon = styled.img``;
 // export const DropdownArrowIcon = styled.img`
 //   @media (min-width: 1025px) {
 //     display: none;
 //   }
-//   ` 
+//   `
 
 // export const MobileFilterBarText = styled.span`
 //   font-family: ${globalFont};
@@ -29,5 +26,3 @@ export const FilterIcon = styled.img`
 //     display: none;
 //   }
 // `
-
-

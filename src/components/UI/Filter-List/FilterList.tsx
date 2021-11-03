@@ -1,33 +1,27 @@
-import { useState } from "react";
-import DropdownArrow from "../../assets/icons/dropdown-arrow.svg";
-import Button from "../button/Button";
-import { ButtonTypes } from "../types";
+import { useSelector } from "react-redux";
 import Filter from "../filter/Filter";
-import { FilterCategories } from "../types";
 import { FiltersContainer } from "./style";
-// import MobileFilterBar from "../mobile-filter-top-bar/MobileFilterBar";
-import MobileFilterBar from "../tablet and mobile/mobile-filter-top-bar/MobileFilterBar";
+import { RootState } from "../../../store/store";
 
-export interface FilterListProps {
-  dropDownOptions?: string[];
-  children?: React.ReactChild | React.ReactChild[];
-  type?: FilterCategories;
-  variant?: string;
-}
+export interface FilterListProps {}
 
-const FilterList = ({
-  children,
-  type,
-  dropDownOptions,
-  variant,
-}: FilterListProps) => {
-  return (
-    <FiltersContainer>
-      <Filter type={FilterCategories.COUNTRY}>Country</Filter>
-      <Filter type={FilterCategories.CATEGORY}>Category</Filter>
-      <Filter type={FilterCategories.SOURCES}>Sources</Filter>
-    </FiltersContainer>
-  );
+const FilterList = ({}: FilterListProps) => {
+  const filters = useSelector((state: RootState) => state.filters);
+  const currentFilters = filters[filters.FilterGroupState];
+  const filterLIst = Object.keys(currentFilters).map((currentFilter) => {
+    return (
+      <Filter
+        title={currentFilters[currentFilter].title}
+        id={currentFilters[currentFilter].id}
+        key={currentFilters[currentFilter].id}
+        options={currentFilters[currentFilter].options}
+        type={currentFilters[currentFilter].type}
+        selectedOption={currentFilters[currentFilter].selectedOptions}
+      />
+    );
+  });
+
+  return <FiltersContainer>{filterLIst}</FiltersContainer>;
 };
 
 export default FilterList;
