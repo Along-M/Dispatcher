@@ -4,7 +4,7 @@ export interface IFilter {
     id: string;
     type: FilterSubCategories;
     options: string[];
-    selectedOptions: string | null;
+    selectedOptions: string | undefined;
     isChecked: boolean;
   };
 }
@@ -39,7 +39,7 @@ export const FiltersInitialState: fitersState = {
       id: "language-filter",
       type: FilterSubCategories.LANGUAGE,
       options: ["Canada", "Paris", "Israel", "Russia"],
-      selectedOptions: null,
+      selectedOptions: undefined,
       isChecked: false,
     },
     Sources: {
@@ -47,7 +47,7 @@ export const FiltersInitialState: fitersState = {
       id: "sources-filter",
       type: FilterSubCategories.SOURCES,
       options: ["NBC", "Ynet", "Mako", "Walla", "BBC"],
-      selectedOptions: null,
+      selectedOptions: undefined,
       isChecked: false,
     },
     Dates: {
@@ -55,7 +55,7 @@ export const FiltersInitialState: fitersState = {
       id: "date-filter",
       type: FilterSubCategories.DATES,
       options: ["20-10-21", "20-10-21", "20-10-21", "20-10-21"],
-      selectedOptions: null,
+      selectedOptions: undefined,
       isChecked: false,
     },
     SortBy: {
@@ -63,7 +63,7 @@ export const FiltersInitialState: fitersState = {
       id: "sort-by-filter",
       type: FilterSubCategories.SORT_BY,
       options: ["Relevants", "Popularity", "Published-at"],
-      selectedOptions: null,
+      selectedOptions: undefined,
       isChecked: false,
     },
   },
@@ -73,7 +73,7 @@ export const FiltersInitialState: fitersState = {
       id: "country-filter",
       type: FilterSubCategories.COUNTRY,
       options: ["Canada", "Paris", "Israel", "Russia"],
-      selectedOptions: null,
+      selectedOptions: undefined,
       isChecked: false,
     },
     Category: {
@@ -89,7 +89,7 @@ export const FiltersInitialState: fitersState = {
         "sports",
         "technology",
       ],
-      selectedOptions: null,
+      selectedOptions: undefined,
       isChecked: false,
     },
     Sources: {
@@ -97,7 +97,7 @@ export const FiltersInitialState: fitersState = {
       id: "sources-filter",
       type: FilterSubCategories.SOURCES,
       options: ["NBC", "Ynet", "Mako", "Walla", "BBC"],
-      selectedOptions: null,
+      selectedOptions: undefined,
       isChecked: false,
     },
   },

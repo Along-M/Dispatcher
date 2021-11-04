@@ -15,7 +15,7 @@ const FilterList = ({}: FilterListProps) => {
         id={currentFilters[currentFilter].id}
         key={currentFilters[currentFilter].id}
         options={currentFilters[currentFilter].options}
-        type={currentFilters[currentFilter].type}
+        filterType={currentFilters[currentFilter].type}
         selectedOption={currentFilters[currentFilter].selectedOptions}
       />
     );

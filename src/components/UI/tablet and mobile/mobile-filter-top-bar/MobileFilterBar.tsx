@@ -19,7 +19,7 @@ const MobileFilterBar = ({
     <>
       <FilterTopBarContainer>
         <Filter
-          type={FilterSubCategories.SORT_BY}
+          filterType={FilterSubCategories.SORT_BY}
           title={"Sort-by"}
           id={"sort-by-filter"}
           options={["Relevants", "Popularity", "Published-at"]}

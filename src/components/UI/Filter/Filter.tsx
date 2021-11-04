@@ -17,20 +17,41 @@ export interface FilterProps {
   id: string;
   options: string[];
   selectedOption: string | null;
-  type: FilterSubCategories;
+  filterType: FilterSubCategories;
 }
 
-const Filter = ({ title, id, options, selectedOption, type }: FilterProps) => {
+const Filter = ({
+  title,
+  id,
+  options,
+  selectedOption,
+  filterType,
+}: FilterProps) => {
   const dispatch = useDispatch();
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
   const toggleFilterDropdown = () => {
     setIsFilterOpen(!isFilterOpen);
   };
 
-  const optionClickHandler = () => {};
+  const optionClickHandler = (event: any, selectedOption: string) => {
+    dispatch(
+      filterActions.handleSelectedOptions({
+        filterSubCategory: filterType,
+        selectedOption: selectedOption,
+      })
+    );
+  };
 
   const optionsList = options?.map((option) => {
-    return <Option onClick={() => optionClickHandler}>{option}</Option>;
+    return (
+      <Option
+        onClick={(event: any, selectedOption = option) =>
+          optionClickHandler(event, selectedOption)
+        }
+      >
+        {option}
+      </Option>
+    );
   });
   return (
     <FilterCointainer id={id}>

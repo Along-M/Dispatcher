@@ -32,10 +32,10 @@ const SearchInFilterCategories = ({ id, title }: FilterCategoriesProps) => {
     //   console.log(event.target.innerHTML);
     //   return;
     // // } else {
-    console.log("TITLE 3: " + title);
-    console.log(event.target.innerHTML);
     dispatch(
-      filterActions.changeFilterGroup({ filterGroup: selectedCategory })
+      filterActions.changeFilterGroup({
+        filterSelectedCategory: selectedCategory,
+      })
     );
     // }
   };
