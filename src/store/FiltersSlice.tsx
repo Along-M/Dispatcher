@@ -1,5 +1,9 @@
 import { createSlice, current } from "@reduxjs/toolkit";
-import { FiltersInitialState } from "../types/filterTypes";
+import {
+  FilterCategories,
+  FiltersInitialState,
+  FilterSubCategories,
+} from "../types/filterTypes";
 
 const filtersInitialState = FiltersInitialState;
 
@@ -8,24 +12,24 @@ const filtersSlice = createSlice({
   initialState: filtersInitialState,
   reducers: {
     changeFilterGroup: (state, action) => {
-      state.FilterGroupState = action.payload.filterSelectedCategory;
+      const filterSelectedCategory = action.payload.filterSelectedCategory;
+      state.FilterGroupState = filterSelectedCategory;
     },
     handleSelectedOptions: (state, action) => {
-      let category = action.payload.filterSubCategory;
-      let option = action.payload.selectedOption;
-      state[state.FilterGroupState][category].selectedOptions = option;
-      // console.log(current(state));
-      // console.log("this is the state", category);
-      // console.log("this is the state", option);
-      // console.log("this is the state.everything", current(state.everything));
-      // console.log("this is the state.everything", current(state.everything));
-      // console.log(
-      //   "this is the state in topheadlines place",
-      //   current(state["topheadlines"][category])
-      // );
+      const category = action.payload.filterSubCategory;
+      const selectedOption = action.payload.selectedOption;
+      state[state.FilterGroupState][category].selectedOptions = selectedOption;
       console.log(
-        "this is the state",
-        current(state[state.FilterGroupState][category])
+        "im selectedOptions in add in selected options reduxxxxxxxx",
+        state[state.FilterGroupState][category].selectedOptions
+      );
+    },
+    clearSelectedOption(state, action) {
+      const category = action.payload.filterSubCategory;
+      state[state.FilterGroupState][category].selectedOptions = "";
+      console.log(
+        "im selectedOptions in remove in selected options reduxxxxxxxx",
+        state[state.FilterGroupState][category].selectedOptions
       );
     },
   },

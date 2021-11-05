@@ -8,7 +8,7 @@ export interface FilterListProps {}
 const FilterList = ({}: FilterListProps) => {
   const filters = useSelector((state: RootState) => state.filters);
   const currentFilters = filters[filters.FilterGroupState];
-  const filterLIst = Object.keys(currentFilters).map((currentFilter) => {
+  const currentFilterList = Object.keys(currentFilters).map((currentFilter) => {
     return (
       <Filter
         title={currentFilters[currentFilter].title}
@@ -21,7 +21,7 @@ const FilterList = ({}: FilterListProps) => {
     );
   });
 
-  return <FiltersContainer>{filterLIst}</FiltersContainer>;
+  return <FiltersContainer>{currentFilterList}</FiltersContainer>;
 };
 
 export default FilterList;

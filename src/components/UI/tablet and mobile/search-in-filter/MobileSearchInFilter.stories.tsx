@@ -1,5 +1,5 @@
 import { Meta, Story } from "@storybook/react";
-import SearchInFilter, { SearchInFilterProps } from "./SearchInFilter";
+import SearchInFilter, { SearchInFilterProps } from "./MobileSearchInFilter";
 
 export default {
   component: SearchInFilter,

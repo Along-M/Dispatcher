@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { filterActions } from "../../store/FiltersSlice";
 
 const useWindowSize = () => {
   // Initialize state with undefined width/height so server and client renders match

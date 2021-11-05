@@ -62,7 +62,7 @@ export const FilterHeaderContainer = styled.h2`
   margin: 0;
 `;
 
-export const ArrowIcon = styled.img`
+export const ArrowReturnToFilters = styled.img`
   padding-right: 15px;
 `;
 

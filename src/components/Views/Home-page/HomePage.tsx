@@ -11,7 +11,7 @@ import FilterList from "../../UI/filter-list/FilterList";
 import Search from "../../UI/search-bar/Search";
 import MobileSearchBar from "../../UI/tablet and mobile/mobile-search-sidebar/MobileSearchBar";
 import MobileFilterBar from "../../UI/tablet and mobile/mobile-filter-top-bar/MobileFilterBar";
-import useWindowSize from "../../../helpers/custom-hooks";
+import useWindowSize from "../../../helpers/custom-hooks/useWindowSize";
 
 const data = Data;
 export interface HomePageProps {

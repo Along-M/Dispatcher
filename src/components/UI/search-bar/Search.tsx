@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useWindowSize from "../../../helpers/custom-hooks";
+import useWindowSize from "../../../helpers/custom-hooks/useWindowSize";
 import Filter from "../filter/Filter";
 import { FilterSubCategories } from "../../../types/filterTypes";
 import {

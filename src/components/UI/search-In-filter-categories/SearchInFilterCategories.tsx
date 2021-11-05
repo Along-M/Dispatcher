@@ -26,18 +26,11 @@ const SearchInFilterCategories = ({ id, title }: FilterCategoriesProps) => {
   };
   const handleClick = (event: any, selectedCategory: string) => {
     setTitle(event.target.innerHTML);
-    // console.log("TITLE one: " + title);
-    // if (title == event.target.innerHTML) {
-    //   console.log("TITLE 2: " + title);
-    //   console.log(event.target.innerHTML);
-    //   return;
-    // // } else {
     dispatch(
       filterActions.changeFilterGroup({
         filterSelectedCategory: selectedCategory,
       })
     );
-    // }
   };
   return (
     <FilterCointainer id={id}>

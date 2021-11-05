@@ -28,7 +28,7 @@ const MobileFilterBar = ({
         {/* <MobileFilterBarText>Sort by</MobileFilterBarText>
         <DropdownArrowIcon src={DropdownArrow} /> */}
         <FilterIcon src={FiltersIcon} />
-        {/* <FilterSideBar /> */}
+        <FilterSideBar />
       </FilterTopBarContainer>
     </>
   );
