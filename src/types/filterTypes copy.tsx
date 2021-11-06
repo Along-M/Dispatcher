@@ -2,23 +2,23 @@ export interface IFilter {
   [key: string]: {
     title: string;
     id: string;
-    type: FilterSubCategories;
+    filterSubCategory: FilterSubCategories;
     options: string[];
-    selectedOptions: string | undefined;
-    isChecked: boolean;
+    selectedOptions?: string | undefined;
+    isChecked?: boolean;
   };
 }
 
 export interface fitersState {
   [key: string]: any;
   FilterGroupState: string;
-  everything: IFilter;
-  topheadlines: IFilter;
+  [FilterCategories.EVERYTHING]: IFilter;
+  [FilterCategories.TOP_HEADLINES]: IFilter;
 }
 
 export enum FilterCategories {
-  TOP_HEADLINES = "topheadlines",
-  EVERYTHING = "everything",
+  TOP_HEADLINES = "Top-headlines",
+  EVERYTHING = "Everything",
 }
 
 export enum FilterSubCategories {
@@ -28,59 +28,66 @@ export enum FilterSubCategories {
   // MOBILE_SORT_BY = "mobile-sort-by",
   LANGUAGE = "Language",
   DATES = "Dates",
-  SORT_BY = "SortBy",
+  SORT_BY = "Sort-by",
   SEARCH_IN = "Search-in",
 }
 
+export const SearchInFilter = {
+  title: "Search-in",
+  id: "search-in-filter",
+  filterSubCategory: FilterSubCategories.SEARCH_IN,
+  options: [FilterCategories.EVERYTHING, FilterCategories.TOP_HEADLINES],
+};
+
 export const FiltersInitialState: fitersState = {
-  FilterGroupState: "everything",
-  everything: {
-    Language: {
+  FilterGroupState: FilterCategories.EVERYTHING,
+  [FilterCategories.EVERYTHING]: {
+    [FilterSubCategories.LANGUAGE]: {
       title: "Language",
       id: "language-filter",
-      type: FilterSubCategories.LANGUAGE,
+      filterSubCategory: FilterSubCategories.LANGUAGE,
       options: ["IL", "PA", "GE", "RU"],
       selectedOptions: "",
       isChecked: false,
     },
-    Sources: {
+    [FilterSubCategories.SOURCES]: {
       title: "Sources",
       id: "sources-filter",
-      type: FilterSubCategories.SOURCES,
+      filterSubCategory: FilterSubCategories.SOURCES,
       options: ["NBC", "Ynet", "Mako", "Walla", "BBC"],
       selectedOptions: "",
       isChecked: false,
     },
-    Dates: {
+    [FilterSubCategories.DATES]: {
       title: "Dates",
       id: "date-filter",
-      type: FilterSubCategories.DATES,
+      filterSubCategory: FilterSubCategories.DATES,
       options: ["20-10-21", "20-10-21", "20-10-21", "20-10-21"],
       selectedOptions: "",
       isChecked: false,
     },
-    SortBy: {
+    [FilterSubCategories.SORT_BY]: {
       title: "Sort-by",
       id: "sort-by-filter",
-      type: FilterSubCategories.SORT_BY,
+      filterSubCategory: FilterSubCategories.SORT_BY,
       options: ["Relevants", "Popularity", "Published-at"],
       selectedOptions: "",
       isChecked: false,
     },
   },
-  topheadlines: {
-    Country: {
+  [FilterCategories.TOP_HEADLINES]: {
+    [FilterSubCategories.COUNTRY]: {
       title: "Country",
       id: "country-filter",
-      type: FilterSubCategories.COUNTRY,
+      filterSubCategory: FilterSubCategories.COUNTRY,
       options: ["Canada", "Paris", "Israel", "Russia"],
       selectedOptions: "",
       isChecked: false,
     },
-    Category: {
+    [FilterSubCategories.CATEGORY]: {
       title: "Category",
       id: "category-filter",
-      type: FilterSubCategories.CATEGORY,
+      filterSubCategory: FilterSubCategories.CATEGORY,
       options: [
         "business",
         "entertainment",
@@ -93,10 +100,10 @@ export const FiltersInitialState: fitersState = {
       selectedOptions: "",
       isChecked: false,
     },
-    Sources: {
+    [FilterSubCategories.SOURCES]: {
       title: "Sources",
       id: "sources-filter",
-      type: FilterSubCategories.SOURCES,
+      filterSubCategory: FilterSubCategories.SOURCES,
       options: ["NBC", "Ynet", "Mako", "Walla", "BBC"],
       selectedOptions: "",
       isChecked: false,

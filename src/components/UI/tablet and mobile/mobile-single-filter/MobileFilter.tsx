@@ -21,8 +21,7 @@ const MobileFilter = ({
   id,
   filterClickHandler,
 }: MobileFilterProps) => {
-  const selectedFilterOption = selectedOption ? selectedOption : "All";
-
+  const selectedFilterOption = selectedOption == "" ? "All" : selectedOption;
   return (
     <FilterCointainer id={id} onClick={() => filterClickHandler(filterType)}>
       <FilterHeader>{title}</FilterHeader>

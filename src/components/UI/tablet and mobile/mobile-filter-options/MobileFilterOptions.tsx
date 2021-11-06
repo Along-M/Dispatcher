@@ -23,34 +23,21 @@ const MobileFilterOptions = ({
   const dispatch = useDispatch();
   const filtersState = useSelector((state: RootState) => state.filters);
   const [isSelected, setIsSelected] = useState<boolean | undefined>(undefined);
-
-  console.log(filtersCategory);
-
   useEffect(() => {
     if (isFilterTypeSearchIn(filterType)) {
       let tempOption: string;
-      if (option === "Everything") {
-        tempOption = "everything";
-      } else {
-        tempOption = "topheadlines";
-      }
-      if (tempOption === filtersCategory) {
-        setIsSelected(true);
-      } else {
-        setIsSelected(false);
-      }
+      tempOption =
+        option == "Everything"
+          ? FilterCategories.EVERYTHING
+          : FilterCategories.TOP_HEADLINES;
+      tempOption == filtersCategory
+        ? setIsSelected(true)
+        : setIsSelected(false);
     } else {
       const optionSelected =
         filtersState[filtersCategory][filterType].selectedOptions;
-      if (optionSelected === option) {
-        setIsSelected(true);
-      } else {
-        setIsSelected(false);
-      }
+      optionSelected == option ? setIsSelected(true) : setIsSelected(false);
     }
-    // return () => {
-    //   cleanup
-    // }
   });
 
   const isFilterTypeSearchIn = (filterType: string) => {
@@ -61,14 +48,12 @@ const MobileFilterOptions = ({
     }
   };
 
-  const handleTypeSearchInFilterOption = (
+  const sendFiltersCurrentCategoryToStore = (
     selectedOption: string | undefined
   ) => {
-    if (selectedOption == "Everything") {
-      selectedOption = FilterCategories.EVERYTHING;
-    } else {
-      selectedOption = FilterCategories.TOP_HEADLINES;
-    }
+    selectedOption == "Everything"
+      ? (selectedOption = FilterCategories.EVERYTHING)
+      : (selectedOption = FilterCategories.TOP_HEADLINES);
     dispatch(
       filterActions.changeFilterGroup({
         filterSelectedCategory: selectedOption,
@@ -80,7 +65,7 @@ const MobileFilterOptions = ({
     selectedOption: string | undefined
   ) => {
     if (isFilterTypeSearchIn(filterType)) {
-      handleTypeSearchInFilterOption(selectedOption);
+      sendFiltersCurrentCategoryToStore(selectedOption);
     } else {
       dispatch(
         filterActions.handleSelectedOptions({
@@ -106,11 +91,9 @@ const MobileFilterOptions = ({
     event: any,
     selectedOption: string | undefined
   ) => {
-    if (isSelected) {
-      removeSelectedOptionFromStore(filterType);
-    } else {
-      sendSelectedOptionToStore(filterType, selectedOption);
-    }
+    isSelected
+      ? removeSelectedOptionFromStore(filterType)
+      : sendSelectedOptionToStore(filterType, selectedOption);
     setIsSelected(!isSelected);
   };
 
