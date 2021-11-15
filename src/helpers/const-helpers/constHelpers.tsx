@@ -1,119 +1,18 @@
-export interface IFilter {
-  [key: string]: {
-    title: string;
-    id: string;
-    filterSubCategory: FilterSubCategories;
-    options: string[];
-    selectedOptions?: string | undefined;
-    isChecked?: boolean;
-  };
-}
-export interface filtersInitialState {
-  [key: string]: any;
-  FilterGroupState: string;
-  [FilterCategories.EVERYTHING]: IFilter;
-  [FilterCategories.TOP_HEADLINES]: IFilter;
-}
-export interface filtersState {
-  [key: string]: IFilter;
-}
+import {
+  FilterCategories,
+  filtersInitialState,
+  FilterSubCategories,
+} from "../../types/filterTypes copy";
 
-export enum FilterCategories {
-  TOP_HEADLINES = "Top-headlines",
-  EVERYTHING = "Everything",
-}
-export enum FilterSubCategories {
-  SOURCES = "Sources",
-  CATEGORY = "Category",
-  COUNTRY = "Country",
-  // MOBILE_SORT_BY = "mobile-sort-by",
-  LANGUAGE = "Language",
-  DATES = "Dates",
-  SORT_BY = "Sort-by",
-  SEARCH_IN = "Search-in",
-}
-// export enum CountriesOptions {
-//   United Arab Emirates = 'ae',
-//   ar = "Argentina",
-//   at = "Austria",
-//   au = "Australia",
-//   be = "Belgium",
-//   bg = "Bulgaria",
-// br
-// ca
-// ch
-// cn
-// co
-// cu
-// cz
-// de
-// eg
-// fr
-// gb
-// gr
-// hk
-// hu
-// id
-// ie
-// il
-// in
-// it
-// jp
-// kr
-// lt
-// lv
-// ma
-// mx
-// my
-// ng
-// nl
-// no
-// nz
-// ph
-// pl
-// pt
-// ro
-// rs
-// ru
-// sa
-// se
-// sg
-// si
-// sk
-// th
-// tr
-// tw
-// ua
-// us
-// ve
-// za
-// }
-// export enum CategoryOptions {
-
-// }
-// export enum LanguagOptions {
-//   ar = "Argentina",
-//   de = "German",
-//   en = "English",
-//   es = "es",
-//   fr = "Franch",
-//   he = "Hebrew",
-//   it = "Italian",
-//   nl = "Nl",
-//   no = "No",
-//   pt = "Pt",
-//   ru = "Russian",
-//   se = "Se",
-//   ud = "Ud",
-//   zh = "Zh",
-// }
+export const apiKey = "456536dca78a4cceb68b8839fe9cd185";
+export const urlStart = "https://newsapi.org/v2/";
+export const defaultUrl = `https://newsapi.org/v2/top-headlines?country=il&apiKey=${apiKey}`;
 export const SearchInFilter = {
   title: "Search-in",
   id: "search-in-filter",
   filterSubCategory: FilterSubCategories.SEARCH_IN,
   options: [FilterCategories.EVERYTHING, FilterCategories.TOP_HEADLINES],
 };
-
 export const FiltersInitialState: filtersInitialState = {
   FilterGroupState: FilterCategories.TOP_HEADLINES,
   [FilterCategories.EVERYTHING]: {

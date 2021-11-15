@@ -13,11 +13,12 @@ import MobileSearchInFilter from "../search-in-filter/MobileSearchInFilter";
 import {
   FilterCategories,
   FilterSubCategories,
-} from "../../../../types/filterTypes";
+} from "../../../../types/filterTypes copy";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
 import { useState } from "react";
 import MobileFilterOptions from "../mobile-filter-options/MobileFilterOptions";
+import { SearchInFilter } from "../../../../types/filterTypes copy";
 
 export interface FilterSideBarProps {
   isOpen?: boolean;
@@ -29,9 +30,8 @@ const FilterSideBar = ({ isOpen }: FilterSideBarProps) => {
   const [isFilterClicked, setIsFilterClicked] = useState<boolean>(false);
   const [currentFilterType, setCurrentFilterType] = useState<string>("");
   const [currentFilterOptions, setcurrentFilterOptions] = useState<string[]>();
-  const filterCategory = filters.FilterGroupState;
-  const currentFilters = filters[filterCategory];
-  // const currentFilters = filters[filters.FilterGroupState];
+  const currentFilterCategory = filters.FilterGroupState;
+  const currentFilters = filters[currentFilterCategory];
 
   const handleReturnToFiltersArrowClick = () => {
     setIsFilterClicked(false);
@@ -41,8 +41,8 @@ const FilterSideBar = ({ isOpen }: FilterSideBarProps) => {
   const handleCurrentfilterState = (filterType: FilterSubCategories) => {
     switch (filterType) {
       case FilterSubCategories.SEARCH_IN:
-        setcurrentFilterOptions(["Everything", "Top-headlines"]);
-        setSidebarTitle(FilterSubCategories.SEARCH_IN);
+        setcurrentFilterOptions(SearchInFilter.options);
+        setSidebarTitle(SearchInFilter.title);
         break;
       default:
         const currentOptions =
@@ -61,7 +61,7 @@ const FilterSideBar = ({ isOpen }: FilterSideBarProps) => {
   };
 
   const currentFilterList = Object.keys(currentFilters).map((currentFilter) => {
-    const filterSubCategory = currentFilters[currentFilter].type;
+    const filterSubCategory = currentFilters[currentFilter].filterSubCategory;
     if (filterSubCategory === FilterSubCategories.SORT_BY) {
       return;
     }
@@ -71,7 +71,7 @@ const FilterSideBar = ({ isOpen }: FilterSideBarProps) => {
         id={currentFilters[currentFilter].id}
         key={currentFilters[currentFilter].id}
         options={currentFilters[currentFilter].options}
-        filterType={currentFilters[currentFilter].type}
+        filterType={currentFilters[currentFilter].filterSubCategory}
         selectedOption={currentFilters[currentFilter].selectedOptions}
         filterClickHandler={handleFilterClick}
       />
@@ -84,8 +84,7 @@ const FilterSideBar = ({ isOpen }: FilterSideBarProps) => {
         key={option + "" + index}
         option={option}
         filterType={currentFilterType}
-        filtersCategory={filterCategory}
-        // optionSelected={currentFilters[currentFilterType].selectedOptions}
+        filtersCategory={currentFilterCategory}
       ></MobileFilterOptions>
     );
   });
@@ -104,9 +103,9 @@ const FilterSideBar = ({ isOpen }: FilterSideBarProps) => {
         </FilterHeaderContainer>
         {!isFilterClicked && (
           <MobileSearchInFilter
-            title={"Search-in"}
-            id={"mobile-search-in-filter"}
-            selectedOption={filterCategory}
+            title={SearchInFilter.title}
+            id={SearchInFilter.id}
+            selectedOption={currentFilterCategory}
             filterType={FilterSubCategories.SEARCH_IN}
             filterClickHandler={handleFilterClick}
           />

@@ -46,10 +46,11 @@ export const DropdownArrowIcon = styled.img`
   }
 `;
 export const OptionsContainer = styled.div`
-  height: 75px;
+  height: 125px;
   background: white;
   border-radius: 5px;
   overflow-y: scroll;
+  overflow-x: hidden;
   margin-top: 5px;
   &::-webkit-scrollbar {
     background: none;
@@ -75,6 +76,9 @@ export const Option = styled.option`
   height: 28px;
   display: flex;
   align-items: center;
+  &.selected {
+    background: rgba(223, 224, 235, 0.41);
+  }
   :hover {
     background: rgba(223, 224, 235, 0.41);
   }

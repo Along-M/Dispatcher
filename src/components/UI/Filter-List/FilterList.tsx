@@ -5,7 +5,7 @@ import { RootState } from "../../../store/store";
 
 export interface FilterListProps {}
 
-const FilterList = ({}: FilterListProps) => {
+const FilterList = ({}: FilterListProps): JSX.Element => {
   const filters = useSelector((state: RootState) => state.filters);
   const currentFilters = filters[filters.FilterGroupState];
   const currentFilterList = Object.keys(currentFilters).map((currentFilter) => {
@@ -15,7 +15,7 @@ const FilterList = ({}: FilterListProps) => {
         id={currentFilters[currentFilter].id}
         key={currentFilters[currentFilter].id}
         options={currentFilters[currentFilter].options}
-        filterType={currentFilters[currentFilter].type}
+        filterType={currentFilters[currentFilter].filterSubCategory}
         selectedOption={currentFilters[currentFilter].selectedOptions}
       />
     );

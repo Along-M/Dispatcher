@@ -3,7 +3,13 @@ import {
   FilterCategories,
   FiltersInitialState,
   FilterSubCategories,
-} from "../types/filterTypes";
+} from "../types/filterTypes copy";
+// import {
+//   FilterCategories,
+//   FiltersInitialState,
+//   FiltersInitialState
+//   FilterSubCategories,
+// } from "../types/filterTypes";
 
 const filtersInitialState = FiltersInitialState;
 
@@ -16,23 +22,30 @@ const filtersSlice = createSlice({
       state.FilterGroupState = filterSelectedCategory;
     },
     handleSelectedOptions: (state, action) => {
-      const category = action.payload.filterSubCategory;
+      const filterCategory = action.payload.filterSubCategory;
       const selectedOption = action.payload.selectedOption;
-      state[state.FilterGroupState][category].selectedOptions = selectedOption;
-      console.log(
-        "im selectedOptions in add in selected options reduxxxxxxxx",
-        state[state.FilterGroupState][category].selectedOptions
-      );
+      filterCategory == FilterSubCategories.SORT_BY
+        ? (state[FilterCategories.EVERYTHING][
+            filterCategory
+          ].selectedOptions = selectedOption)
+        : (state[state.FilterGroupState][
+            filterCategory
+          ].selectedOptions = selectedOption);
     },
     clearSelectedOption(state, action) {
-      const category = action.payload.filterSubCategory;
-      state[state.FilterGroupState][category].selectedOptions = "";
-      console.log(
-        "im selectedOptions in remove in selected options reduxxxxxxxx",
-        state[state.FilterGroupState][category].selectedOptions
-      );
+      console.log("we are in clear selected options");
+      const filterCategory = action.payload.filterSubCategory;
+      state[state.FilterGroupState][filterCategory].selectedOptions = "";
+    },
+    insertSourcesFilterOptions(state, action) {
+      state[FilterCategories.EVERYTHING][FilterSubCategories.SOURCES].options =
+        action.payload;
+      state[FilterCategories.TOP_HEADLINES][
+        FilterSubCategories.SOURCES
+      ].options = action.payload;
     },
   },
 });
+
 export const filterActions = filtersSlice.actions;
 export default filtersSlice.reducer;

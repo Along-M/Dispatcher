@@ -5,7 +5,7 @@ import { RootState } from "../../../../store/store";
 import {
   FilterCategories,
   FilterSubCategories,
-} from "../../../../types/filterTypes";
+} from "../../../../types/filterTypes copy";
 import { FilterOptionsCointainer, Option } from "./style";
 export interface MobileFilterOptionsProps {
   id?: string;
@@ -22,24 +22,16 @@ const MobileFilterOptions = ({
 }: MobileFilterOptionsProps) => {
   const dispatch = useDispatch();
   const filtersState = useSelector((state: RootState) => state.filters);
-  const [isSelected, setIsSelected] = useState<boolean | undefined>(undefined);
+  const [isSelected, setIsSelected] = useState<boolean | undefined>(false);
   useEffect(() => {
     if (isFilterTypeSearchIn(filterType)) {
-      let tempOption: string;
-      tempOption =
-        option == "Everything"
-          ? FilterCategories.EVERYTHING
-          : FilterCategories.TOP_HEADLINES;
-      tempOption == filtersCategory
-        ? setIsSelected(true)
-        : setIsSelected(false);
+      option == filtersCategory ? setIsSelected(true) : setIsSelected(false);
     } else {
       const optionSelected =
         filtersState[filtersCategory][filterType].selectedOptions;
       optionSelected == option ? setIsSelected(true) : setIsSelected(false);
     }
   });
-
   const isFilterTypeSearchIn = (filterType: string) => {
     if (filterType === FilterSubCategories.SEARCH_IN) {
       return true;
@@ -47,13 +39,18 @@ const MobileFilterOptions = ({
       return false;
     }
   };
-
+  const optionClickHandler = (
+    event: any,
+    selectedOption: string | undefined
+  ) => {
+    isSelected
+      ? removeSelectedOptionFromStore(filterType)
+      : sendSelectedOptionToStore(filterType, selectedOption);
+    setIsSelected(!isSelected);
+  };
   const sendFiltersCurrentCategoryToStore = (
     selectedOption: string | undefined
   ) => {
-    selectedOption == "Everything"
-      ? (selectedOption = FilterCategories.EVERYTHING)
-      : (selectedOption = FilterCategories.TOP_HEADLINES);
     dispatch(
       filterActions.changeFilterGroup({
         filterSelectedCategory: selectedOption,
@@ -75,7 +72,6 @@ const MobileFilterOptions = ({
       );
     }
   };
-
   const removeSelectedOptionFromStore = (filterType: string) => {
     if (isFilterTypeSearchIn(filterType)) {
       return;
@@ -86,15 +82,6 @@ const MobileFilterOptions = ({
         })
       );
     }
-  };
-  const optionClickHandler = (
-    event: any,
-    selectedOption: string | undefined
-  ) => {
-    isSelected
-      ? removeSelectedOptionFromStore(filterType)
-      : sendSelectedOptionToStore(filterType, selectedOption);
-    setIsSelected(!isSelected);
   };
 
   return (

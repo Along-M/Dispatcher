@@ -27,14 +27,14 @@ const Header = ({ children }: HeaderProps) => {
   const openSideBar = () => {
     setIsSearchSidebarOpen(true);
   };
-  const closeSidebar = (): void => {
+  const closeSearchSideBar = (): void => {
     setIsSearchSidebarOpen(false);
   };
   return (
     <HeaderContainer>
       <MobileSearchBar
         isOpen={isSearchSidebarOpen}
-        closeSidebar={closeSidebar}
+        closeSidebar={closeSearchSideBar}
       />
       <LogoContainer>
         <Icon src={logoIcon} />

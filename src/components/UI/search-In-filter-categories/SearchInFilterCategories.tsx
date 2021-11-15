@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import DropdownArrow from "../../../assets/icons/dropdown-arrow.svg";
-import { FilterCategories } from "../../../types/filterTypes";
+import {
+  FilterCategories,
+  FilterSubCategories,
+} from "../../../types/filterTypes";
 import { filterActions } from "../../../store/FiltersSlice";
 import {
   FilterCointainer,
@@ -15,16 +18,23 @@ import {
 export interface FilterCategoriesProps {
   id: string;
   title: string;
+  options: string[];
+  filterSubCategory: FilterSubCategories;
 }
 
-const SearchInFilterCategories = ({ id, title }: FilterCategoriesProps) => {
+const SearchInFilterCategories = ({
+  id,
+  title,
+  options,
+  filterSubCategory,
+}: FilterCategoriesProps) => {
   const dispatch = useDispatch();
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
   const [filterTitle, setTitle] = useState(title);
   const toggleFilterOptions = () => {
     setIsFilterOpen(!isFilterOpen);
   };
-  const handleClick = (event: any, selectedCategory: string) => {
+  const handleOpyionClick = (event: any, selectedCategory: string) => {
     setTitle(event.target.innerHTML);
     dispatch(
       filterActions.changeFilterGroup({
@@ -32,6 +42,19 @@ const SearchInFilterCategories = ({ id, title }: FilterCategoriesProps) => {
       })
     );
   };
+
+  const optionsList = options.map((option) => {
+    return (
+      <Option
+        onClick={(event: any, selectedCategory = option) =>
+          handleOpyionClick(event, selectedCategory)
+        }
+      >
+        {option}
+      </Option>
+    );
+  });
+
   return (
     <FilterCointainer id={id}>
       <DropdownSelect onClick={toggleFilterOptions}>
@@ -40,7 +63,8 @@ const SearchInFilterCategories = ({ id, title }: FilterCategoriesProps) => {
       </DropdownSelect>
       {isFilterOpen && (
         <OptionsContainer>
-          <Option
+          {optionsList}
+          {/* <Option
             onClick={(
               event: any,
               selectedCategory = FilterCategories.TOP_HEADLINES
@@ -55,7 +79,7 @@ const SearchInFilterCategories = ({ id, title }: FilterCategoriesProps) => {
             ) => handleClick(event, selectedCategory)}
           >
             Everything
-          </Option>
+          </Option> */}
         </OptionsContainer>
       )}
     </FilterCointainer>

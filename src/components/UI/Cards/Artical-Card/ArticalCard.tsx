@@ -12,38 +12,52 @@ import {
 } from "./style";
 import Tag from "../../tags/Tag";
 import Button from "../../button/Button";
+import { useFormatDate } from "../../../../helpers/custom-hooks/useDateForamt";
 
 export interface StoryCardProps {
   children?: React.ReactChild | React.ReactChild[];
   title: string;
   tagContent: string;
-  date?: Date;
+  publishedAt: string;
   cardContent: string;
   imgUrl: string;
   subTitle: string;
+  url: string;
 }
 
 const ArticalCard = ({
   children,
   title,
   tagContent,
-  date,
+  publishedAt,
   cardContent,
   imgUrl,
   subTitle,
-}: StoryCardProps) => {
+  url,
+}: StoryCardProps): JSX.Element => {
+  const date = useFormatDate(publishedAt);
+
+  const openArticalNewTab = (url: string) => {
+    window.open(url);
+  };
+
   return (
     <CardContainer>
       <Img src={imgUrl} />
       <CardContentContainer>
         <CardHeaderContainer>
-          <Date>Friday Jun 25, 2021</Date>
+          <Date>{date}</Date>
+          {/* <Date>Friday Jun 25, 2021</Date> */}
           <Tag>{tagContent}</Tag>
         </CardHeaderContainer>
         <Title>{title}</Title>
         <SubTitle>{subTitle}</SubTitle>
         <CardContent>{cardContent}</CardContent>
-        <Button variant={ButtonTypes.PRIMARY} withIcon={true}>
+        <Button
+          variant={ButtonTypes.PRIMARY}
+          withIcon={true}
+          onClick={() => openArticalNewTab(url)}
+        >
           NEVIGATE TO DISPATCH
         </Button>
       </CardContentContainer>

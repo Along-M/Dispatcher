@@ -1,44 +1,43 @@
 import * as React from "react";
+import { useState } from "react";
 import { CardListContainer } from "./style";
 import ArticalCard from "../artical-card/ArticalCard";
 import { NoDataFoundTypes } from "../../../../types/types";
 import NoData from "../../no-data-gif/NoData";
+import { Idata, artical } from "../../../../types/dataTypes";
 
-type data = {
-  status: string;
-  totalResults: number;
-  articles: {
-    source: { id: string; name: string };
-    author: string;
-    title: string;
-    description: string;
-    url: string;
-    urlToImage: string;
-    publishedAt: string;
-    content: string;
-  }[];
-};
 export interface ArticalCardListProps {
   children?: React.ReactChild | React.ReactChild[];
-  data: data;
+  data: Idata | null;
 }
+const ArticalCardList = ({ data }: ArticalCardListProps) => {
+  const [dataFromApi, setDataFromApi] = useState(data);
+  console.log("this is data from api ", data);
 
-const ArticalCardList = ({ children, data }: ArticalCardListProps) => {
-  const StoryCardsToDisplay = data.articles.map((artical, index: number) => {
-    return (
-      <ArticalCard
-        title={artical.title}
-        subTitle={"walla.com"}
-        tagContent={artical.source.id}
-        cardContent={artical.content}
-        imgUrl={artical.urlToImage}
-      ></ArticalCard>
-    );
-  });
+  const articalToDisplay = data?.articles.map(
+    (artical: artical, index: number) => {
+      return (
+        <ArticalCard
+          key={index}
+          title={artical.title}
+          subTitle={artical.source.name}
+          tagContent={artical.source.name}
+          cardContent={artical.description}
+          imgUrl={artical.urlToImage}
+          publishedAt={artical.publishedAt}
+          url={artical.url}
+        ></ArticalCard>
+      );
+    }
+  );
+
   return (
     <CardListContainer>
-      {StoryCardsToDisplay}
-      {/* <NoData type={NoDataFoundTypes.ARTICALCARD} /> */}
+      {articalToDisplay}
+      {!articalToDisplay && <div>loading</div>}
+      {data?.totalResults === 0 && (
+        <NoData type={NoDataFoundTypes.ARTICALCARD} />
+      )}
     </CardListContainer>
   );
 };

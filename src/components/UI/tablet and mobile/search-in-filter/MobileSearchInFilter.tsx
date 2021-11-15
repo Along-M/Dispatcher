@@ -22,13 +22,13 @@ const SearchInFilter = ({
   filterType,
 }: SearchInFilterProps) => {
   // const handleSelectedOption = (selectedOption: string | null) => {
-  switch (selectedOption) {
-    case FilterCategories.TOP_HEADLINES:
-      selectedOption = "Top-headlines";
-      break;
-    default:
-      selectedOption = "Everything";
-  }
+  // switch (selectedOption) {
+  //   case FilterCategories.TOP_HEADLINES:
+  //     selectedOption = "Top-headlines";
+  //     break;
+  //   default:
+  //     selectedOption = "Everything";
+  // }
   // };
   // useEffect(() => {
   // handleSelectedOption(selectedOption);

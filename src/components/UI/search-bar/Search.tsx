@@ -13,6 +13,9 @@ import searchIcon from "../../../assets/icons/search.svg";
 import closeIcon from "../../../assets/icons/close.svg";
 import LastSearchResults from "../last-search-results/LastSearchResults";
 import SearchInFilterCategories from "../search-In-filter-categories/SearchInFilterCategories";
+import { SearchInFilter } from "../../../types/filterTypes copy";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store/store";
 
 export interface SearchProps {
   dropDownOptions?: string[];
@@ -22,6 +25,10 @@ export interface SearchProps {
 
 const Search = ({ children, type, dropDownOptions }: SearchProps) => {
   const windowSize = useWindowSize();
+  const SearchInFilterTitle = useSelector(
+    (state: RootState) => state.filters.FilterGroupState
+  );
+
   const [isLastSearchesOpen, setisLastSearchesOpen] = useState<boolean>(false);
   const toggleLastSearches = (): void => {
     setisLastSearchesOpen(!isLastSearchesOpen);
@@ -38,8 +45,10 @@ const Search = ({ children, type, dropDownOptions }: SearchProps) => {
         {windowSize.width > 1024 && <Divider />}
         {windowSize.width > 1024 && (
           <SearchInFilterCategories
-            id={"choose-filter-category"}
-            title="Top Headlines"
+            id={SearchInFilter.id}
+            title={SearchInFilterTitle}
+            filterSubCategory={SearchInFilter.filterSubCategory}
+            options={SearchInFilter.options}
           />
         )}
       </SearchInputContainer>
