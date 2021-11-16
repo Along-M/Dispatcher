@@ -14,16 +14,20 @@ import notificationIcon from "../../../assets/icons/notifications.svg";
 import searchIcon from "../../../assets/icons/search.svg";
 import Search from "../search-bar/Search";
 import MobileSearchBar from "../tablet and mobile/mobile-search-sidebar/MobileSearchBar";
+import { useAuth0 } from "@auth0/auth0-react";
+
 // import MobileSearchBar from "../mobile-search-sidebar/MobileSearchBar";
 
 export interface HeaderProps {
   children?: React.ReactChild | React.ReactChild[];
 }
 
-const Header = ({ children }: HeaderProps) => {
+const Header = ({ children }: HeaderProps): JSX.Element => {
   const [isSearchSidebarOpen, setIsSearchSidebarOpen] = useState<boolean>(
     false
   );
+  const { logout } = useAuth0();
+
   const openSideBar = () => {
     setIsSearchSidebarOpen(true);
   };
@@ -48,7 +52,11 @@ const Header = ({ children }: HeaderProps) => {
         />
         <Icon src={settingsIcon} className="settings-icon" />
         <Icon src={notificationIcon} className="notification-icon" />
-        <UserAvatar>AG</UserAvatar>
+        <UserAvatar
+          onClick={() => logout({ returnTo: window.location.origin })}
+        >
+          AG
+        </UserAvatar>
       </RightIconsContainer>
     </HeaderContainer>
   );

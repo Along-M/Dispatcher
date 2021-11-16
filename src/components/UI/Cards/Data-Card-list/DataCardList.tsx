@@ -1,6 +1,7 @@
 import { CardListContainer } from "./style";
-import DataCard from "../data-card/DataCard";
-import { ChartsData } from "../../charts/ChartType";
+import DataCard from "../Data-Card/DataCard";
+// import { ChartsData } from "../../Charts/ChartType";
+import { ChartsData } from "../../Charts/ChartType";
 
 export interface DataCardListProps {
   children?: React.ReactChild | React.ReactChild[];

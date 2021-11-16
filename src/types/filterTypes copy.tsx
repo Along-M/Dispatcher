@@ -160,7 +160,7 @@ export const FiltersInitialState: filtersInitialState = {
       title: "Sort-by",
       id: "sort-by-filter",
       filterSubCategory: FilterSubCategories.SORT_BY,
-      options: ["Relevancy", "Popularity", "publishedAt"],
+      options: ["relevancy", "Popularity", "publishedAt"],
       selectedOptions: "",
       isChecked: false,
     },

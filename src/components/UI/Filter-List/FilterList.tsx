@@ -1,13 +1,29 @@
-import { useSelector } from "react-redux";
-import Filter from "../filter/Filter";
+import { useSelector, useDispatch } from "react-redux";
+import Filter from "../Filter/Filter";
 import { FiltersContainer } from "./style";
 import { RootState } from "../../../store/store";
+import { getFilteredDatafromApi } from "../../../store/data-actions";
+import { useEffect } from "react";
+import useWindowSize from "../../../helpers/custom-hooks/useWindowSize";
+import { defaultUrl } from "../../../helpers/const-helpers/constHelpers";
 
-export interface FilterListProps {}
+export interface FilterListProps {
+  isInitial: Boolean;
+}
 
-const FilterList = ({}: FilterListProps): JSX.Element => {
-  const filters = useSelector((state: RootState) => state.filters);
-  const currentFilters = filters[filters.FilterGroupState];
+const FilterList = ({ isInitial }: FilterListProps): JSX.Element => {
+  // const dispatch = useDispatch();
+  const filtersState = useSelector((state: RootState) => state.filters);
+  const currentFilters = filtersState[filtersState.FilterGroupState];
+  const windowSize = useWindowSize();
+  // const isMobile = windowSize.width <= 1024 ? true : false;
+
+  // useEffect(() => {
+  //   console.log("filters listtttttt");
+  //   if (!isMobile && !isInitial) {
+  //     dispatch(getFilteredDatafromApi());
+  //   }
+  // }, [filtersState]);
   const currentFilterList = Object.keys(currentFilters).map((currentFilter) => {
     return (
       <Filter

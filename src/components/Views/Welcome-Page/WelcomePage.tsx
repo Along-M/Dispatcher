@@ -1,5 +1,5 @@
 import LoginLogo from "../../../assets/icons/LoginLogo.svg";
-import Button from "../../UI/button/Button";
+import Button from "../../UI/Button/Button";
 import { ButtonTypes } from "../../../types/types";
 import {
   WelcomePageCointainer,
@@ -12,10 +12,13 @@ import {
   BtnContainer,
   Divider,
 } from "./style";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export interface WelcomePageProps {}
 
-const WelcomePage = () => {
+const WelcomePage = (): JSX.Element => {
+  const { loginWithRedirect } = useAuth0();
+
   return (
     <>
       <WelcomePageCointainer>
@@ -32,7 +35,11 @@ const WelcomePage = () => {
           </TextContainer>
           <BtnContainer>
             <Divider />
-            <Button variant={ButtonTypes.WELCOME} withIcon={true}>
+            <Button
+              variant={ButtonTypes.WELCOME}
+              withIcon={true}
+              onClick={() => loginWithRedirect()}
+            >
               CONTINUE
             </Button>
           </BtnContainer>
@@ -43,3 +50,6 @@ const WelcomePage = () => {
 };
 
 export default WelcomePage;
+function logout(arg0: { returnTo: string }): void {
+  throw new Error("Function not implemented.");
+}

@@ -1,9 +1,11 @@
 import { apiKey, defaultUrl, urlStart } from "../const-helpers/constHelpers";
-import { filtersInitialState } from "../../types/filterTypes copy";
+import {
+  FilterCategories,
+  filtersInitialState,
+} from "../../types/filterTypes copy";
 import dateFormat from "dateformat";
 
 export const urlBuilder = async (filtersState: filtersInitialState) => {
-  const firstUrl = defaultUrl;
   const filtersCurrentCategory = filtersState.FilterGroupState;
   const currentfiltersState = filtersState[filtersCurrentCategory];
   let params = "";
@@ -15,8 +17,17 @@ export const urlBuilder = async (filtersState: filtersInitialState) => {
   }
 
   if (params === "") {
-    return firstUrl;
+    const url = `${urlStart + filtersCurrentCategory}${params}apiKey=${apiKey}`;
+    // console.log("this is the url: ", url);
+    return null;
   } else {
+    if (filtersCurrentCategory == FilterCategories.EVERYTHING) {
+      const url = `${
+        urlStart + filtersCurrentCategory
+      }?q=apple&${params}apiKey=${apiKey}`;
+      console.log("this is the url: ", url);
+      return url;
+    }
     const url = `${
       urlStart + filtersCurrentCategory
     }?${params}apiKey=${apiKey}`;

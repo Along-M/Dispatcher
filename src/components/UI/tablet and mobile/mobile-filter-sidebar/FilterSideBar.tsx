@@ -1,4 +1,4 @@
-import Button from "../../button/Button";
+import Button from "../../Button/Button";
 import ArrowLeft from "../../../../assets/icons/ArrowLeft.svg";
 import MobileFilter from "../mobile-single-filter/MobileFilter";
 import { ButtonTypes } from "../../../../types/types";
@@ -14,17 +14,20 @@ import {
   FilterCategories,
   FilterSubCategories,
 } from "../../../../types/filterTypes copy";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
 import { useState } from "react";
 import MobileFilterOptions from "../mobile-filter-options/MobileFilterOptions";
 import { SearchInFilter } from "../../../../types/filterTypes copy";
+import { getFilteredDatafromApi } from "../../../../store/data-actions";
 
 export interface FilterSideBarProps {
   isOpen?: boolean;
+  closeFilterSideBar: () => void;
 }
 
-const FilterSideBar = ({ isOpen }: FilterSideBarProps) => {
+const FilterSideBar = ({ isOpen, closeFilterSideBar }: FilterSideBarProps) => {
+  const dispatch = useDispatch();
   const filters = useSelector((state: RootState) => state.filters);
   const [SideBartitle, setSidebarTitle] = useState<string>("FILTER");
   const [isFilterClicked, setIsFilterClicked] = useState<boolean>(false);
@@ -60,6 +63,11 @@ const FilterSideBar = ({ isOpen }: FilterSideBarProps) => {
     setCurrentFilterType(filterType);
   };
 
+  const handleViewResultsBtn = () => {
+    dispatch(getFilteredDatafromApi());
+    closeFilterSideBar();
+  };
+
   const currentFilterList = Object.keys(currentFilters).map((currentFilter) => {
     const filterSubCategory = currentFilters[currentFilter].filterSubCategory;
     if (filterSubCategory === FilterSubCategories.SORT_BY) {
@@ -90,7 +98,9 @@ const FilterSideBar = ({ isOpen }: FilterSideBarProps) => {
   });
 
   return (
-    <FilterSideBarContainer>
+    <FilterSideBarContainer
+      className={isOpen ? "filter-side-bar-open" : "filter-side-bar-closed"}
+    >
       <ContentContainer>
         <FilterHeaderContainer>
           {isFilterClicked && (
@@ -114,7 +124,11 @@ const FilterSideBar = ({ isOpen }: FilterSideBarProps) => {
         {isFilterClicked && currentOptionsList}
       </ContentContainer>
       <BtnContainer>
-        <Button variant={ButtonTypes.VIEW_RESULTS} withIcon={false}>
+        <Button
+          variant={ButtonTypes.VIEW_RESULTS}
+          withIcon={false}
+          onClick={handleViewResultsBtn}
+        >
           VIEW RESULTS
         </Button>
       </BtnContainer>

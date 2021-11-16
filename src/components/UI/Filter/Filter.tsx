@@ -11,7 +11,6 @@ import {
   DropdownArrowIcon,
   Option,
 } from "./style";
-import { getDatafromApi } from "../../../store/data-actions";
 import { RootState } from "../../../store/store";
 
 export interface FilterProps {
@@ -40,9 +39,6 @@ const Filter = ({
     selectedOption ? setfilterTitle(selectedOption) : setfilterTitle(title);
   }, [selectedOption]);
 
-  // useEffect(() => {
-  //   dispatch(getDatafromApi());
-  // }, [filtersState]);
   const toggleFilterDropdown = () => {
     setIsFilterOpen(!isFilterOpen);
   };
@@ -51,6 +47,10 @@ const Filter = ({
     event: React.MouseEvent<HTMLElement>,
     selectedOption: string
   ) => {
+    console.log("im selected option in sort by : ", selectedOption);
+    console.log("im filter type  in sort by : ", filterType);
+    console.log("im filter type  in sort by : ", filterType);
+    console.log("im selected options in sort by : ", filterCurrentState);
     selectedOption == filterCurrentState[filterType].selectedOptions
       ? dispatch(
           filterActions.clearSelectedOption({
@@ -64,7 +64,7 @@ const Filter = ({
             selectedOption: selectedOption,
           })
         );
-    // dispatch(getDatafromApi());
+    // dispatch(getFilteredDatafromApi());
   };
 
   const optionsList = options?.map((option) => {

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import useWindowSize from "../../../helpers/custom-hooks/useWindowSize";
-import Filter from "../filter/Filter";
+import Filter from "../Filter/Filter";
 import { FilterSubCategories } from "../../../types/filterTypes";
 import {
   SearchBarContainer,

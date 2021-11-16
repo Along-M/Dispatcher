@@ -16,7 +16,7 @@ export const FilterSideBarContainer = styled.div`
   transition: 0.9s;
   justify-content: space-between;
 
-  &.search-side-bar-closed {
+  &.filter-side-bar-closed {
     position: fixed;
     /* right: -200%; */
     transition: 1.1s;
@@ -26,7 +26,7 @@ export const FilterSideBarContainer = styled.div`
     width: 0;
     right: 0;
   }
-  &.search-side-bar-open {
+  &.filter-side-bar-open {
     position: relative;
     width: 80%;
     display: flex;

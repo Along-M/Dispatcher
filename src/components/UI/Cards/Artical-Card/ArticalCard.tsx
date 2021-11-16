@@ -1,5 +1,5 @@
 import * as React from "react";
-import { CardContainer } from "../card-container/style";
+import { CardContainer } from "../Card-Container/style";
 import { ButtonTypes, CardTypes } from "../../../../types/types";
 import {
   CardContentContainer,
@@ -11,7 +11,7 @@ import {
   CardHeaderContainer,
 } from "./style";
 import Tag from "../../tags/Tag";
-import Button from "../../button/Button";
+import Button from "../../Button/Button";
 import { useFormatDate } from "../../../../helpers/custom-hooks/useDateForamt";
 
 export interface StoryCardProps {

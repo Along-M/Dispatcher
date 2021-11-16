@@ -8,7 +8,7 @@ export const FilterTopBarContainer = styled.section`
   height: 45px;
   align-items: center;
   padding: 0 15px;
-  z-index: 0;
+  z-index: 2;
 `;
 export const FilterIcon = styled.img``;
 // export const DropdownArrowIcon = styled.img`

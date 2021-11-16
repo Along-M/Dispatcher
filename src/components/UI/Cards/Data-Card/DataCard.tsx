@@ -1,10 +1,10 @@
 import * as React from "react";
-import { CardContainer } from "../card-container/style";
+import { CardContainer } from "../Card-Container/style";
 import { DataCardTitle, DataCardDivider, ChartContainer } from "./style";
 import { NoDataFoundTypes } from "../../../../types/types";
-import NoData from "../../no-data-gif/NoData";
-import Chart from "../../charts/Chart";
-import { ChartType, IChartData } from "../../charts/ChartType";
+import NoData from "../../No-data-gif/NoData";
+import Chart from "../../Charts/Chart";
+import { ChartType, IChartData } from "../../Charts/ChartType";
 
 export interface DataCardProps {
   // children?: React.ReactChild | React.ReactChild[];

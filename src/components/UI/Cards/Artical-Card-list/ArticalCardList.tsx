@@ -3,7 +3,7 @@ import { useState } from "react";
 import { CardListContainer } from "./style";
 import ArticalCard from "../artical-card/ArticalCard";
 import { NoDataFoundTypes } from "../../../../types/types";
-import NoData from "../../no-data-gif/NoData";
+import NoData from "../../No-data-gif/NoData";
 import { Idata, artical } from "../../../../types/dataTypes";
 
 export interface ArticalCardListProps {

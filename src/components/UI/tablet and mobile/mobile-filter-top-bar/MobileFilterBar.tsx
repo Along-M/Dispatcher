@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import DropdownArrow from "../../../assets/icons/dropdown-arrow.svg";
 import FiltersIcon from "../../../../assets/icons/filter.svg";
 import FilterSideBar from "../mobile-filter-sidebar/FilterSideBar";
-import Filter from "../../filter/Filter";
+import Filter from "../../Filter/Filter";
 import {
   FilterSubCategories,
   FilterCategories,
@@ -10,6 +10,7 @@ import {
 import { FilterIcon, FilterTopBarContainer } from "./style";
 import { RootState } from "../../../../store/store";
 import { useSelector } from "react-redux";
+import useOutsideClick from "../../../../helpers/custom-hooks/useClickOutside";
 
 export interface MobileFilterBarProps {}
 
@@ -18,8 +19,33 @@ const MobileFilterBar = ({}: MobileFilterBarProps) => {
     (state: RootState) =>
       state.filters[FilterCategories.EVERYTHING][FilterSubCategories.SORT_BY]
   );
+  const [isFilterSideBarOpen, setIsFilterSideBarOpen] = useState<any>(false);
+
+  const ref = useRef<HTMLDivElement>(null);
+  // // Call hook passing in the ref and a function to call on outside click
+  // useEffect(() => {
+  //   useOutsideClick(ref, () => {
+  //     console.log("clicked outside");
+  //     setIsFilterSideBarOpen(false);
+  //   });
+  //   // return () => {
+  //   //   cleanup
+  //   // }
+  // }, []);
+  // useOutsideClick(ref, () => {
+  //   console.log("clicked outside");
+  //   setIsFilterSideBarOpen(false);
+  // });
+
+  const openFilterSideBar = () => {
+    console.log(isFilterSideBarOpen);
+    setIsFilterSideBarOpen(true);
+  };
+  const closeFilterSideBar = () => {
+    setIsFilterSideBarOpen(false);
+  };
   return (
-    <>
+    <div className="test" ref={ref}>
       <FilterTopBarContainer>
         <Filter
           filterType={FilterSubCategories.SORT_BY}
@@ -30,10 +56,13 @@ const MobileFilterBar = ({}: MobileFilterBarProps) => {
         />
         {/* <MobileFilterBarText>Sort by</MobileFilterBarText>
         <DropdownArrowIcon src={DropdownArrow} /> */}
-        <FilterIcon src={FiltersIcon} />
-        {/* <FilterSideBar /> */}
+        <FilterIcon src={FiltersIcon} onClick={openFilterSideBar} />
+        <FilterSideBar
+          isOpen={isFilterSideBarOpen}
+          closeFilterSideBar={closeFilterSideBar}
+        />
       </FilterTopBarContainer>
-    </>
+    </div>
   );
 };
 
