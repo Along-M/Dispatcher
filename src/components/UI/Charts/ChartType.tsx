@@ -54,19 +54,25 @@ export type IChartOptions = {
 export const ChartsData: {
   [name: string]: {
     chartType: ChartType;
-    chartDataState: IChartData;
+    chartDataState: any;
     options: {};
   };
 } = {
   Sources: {
     chartType: ChartType.Doughnut,
     chartDataState: {
-      labels: ["NBC", "Vulture", "CNN", "ESPN"],
+      labels: [],
       datasets: [
         {
           label: "",
-          data: [10, 20, 30, 40],
-          backgroundColor: ["orange", "blue", "gray", "red", "green"],
+          data: [],
+          backgroundColor: [
+            "#FF9800",
+            "#343A6E",
+            "#E8E8E8",
+            "#030035",
+            "#DDF3FE",
+          ],
         },
       ],
     },
@@ -80,11 +86,11 @@ export const ChartsData: {
   Dates: {
     chartType: ChartType.Line,
     chartDataState: {
-      labels: ["APR", "MAY", "JUN", "JUL", "AUG"],
+      labels: [],
       datasets: [
         {
-          label: "",
-          data: [10, 100, 215, 100, 250, 500],
+          label: "Dates",
+          data: [],
           borderColor: "blue",
           backgroundColor: "rgba(126, 134, 247, 0.15)",
         },
@@ -96,6 +102,11 @@ export const ChartsData: {
       tension: 0.5,
       fill: true,
       pointBorderWidth: 0,
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
     },
   },
   Tags: {

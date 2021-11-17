@@ -9,21 +9,25 @@ import { ChartType, IChartData } from "../../Charts/ChartType";
 export interface DataCardProps {
   // children?: React.ReactChild | React.ReactChild[];
   title: string;
-  chartData: { chartType: ChartType; chartDataState: IChartData; options: {} };
+  chartData: IChartData;
+  chartType: ChartType;
+  chartOptions: {};
+  // chartData: { chartType: ChartType; chartDataState: IChartData; options: {} };
 }
 
-const DataCard = ({ title, chartData }: DataCardProps) => {
+const DataCard = ({
+  title,
+  chartData,
+  chartType,
+  chartOptions,
+}: DataCardProps) => {
   return (
     <CardContainer className="data-card">
       <DataCardTitle>{title}</DataCardTitle>
       <DataCardDivider />
       {/* <NoData type={NoDataFoundTypes.DATACARD} /> */}
       <ChartContainer>
-        <Chart
-          chartType={chartData.chartType}
-          state={chartData.chartDataState}
-          options={chartData.options}
-        />
+        <Chart chartType={chartType} state={chartData} options={chartOptions} />
       </ChartContainer>
     </CardContainer>
   );

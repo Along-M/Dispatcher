@@ -38,10 +38,10 @@ const HomePage = ({ children }: HomePageProps): JSX.Element => {
   useEffect(() => {
     dispatch(getInitialDatafromApi());
     // dispatch(getSourcesFilterOptions());
-    setisInitial(false);
   }, [dispatch]);
 
   useEffect(() => {
+    setisInitial(false);
     if (!isMobile && !isInitial) {
       console.log("use effect in homapage");
       dispatch(getFilteredDatafromApi());
@@ -56,11 +56,11 @@ const HomePage = ({ children }: HomePageProps): JSX.Element => {
         {isMobile && <MobileFilterBar />}
         {/* {windowSize.width > 1024 && <FilterList></FilterList>}
         {windowSize.width <= 1024 && <MobileFilterBar />} */}
-        <CardsHeaders></CardsHeaders>
+        <CardsHeaders totalResults={dataFromApi?.totalResults}></CardsHeaders>
         {/* <CardsHeaders>"TOP HEADLINS IN ISRAEL"</CardsHeaders> */}
         <CardsContainer>
           <ArticalCardList data={dataFromApi} />
-          <DataCardList></DataCardList>
+          <DataCardList articles={dataFromApi?.articles}></DataCardList>
         </CardsContainer>
       </MainBodyCointainer>
     </>
