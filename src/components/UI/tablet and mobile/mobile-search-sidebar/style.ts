@@ -53,10 +53,13 @@ export const SearchInput = styled.input`
 `;
 export const ArrowIcon = styled.img`
   padding-right: 15px;
+  cursor: pointer;
 `;
 export const ExitIcon = styled.img`
   padding-right: 35px;
+  cursor: pointer;
 `;
 export const SearchIcon = styled.img`
   padding-right: 35px;
+  cursor: pointer;
 `;

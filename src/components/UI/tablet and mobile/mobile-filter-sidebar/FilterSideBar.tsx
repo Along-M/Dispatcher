@@ -20,6 +20,7 @@ import { useState } from "react";
 import MobileFilterOptions from "../mobile-filter-options/MobileFilterOptions";
 import { SearchInFilter } from "../../../../types/filterTypes copy";
 import { getFilteredDatafromApi } from "../../../../store/data-actions";
+import DatePickerOptions from "../../date-picker/DatePicker";
 
 export interface FilterSideBarProps {
   isOpen?: boolean;
@@ -87,6 +88,10 @@ const FilterSideBar = ({ isOpen, closeFilterSideBar }: FilterSideBarProps) => {
   });
 
   const currentOptionsList = currentFilterOptions?.map((option, index) => {
+    // console.log("currentFilterType : ", currentFilterType);
+    // if (currentFilterType === FilterSubCategories.DATES) {
+    //   return <DatePickerOptions isMobile={true} />;
+    // }
     return (
       <MobileFilterOptions
         key={option + "" + index}
@@ -122,6 +127,9 @@ const FilterSideBar = ({ isOpen, closeFilterSideBar }: FilterSideBarProps) => {
         )}
         {!isFilterClicked && currentFilterList}
         {isFilterClicked && currentOptionsList}
+        {isFilterClicked && currentFilterType == FilterSubCategories.DATES && (
+          <DatePickerOptions isMobile={true} />
+        )}
       </ContentContainer>
       <BtnContainer>
         <Button

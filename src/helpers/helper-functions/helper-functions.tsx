@@ -10,9 +10,19 @@ export const urlBuilder = async (filtersState: filtersInitialState) => {
   const currentfiltersState = filtersState[filtersCurrentCategory];
   let params = "";
 
-  for (const [key, value] of Object.entries(currentfiltersState)) {
+  for (let [key, value] of Object.entries(currentfiltersState)) {
     if (currentfiltersState[key].selectedOptions !== "") {
-      params += key + "=" + currentfiltersState[key].selectedOptions + "&";
+      if (key == "Dates") {
+        console.log("in url builder", currentfiltersState[key].selectedOptions);
+        const selectedDateArr = currentfiltersState[key].selectedOptions.split(
+          " To "
+        );
+        console.log("this is the new option", selectedDateArr);
+        params +=
+          "from=" + selectedDateArr[0] + "&to=" + selectedDateArr[1] + "&";
+      } else {
+        params += key + "=" + currentfiltersState[key].selectedOptions + "&";
+      }
     }
   }
 

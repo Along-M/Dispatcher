@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import globalFont from "../../../types/types";
 
-export const SearchBarContainer = styled.div`
+export const SearchBarContainer = styled.form`
   width: 100%;
   max-width: 1920px;
   z-index: 2;
@@ -24,6 +24,7 @@ export const SearchInputContainer = styled.div`
   background: white;
   border-radius: 10px;
   height: 50px;
+  cursor: pointer;
 `;
 
 export const SearchInput = styled.input`
@@ -34,6 +35,7 @@ export const SearchInput = styled.input`
   width: 60%;
   border: none;
   outline: none;
+  cursor: pointer;
 `;
 
 export const Icon = styled.img`
@@ -41,6 +43,7 @@ export const Icon = styled.img`
   border-radius: 10px 0px 0px 10px;
   padding-right: 5px;
   padding-left: 5px;
+  cursor: pointer;
 `;
 export const Divider = styled.div`
   border: 1px solid #d9dbe9;

@@ -12,9 +12,7 @@ export interface CardsHeadersProps {
 const CardsHeaders = ({ children, totalResults }: CardsHeadersProps) => {
   const [isInitial, setisInitial] = useState(true);
   const filtersState = useSelector((state: RootState) => state.filters);
-
   const filtersCurrentState = filtersState[filtersState.FilterGroupState];
-  console.log("data total results ", totalResults);
   useEffect(() => {
     let filterParams = "";
     for (const [key, value] of Object.entries(filtersCurrentState)) {
@@ -27,8 +25,7 @@ const CardsHeaders = ({ children, totalResults }: CardsHeadersProps) => {
       setisInitial(false);
     }
   }, [filtersState]);
-  // useEffect(() => {
-  // }, [filtersState]);
+
   return (
     <>
       {isInitial && (

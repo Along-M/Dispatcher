@@ -23,6 +23,7 @@ export const LastSearchesContainer = styled.div`
   }
 `;
 export const CloseIcon = styled.img`
+  cursor: pointer;
   @media (max-width: 680px) {
     width: 11px;
     height: 11px;
@@ -62,20 +63,26 @@ export const LastSearchesOptionContainer = styled.div`
   padding-bottom: 10px;
   margin-left: 15px;
   margin-right: 15px;
+  /* cursor: pointer; */
   @media (max-width: 680px) {
     margin: unset;
     font-size: 14px;
     padding: 20px 0;
     border-bottom: 1px solid #d9dbe9;
   }
+  :hover {
+    background-color: rgba(90, 90, 137, 0.05);
+  }
 `;
 
 export const Option = styled.option`
+  cursor: pointer;
   @media (max-width: 680px) {
     font-weight: 300;
   }
 `;
 export const ClearBtn = styled.div`
+  cursor: pointer;
   @media (max-width: 680px) {
     background: #d9dbe9;
     width: 50px;

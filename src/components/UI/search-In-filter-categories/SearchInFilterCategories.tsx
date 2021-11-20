@@ -34,7 +34,7 @@ const SearchInFilterCategories = ({
   const toggleFilterOptions = () => {
     setIsFilterOpen(!isFilterOpen);
   };
-  const handleOpyionClick = (event: any, selectedCategory: string) => {
+  const handleOptionClick = (event: any, selectedCategory: string) => {
     setTitle(event.target.innerHTML);
     dispatch(
       filterActions.changeFilterGroup({
@@ -47,7 +47,7 @@ const SearchInFilterCategories = ({
     return (
       <Option
         onClick={(event: any, selectedCategory = option) =>
-          handleOpyionClick(event, selectedCategory)
+          handleOptionClick(event, selectedCategory)
         }
       >
         {option}

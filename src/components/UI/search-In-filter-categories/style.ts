@@ -24,6 +24,7 @@ export const DropdownSelect = styled.div`
 `;
 
 export const DropdownArrowIcon = styled.img`
+  cursor: pointer;
   @media (max-width: 1024px) {
     padding-left: 10px;
   }

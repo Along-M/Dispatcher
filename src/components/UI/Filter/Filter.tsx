@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { filterActions } from "../../../store/FiltersSlice";
 import DropdownArrow from "../../../assets/icons/dropdown-arrow.svg";
+import DropdownDateArrow from "../../../assets/icons/date.svg";
+import ClearDateOptionIcon from "../../../assets/icons/close.svg";
 import { FilterSubCategories } from "../../../types/filterTypes copy";
 import {
   FilterCointainer,
@@ -10,8 +12,10 @@ import {
   OptionsContainer,
   DropdownArrowIcon,
   Option,
+  DropdownDateIcon,
 } from "./style";
 import { RootState } from "../../../store/store";
+import DatePickerOptions from "../date-picker/DatePicker";
 
 export interface FilterProps {
   title: string;
@@ -35,22 +39,21 @@ const Filter = ({
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
   const [filterTitle, setfilterTitle] = useState<string>(title);
   let isSelected = false;
+
+  console.log(filterCurrentState);
   useEffect(() => {
     selectedOption ? setfilterTitle(selectedOption) : setfilterTitle(title);
   }, [selectedOption]);
 
-  const toggleFilterDropdown = () => {
+  const toggleFilterDropdown = (): void => {
     setIsFilterOpen(!isFilterOpen);
   };
 
   const optionClickHandler = (
     event: React.MouseEvent<HTMLElement>,
     selectedOption: string
-  ) => {
-    console.log("im selected option in sort by : ", selectedOption);
-    console.log("im filter type  in sort by : ", filterType);
-    console.log("im filter type  in sort by : ", filterType);
-    console.log("im selected options in sort by : ", filterCurrentState);
+  ): void => {
+    console.log("thi is me in iotuib click handler");
     selectedOption == filterCurrentState[filterType].selectedOptions
       ? dispatch(
           filterActions.clearSelectedOption({
@@ -64,7 +67,18 @@ const Filter = ({
             selectedOption: selectedOption,
           })
         );
-    // dispatch(getFilteredDatafromApi());
+  };
+
+  const handleDateFilterOptions = (): void => {
+    if (selectedOption && !isFilterOpen) {
+      dispatch(
+        filterActions.clearSelectedOption({
+          filterSubCategory: filterType,
+          // selectedOption: selectedOption,
+        })
+      );
+      // setIsFilterOpen(false);
+    }
   };
 
   const optionsList = options?.map((option) => {
@@ -84,11 +98,35 @@ const Filter = ({
   return (
     <FilterCointainer id={id}>
       <DropdownSelect onClick={toggleFilterDropdown}>
+        {/* <DropdownSelect onClick={toggleFilterDropdown}> */}
         <FilterHeader>{filterTitle}</FilterHeader>
-        {/* <FilterHeader>{selectedOption ? selectedOption : title}</FilterHeader> */}
-        <DropdownArrowIcon src={DropdownArrow} />
+        {filterType !== FilterSubCategories.DATES && (
+          <DropdownArrowIcon
+            src={DropdownArrow}
+            onClick={toggleFilterDropdown}
+          />
+        )}
+        {filterType == FilterSubCategories.DATES && (
+          <DropdownDateIcon
+            src={DropdownDateArrow}
+            onClick={handleDateFilterOptions}
+          />
+        )}
+        {/* {filterType == FilterSubCategories.DATES &&
+          selectedOption &&
+          !isFilterOpen && (
+            <DropdownDateIcon
+              src={ClearDateOptionIcon}
+              onClick={clearDateOption}
+            />
+          )} */}
       </DropdownSelect>
-      {isFilterOpen && <OptionsContainer>{optionsList}</OptionsContainer>}
+      {isFilterOpen && filterType !== FilterSubCategories.DATES && (
+        <OptionsContainer>{optionsList}</OptionsContainer>
+      )}
+      {isFilterOpen && filterType == FilterSubCategories.DATES && (
+        <DatePickerOptions />
+      )}
     </FilterCointainer>
   );
 };

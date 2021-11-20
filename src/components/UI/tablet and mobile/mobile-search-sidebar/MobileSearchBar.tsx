@@ -29,7 +29,7 @@ const MobileSearchBar = ({ isOpen, closeSidebar }: MobileSearchBarProps) => {
         <ExitIcon src={Exit} />
         <SearchIcon src={Search} />
       </SearchInputContainer>
-      <LastSearchResults />
+      {/* <LastSearchResults /> */}
     </SearchSideBarContainer>
   );
 };

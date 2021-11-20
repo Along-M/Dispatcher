@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useWindowSize from "../../../helpers/custom-hooks/useWindowSize";
-import Filter from "../Filter/Filter";
 import { FilterSubCategories } from "../../../types/filterTypes";
 import {
   SearchBarContainer,
@@ -16,6 +15,9 @@ import SearchInFilterCategories from "../search-In-filter-categories/SearchInFil
 import { SearchInFilter } from "../../../types/filterTypes copy";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
+import useOutsideClick from "../../../helpers/custom-hooks/useClickOutside";
+import { defaultUrl } from "../../../helpers/const-helpers/constHelpers";
+import { Console } from "console";
 
 export interface SearchProps {
   dropDownOptions?: string[];
@@ -28,19 +30,85 @@ const Search = ({ children, type, dropDownOptions }: SearchProps) => {
   const SearchInFilterTitle = useSelector(
     (state: RootState) => state.filters.FilterGroupState
   );
-
+  const ref = useRef<any>();
+  // const searchInputVal = useRef<HTMLInputElement>(null);
   const [isLastSearchesOpen, setisLastSearchesOpen] = useState<boolean>(false);
-  const toggleLastSearches = (): void => {
+  const [lastSearches, setLastSearches] = useState<string[]>([]);
+  const [searchInputValue, setsearchInputValue] = useState<
+    undefined | string
+  >();
+  useEffect(() => {
+    const lastSearchesFromLocalStorage = localStorage.getItem("lastSearches");
+    if (!lastSearchesFromLocalStorage) {
+      localStorage.setItem("lastSearches", JSON.stringify(lastSearches));
+    } else {
+      setLastSearches(JSON.parse(lastSearchesFromLocalStorage));
+    }
+  }, []);
+  useEffect(() => {
+    localStorage.setItem("lastSearches", JSON.stringify(lastSearches));
+  }, [lastSearches]);
+
+  useOutsideClick(ref, () => {
+    console.log("clicked outside");
+    setisLastSearchesOpen(false);
+  });
+  const toggleLastSearchesDiv = (): void => {
     setisLastSearchesOpen(!isLastSearchesOpen);
+  };
+  // const openLastSearches = (): void => {
+  //   setisLastSearchesOpen(true);
+  // };
+  // const closeLastSearches = (): void => {
+  //   setisLastSearchesOpen(false);
+  // };
+
+  const ItemAlreadyExistsInLocalstorage = (
+    lastSearches: string[],
+    inputVal: string
+  ): boolean => {
+    if (lastSearches.includes(inputVal)) {
+      return true;
+    }
+    return false;
+  };
+
+  const handleLastSearchOptionSelected = (option: string) => {
+    setsearchInputValue(option);
+    setisLastSearchesOpen(false);
+  };
+
+  const handleFreeSearchSubmit = (event: any) => {
+    console.log("hi", searchInputValue);
+    event.preventDefault();
+    // const inputVal = searchInputVal.current?.value;
+    if (!searchInputValue) {
+      return;
+    }
+    if (ItemAlreadyExistsInLocalstorage(lastSearches, searchInputValue)) {
+      return;
+    }
+    setisLastSearchesOpen(false);
+    setLastSearches((prevLastSearches) => [
+      searchInputValue,
+      ...prevLastSearches,
+    ]);
   };
 
   return (
-    <SearchBarContainer>
+    <SearchBarContainer
+      ref={ref}
+      onSubmit={handleFreeSearchSubmit}
+      autoComplete="off"
+    >
       <SearchInputContainer>
-        <Icon src={searchIcon} />
+        <Icon src={searchIcon} onClick={handleFreeSearchSubmit} />
         <SearchInput
           placeholder="Search"
-          onFocus={toggleLastSearches}
+          id="free-search-input"
+          onClick={toggleLastSearchesDiv}
+          value={searchInputValue}
+          onChange={(event) => setsearchInputValue(event.target.value)}
         ></SearchInput>
         {windowSize.width > 1024 && <Divider />}
         {windowSize.width > 1024 && (
@@ -52,7 +120,17 @@ const Search = ({ children, type, dropDownOptions }: SearchProps) => {
           />
         )}
       </SearchInputContainer>
-      {isLastSearchesOpen && <LastSearchResults />}
+      {isLastSearchesOpen && lastSearches.length > 0 && (
+        <LastSearchResults
+          lastSearchesOptions={lastSearches}
+          changeLastSearches={(newLastSearchArr: string[]) =>
+            setLastSearches(newLastSearchArr)
+          }
+          handleSearchSubmit={(option: string) => {
+            handleLastSearchOptionSelected(option);
+          }}
+        />
+      )}
     </SearchBarContainer>
   );
 };

@@ -67,7 +67,6 @@ const DataCardList = ({ children, articles }: DataCardListProps) => {
         {
           ...DatesChartData.datasets[0],
           data: Object.values(datesNameArray).map((item: {}[]) => {
-            console.log("this is item ", item.length);
             return item.length;
           }),
         },

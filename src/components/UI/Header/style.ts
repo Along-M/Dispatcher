@@ -40,6 +40,7 @@ export const UserAvatar = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
   @media (max-width: 1024px) {
     margin-left: 15px;
   }
@@ -52,6 +53,7 @@ export const UserAvatar = styled.div`
 
 export const Icon = styled.img`
   &.settings-icon {
+    cursor: pointer;
     width: 26px;
     height: 26px;
     @media (max-width: 1024px) {
@@ -62,6 +64,7 @@ export const Icon = styled.img`
     width: 26px;
     height: 26px;
     margin-left: 20px;
+    cursor: pointer;
     @media (max-width: 1024px) {
       margin-left: 15px;
     }
@@ -69,7 +72,9 @@ export const Icon = styled.img`
 `;
 export const MobileSearchIcon = styled.img`
   display: none;
+
   @media (max-width: 680px) {
     display: block;
+    cursor: pointer;
   }
 `;

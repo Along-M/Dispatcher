@@ -6,6 +6,7 @@ import {
   FilterCategories,
   FilterSubCategories,
 } from "../../../../types/filterTypes copy";
+import DatePickerOptions from "../../date-picker/DatePicker";
 import { FilterOptionsCointainer, Option } from "./style";
 export interface MobileFilterOptionsProps {
   id?: string;
@@ -48,15 +49,6 @@ const MobileFilterOptions = ({
       : sendSelectedOptionToStore(filterType, selectedOption);
     setIsSelected(!isSelected);
   };
-  const sendFiltersCurrentCategoryToStore = (
-    selectedOption: string | undefined
-  ) => {
-    dispatch(
-      filterActions.changeFilterGroup({
-        filterSelectedCategory: selectedOption,
-      })
-    );
-  };
   const sendSelectedOptionToStore = (
     filterType: string,
     selectedOption: string | undefined
@@ -83,15 +75,28 @@ const MobileFilterOptions = ({
       );
     }
   };
+  const sendFiltersCurrentCategoryToStore = (
+    selectedOption: string | undefined
+  ) => {
+    dispatch(
+      filterActions.changeFilterGroup({
+        filterSelectedCategory: selectedOption,
+      })
+    );
+  };
 
   return (
     <FilterOptionsCointainer
-      onClick={(event: any, selectedOption = option) =>
-        optionClickHandler(event, selectedOption)
-      }
+      onClick={(
+        event: React.MouseEvent<HTMLElement>,
+        selectedOption = option
+      ) => optionClickHandler(event, selectedOption)}
       className={isSelected ? "selected" : "not-selected"}
     >
-      <Option id={"option" + option}>{option}</Option>
+      {filterType !== FilterSubCategories.DATES && (
+        <Option id={"option" + option}>{option}</Option>
+      )}
+      {/* {filterType == FilterSubCategories.DATES && <DatePickerOptions />} */}
     </FilterOptionsCointainer>
   );
 };
