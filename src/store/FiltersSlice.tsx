@@ -44,6 +44,14 @@ const filtersSlice = createSlice({
         FilterSubCategories.SOURCES
       ].options = action.payload;
     },
+    addFreeSearchVal(state, action) {
+      console.log("this is action in add free srarch val", action);
+      state.FreeSearchVal = action.payload.value;
+    },
+    removeSearchValFromRedux(state, action) {
+      state.FreeSearchVal = action.payload.value;
+      console.log("lthis is action in add free srarch va", state.FreeSearchVal);
+    },
   },
 });
 

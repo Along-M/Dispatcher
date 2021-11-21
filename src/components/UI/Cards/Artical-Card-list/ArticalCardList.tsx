@@ -12,9 +12,10 @@ export interface ArticalCardListProps {
 }
 const ArticalCardList = ({ data }: ArticalCardListProps) => {
   const [dataFromApi, setDataFromApi] = useState(data);
+
   console.log("this is data from api ", data);
 
-  const articalToDisplay = data?.articles.map(
+  const articalToDisplay = data?.articles?.map(
     (artical: artical, index: number) => {
       return (
         <ArticalCard

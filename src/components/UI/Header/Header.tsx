@@ -15,41 +15,46 @@ import searchIcon from "../../../assets/icons/search.svg";
 import Search from "../search-bar/Search";
 import MobileSearchBar from "../tablet and mobile/mobile-search-sidebar/MobileSearchBar";
 import { useAuth0 } from "@auth0/auth0-react";
+import useWindowSize from "../../../helpers/custom-hooks/useWindowSize";
 
 // import MobileSearchBar from "../mobile-search-sidebar/MobileSearchBar";
 
 export interface HeaderProps {
   children?: React.ReactChild | React.ReactChild[];
+  openSearchSideBar: (bool: boolean) => void;
 }
-
-const Header = ({ children }: HeaderProps): JSX.Element => {
+const Header = ({ children, openSearchSideBar }: HeaderProps): JSX.Element => {
+  const windowSize = useWindowSize();
+  // const isMobile = windowSize.width <= 680 ? true : false;
   const [isSearchSidebarOpen, setIsSearchSidebarOpen] = useState<boolean>(
     false
   );
   const { logout } = useAuth0();
 
   const openSideBar = () => {
-    setIsSearchSidebarOpen(true);
+    openSearchSideBar(true);
   };
-  const closeSearchSideBar = (): void => {
-    setIsSearchSidebarOpen(false);
-  };
+  // const closeSearchSideBar = (): void => {
+  //   setIsSearchSidebarOpen(false);
+  // };
   return (
     <HeaderContainer>
-      <MobileSearchBar
+      {/* <MobileSearchBar
         isOpen={isSearchSidebarOpen}
         closeSidebar={closeSearchSideBar}
-      />
+      /> */}
       <LogoContainer>
         <Icon src={logoIcon} />
       </LogoContainer>
-      <Search />
+      {windowSize.width > 680 && <Search />}
       <RightIconsContainer>
+        {/* {isMobile && ( */}
         <MobileSearchIcon
           src={searchIcon}
           className="notification-icon"
           onClick={openSideBar}
         />
+        {/* )} */}
         <Icon src={settingsIcon} className="settings-icon" />
         <Icon src={notificationIcon} className="notification-icon" />
         <UserAvatar

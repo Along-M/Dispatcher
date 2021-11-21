@@ -64,7 +64,7 @@ const FilterSideBar = ({ isOpen, closeFilterSideBar }: FilterSideBarProps) => {
     setCurrentFilterType(filterType);
   };
 
-  const handleViewResultsBtn = () => {
+  const getFilteredData = () => {
     dispatch(getFilteredDatafromApi());
     closeFilterSideBar();
   };
@@ -135,7 +135,7 @@ const FilterSideBar = ({ isOpen, closeFilterSideBar }: FilterSideBarProps) => {
         <Button
           variant={ButtonTypes.VIEW_RESULTS}
           withIcon={false}
-          onClick={handleViewResultsBtn}
+          onClick={getFilteredData}
         >
           VIEW RESULTS
         </Button>

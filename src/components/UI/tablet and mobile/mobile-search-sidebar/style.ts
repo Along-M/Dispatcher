@@ -14,7 +14,7 @@ export const SearchSideBarContainer = styled.div`
   }
   &.search-side-bar-open {
     position: fixed;
-    width: 80%;
+    width: 100vw;
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -28,7 +28,7 @@ export const SearchSideBarContainer = styled.div`
   }
 `;
 
-export const SearchInputContainer = styled.div`
+export const SearchInputContainer = styled.form`
   z-index: 2;
   display: flex;
   width: 100%;

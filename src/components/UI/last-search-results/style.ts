@@ -11,7 +11,8 @@ export const LastSearchesContainer = styled.div`
   height: 125px;
   overflow: scroll;
   @media (max-width: 680px) {
-    padding: 0 20px;
+    /* padding: 0 20px; */
+    /* padding: 0 20px; */
     width: auto;
     border-radius: none;
     width: none;
@@ -50,6 +51,7 @@ export const LastSearchesHeaders = styled.div`
     color: #5a5a89;
     padding-top: 15px;
     margin: unset;
+    padding: 20px 20px;
   }
 `;
 export const LastSearchesOptionContainer = styled.div`
@@ -61,13 +63,15 @@ export const LastSearchesOptionContainer = styled.div`
   line-height: 16px;
   color: #5a5a89;
   padding-bottom: 10px;
-  margin-left: 15px;
-  margin-right: 15px;
+  /* margin-left: 15px;
+  margin-right: 15px; */
+  padding-left: 10px;
+  padding-right: 10px;
   /* cursor: pointer; */
   @media (max-width: 680px) {
     margin: unset;
     font-size: 14px;
-    padding: 20px 0;
+    padding: 20px;
     border-bottom: 1px solid #d9dbe9;
   }
   :hover {

@@ -4,10 +4,13 @@ import {
   filtersInitialState,
 } from "../../types/filterTypes copy";
 import dateFormat from "dateformat";
+import { useDispatch } from "react-redux";
+import { filterActions } from "../../store/FiltersSlice";
 
 export const urlBuilder = async (filtersState: filtersInitialState) => {
   const filtersCurrentCategory = filtersState.FilterGroupState;
   const currentfiltersState = filtersState[filtersCurrentCategory];
+  const freeSearchVal = filtersState.FreeSearchVal;
   let params = "";
 
   for (let [key, value] of Object.entries(currentfiltersState)) {
@@ -26,21 +29,23 @@ export const urlBuilder = async (filtersState: filtersInitialState) => {
     }
   }
 
-  if (params === "") {
-    const url = `${urlStart + filtersCurrentCategory}${params}apiKey=${apiKey}`;
-    // console.log("this is the url: ", url);
-    return null;
+  if (params === "" && !freeSearchVal) {
+    const url = `${
+      urlStart + filtersCurrentCategory
+    }?q=${freeSearchVal}&${params}apiKey=${apiKey}`;
+    console.log("this is the url:in nothin ", url);
+    return url;
   } else {
     if (filtersCurrentCategory == FilterCategories.EVERYTHING) {
       const url = `${
         urlStart + filtersCurrentCategory
-      }?q=apple&${params}apiKey=${apiKey}`;
+      }?q=${freeSearchVal}&${params}apiKey=${apiKey}`;
       console.log("this is the url: ", url);
       return url;
     }
     const url = `${
       urlStart + filtersCurrentCategory
-    }?${params}apiKey=${apiKey}`;
+    }?q=${freeSearchVal}&${params}apiKey=${apiKey}`;
     console.log("this is the url: ", url);
     return url;
   }
@@ -49,4 +54,14 @@ export const urlBuilder = async (filtersState: filtersInitialState) => {
 export const FormatDate = (dateToFormat: string): string => {
   const date = new Date(dateToFormat);
   return dateFormat(date, "dddd mmm d, yyyy");
+};
+
+export const ItemAlreadyExistsInLocalstorage = (
+  lastSearches: string[],
+  inputVal: string
+): boolean => {
+  if (lastSearches.includes(inputVal)) {
+    return true;
+  }
+  return false;
 };

@@ -30,6 +30,9 @@ const HomePage = ({ children }: HomePageProps): JSX.Element => {
   // );
   const dataFromApi = useSelector((state: RootState) => state.dataFromApi.data);
   const filtersState = useSelector((state: RootState) => state.filters);
+  const [isSearchSidebarOpen, setIsSearchSidebarOpen] = useState<boolean>(
+    false
+  );
   const windowSize = useWindowSize();
   const isMobile = windowSize.width <= 1024 ? true : false;
   const ref = useRef<HTMLDivElement>(null);
@@ -48,9 +51,24 @@ const HomePage = ({ children }: HomePageProps): JSX.Element => {
     }
   }, [filtersState]);
 
+  const openSideBar = () => {
+    setIsSearchSidebarOpen(true);
+  };
+  const closeSearchSideBar = (): void => {
+    setIsSearchSidebarOpen(false);
+  };
+
   return (
     <>
-      <Header />
+      {windowSize.width <= 680 && (
+        <MobileSearchBar
+          isOpen={isSearchSidebarOpen}
+          closeSidebar={closeSearchSideBar}
+        />
+      )}
+      <Header
+        openSearchSideBar={(bool: boolean) => setIsSearchSidebarOpen(bool)}
+      />
       <MainBodyCointainer>
         {!isMobile && <FilterList isInitial={isInitial}></FilterList>}
         {isMobile && <MobileFilterBar />}
