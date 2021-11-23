@@ -18,6 +18,9 @@ const CardsHeaders = ({
   const [isInitial, setisInitial] = useState(true);
   const dataFromApi = useSelector((state: RootState) => state.dataFromApi.data);
   console.log("dataFromApi in cards headers ", dataFromApi);
+  console.log("dataFromApi in cards headers ", dataFromApi);
+  console.log("dataFromApi in cards headers ", dataFromApi);
+  console.log("isInitial in cards headers ", isInitial);
   const filtersState = useSelector((state: RootState) => state.filters);
   const filtersCurrentState = filtersState[filtersState.FilterGroupState];
   useEffect(() => {
@@ -28,7 +31,8 @@ const CardsHeaders = ({
           key + "=" + filtersCurrentState[key].selectedOptions + "&";
       }
     }
-    if (filterParams !== "") {
+    // if(filtersState.FreeSearchVal !== )
+    if (filterParams !== "" || filtersState.FreeSearchVal !== "") {
       setisInitial(false);
     }
   }, [filtersState]);
@@ -51,11 +55,13 @@ const CardsHeaders = ({
           TOP HEADLINES IN ISRAEL
         </CardsNumberOfSearchResults>
       )} */}
-      {!isInitial && totalResults !== 0 && dataFromApi?.status !== "error" && (
-        <CardsNumberOfSearchResults onClick={onClick}>
-          {totalResults} Total results
-        </CardsNumberOfSearchResults>
-      )}
+      {!isInitial &&
+        dataFromApi?.totalResults !== 0 &&
+        dataFromApi?.status !== "error" && (
+          <CardsNumberOfSearchResults onClick={onClick}>
+            {dataFromApi?.totalResults} Total results
+          </CardsNumberOfSearchResults>
+        )}
       {!isInitial && totalResults === 0 && (
         <CardsNumberOfSearchResults
           onClick={onClick}

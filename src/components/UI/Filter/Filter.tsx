@@ -25,6 +25,7 @@ export interface FilterProps {
   options: string[];
   selectedOption: string | undefined;
   filterType: FilterSubCategories;
+  disabled?: boolean;
 }
 
 const Filter = ({
@@ -33,6 +34,7 @@ const Filter = ({
   options,
   selectedOption,
   filterType,
+  disabled,
 }: FilterProps): JSX.Element => {
   const dispatch = useDispatch();
   const filtersState = useSelector((state: RootState) => state.filters);
@@ -108,14 +110,19 @@ const Filter = ({
     );
   });
   return (
-    <FilterCointainer id={id}>
+    <FilterCointainer
+      id={id}
+      onClick={toggleFilterDropdown}
+      className={disabled ? "disabled" : "not-disabled"}
+    >
       <DropdownSelect>
         {/* <DropdownSelect onClick={toggleFilterDropdown}> */}
         <FilterHeader>{filterTitle}</FilterHeader>
         {filterType !== FilterSubCategories.DATES && (
           <DropdownArrowIcon
             src={DropdownArrow}
-            onClick={toggleFilterDropdown}
+            // onClick={toggleFilterDropdown}
+            // onClick={toggleFilterDropdown}
           />
         )}
         {filterType == FilterSubCategories.DATES && (

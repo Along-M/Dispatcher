@@ -12,6 +12,14 @@ export const FilterCointainer = styled.div`
   border-radius: 10px;
   background: #ffff;
   z-index: 1;
+  cursor: pointer;
+  &.disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    background-color: #f1f1f1;
+    /* height: 45px !important; */
+  }
+
   @media (max-width: 1024px) {
     &#sort-by-filter {
       display: block !important;

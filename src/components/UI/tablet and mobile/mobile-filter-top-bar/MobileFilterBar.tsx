@@ -22,31 +22,15 @@ const MobileFilterBar = ({ openSideBar }: MobileFilterBarProps) => {
     (state: RootState) =>
       state.filters[FilterCategories.EVERYTHING][FilterSubCategories.SORT_BY]
   );
+  const filterCurrentCategory = useSelector(
+    (state: RootState) => state.filters.FilterGroupState
+  );
   const [isFilterSideBarOpen, setIsFilterSideBarOpen] = useState<any>(false);
   const dispatch = useDispatch();
   const ref = useRef<HTMLDivElement>(null);
-  // // Call hook passing in the ref and a function to call on outside click
-  // useEffect(() => {
-  //   useOutsideClick(ref, () => {
-  //     console.log("clicked outside");
-  //     setIsFilterSideBarOpen(false);
-  //   });
-  //   // return () => {
-  //   //   cleanup
-  //   // }
-  // }, []);
-  // useOutsideClick(ref, () => {
-  //   console.log("clicked outside");
-  //   setIsFilterSideBarOpen(false);
-  // });
 
   const openFiltersSideBar = () => {
     dispatch(filterSideBarActions.openFilterSideBar({}));
-
-    // console.log("inside filter bar:", isFilterSideBarOpen);
-    // if (openSideBar) {
-    //   openSideBar();
-    // }
   };
   const closeFilterSideBar = () => {
     // setIsFilterSideBarOpen(false);
@@ -60,14 +44,11 @@ const MobileFilterBar = ({ openSideBar }: MobileFilterBarProps) => {
         id={filterTypeSortby.id}
         options={filterTypeSortby.options}
         selectedOption={filterTypeSortby.selectedOptions}
+        disabled={
+          filterCurrentCategory == FilterCategories.TOP_HEADLINES ? true : false
+        }
       />
-      {/* <MobileFilterBarText>Sort by</MobileFilterBarText>
-        <DropdownArrowIcon src={DropdownArrow} /> */}
       <FilterIcon src={FiltersIcon} onClick={openFiltersSideBar} />
-      {/* <FilterSideBar
-          isOpen={isFilterSideBarOpen}
-          closeFilterSideBar={closeFilterSideBar}
-        /> */}
     </FilterTopBarContainer>
     // </div>
   );
