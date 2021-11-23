@@ -13,10 +13,10 @@ export const FilterCointainer = styled.div`
   background: #ffff;
   z-index: 1;
   @media (max-width: 1024px) {
-    &#mobile-sort-by-container {
+    &#sort-by-filter {
       display: block !important;
-      height: 45px;
-      width: 175px;
+      height: 40px;
+      width: 110px;
       border-radius: unset;
       display: flex;
       align-items: center;
@@ -33,7 +33,7 @@ export const DropdownSelect = styled.div`
   height: 47px;
   border-radius: 10px;
   padding: 0 15px;
-  &#mobile-sort-by-drop-down {
+  &#sort-by-filter {
     /* border-radius: 0px 10px 10px 0; */
     justify-content: unset;
     padding: 0;
@@ -68,7 +68,8 @@ export const OptionsContainer = styled.div`
     background-color: #5a5a89;
   }
   @media (max-width: 1024px) {
-    width: 60%;
+    width: 100%;
+    height: 90px;
     margin-left: -15px;
     margin-top: 0;
   }

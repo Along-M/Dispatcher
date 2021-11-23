@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { buildFilterOptions } from "../../../../helpers/helper-functions/helper-functions";
 import {
   FilterCategories,
   FilterSubCategories,
@@ -21,11 +22,17 @@ const MobileFilter = ({
   id,
   filterClickHandler,
 }: MobileFilterProps) => {
-  const selectedFilterOption = selectedOption == "" ? "All" : selectedOption;
+  let filterOptionToDisplay;
+  if (selectedOption) {
+    filterOptionToDisplay = buildFilterOptions(selectedOption, filterType);
+  } else {
+    filterOptionToDisplay = "All";
+  }
+  // const selectedFilterOption = selectedOption == "" ? "All" : selectedOption;
   return (
     <FilterCointainer id={id} onClick={() => filterClickHandler(filterType)}>
       <FilterHeader>{title}</FilterHeader>
-      <FilterSelectedOptions>{selectedFilterOption}</FilterSelectedOptions>
+      <FilterSelectedOptions>{filterOptionToDisplay}</FilterSelectedOptions>
     </FilterCointainer>
   );
 };

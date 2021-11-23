@@ -34,6 +34,8 @@ const Search = ({ children, type, dropDownOptions }: SearchProps) => {
   const SearchInFilterTitle = useSelector(
     (state: RootState) => state.filters.FilterGroupState
   );
+  const filtersState = useSelector((state: RootState) => state.filters);
+
   // const ref = useRef<any>();
   const [isLastSearchesOpen, setisLastSearchesOpen] = useState<boolean>(false);
   const [lastSearches, setLastSearches] = useState<string[]>([]);
@@ -82,13 +84,17 @@ const Search = ({ children, type, dropDownOptions }: SearchProps) => {
   };
 
   const handleFreeSearchSubmit = (event: any) => {
-    console.log("hi", searchInputValue);
     event.preventDefault();
+    console.log("hi", searchInputValue);
+    dispatch(filterActions.changeIsFreeSearchActive({ value: false }));
     // const inputVal = searchInputVal.current?.value;
     if (!searchInputValue) {
+      console.log("there is no input val");
       return;
     }
     getFilteredData();
+    console.log("there is input val");
+    console.log(filtersState);
     if (ItemAlreadyExistsInLocalstorage(lastSearches, searchInputValue)) {
       return;
     }
@@ -107,6 +113,7 @@ const Search = ({ children, type, dropDownOptions }: SearchProps) => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setsearchInputValue(event.target.value);
     dispatch(filterActions.addFreeSearchVal({ value: event.target.value }));
+    dispatch(filterActions.changeIsFreeSearchActive({ value: true }));
   };
   return (
     <SearchBarContainer

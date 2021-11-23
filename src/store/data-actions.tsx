@@ -3,9 +3,11 @@ import { AppDispatch } from "./store";
 import { apiKey, defaultUrl } from "../helpers/const-helpers/constHelpers";
 import { urlBuilder } from "../helpers/helper-functions/helper-functions";
 import { useState } from "react";
+import { isLoadingActions } from "./isLoadingSlice";
 
 export const getInitialDatafromApi = () => {
   return async (dispatch: AppDispatch, getState: any) => {
+    dispatch(isLoadingActions.setIsLoadingToTrue({}));
     const currentfiltersState = await getState().filters;
     const fetchData = async () => {
       const apiResponse = await fetch(`${defaultUrl}`);
@@ -16,14 +18,18 @@ export const getInitialDatafromApi = () => {
     try {
       const apiData = await fetchData();
       dispatch(articalDataActions.replaceArticalData(apiData));
+      dispatch(isLoadingActions.setIsLoadingToFalse({}));
     } catch (err) {
       console.log("error in getting data ", err);
+      // return;
+      dispatch(isLoadingActions.setIsLoadingToFalse({}));
       return err;
     }
   };
 };
 export const getFilteredDatafromApi = () => {
   return async (dispatch: AppDispatch, getState: any) => {
+    dispatch(isLoadingActions.setIsLoadingToTrue({}));
     const currentfiltersState = await getState().filters;
     const url = await urlBuilder(currentfiltersState);
     if (!url) {
@@ -39,8 +45,10 @@ export const getFilteredDatafromApi = () => {
     try {
       const apiData = await fetchData();
       dispatch(articalDataActions.replaceArticalData(apiData));
+      dispatch(isLoadingActions.setIsLoadingToFalse({}));
     } catch (err) {
       console.log("error in getting data ", err);
+      dispatch(isLoadingActions.setIsLoadingToFalse({}));
       return err;
     }
   };

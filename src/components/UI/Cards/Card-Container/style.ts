@@ -2,10 +2,11 @@ import styled from "styled-components";
 
 export const CardContainer = styled.div`
   display: flex;
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 0px 32px 64px rgba(0, 0, 0, 0.05);
   border-radius: 20px;
   height: 15rem;
+  width: 100%;
   @media (max-width: 680px) {
     flex-direction: column;
     height: 500px;
@@ -15,7 +16,7 @@ export const CardContainer = styled.div`
     height: 550px;
   }
   @media (max-width: 680px) and (min-width: 500px) {
-    height: 650px ;
+    height: 650px;
   }
   &.data-card {
     width: 90%;
@@ -23,9 +24,9 @@ export const CardContainer = styled.div`
     flex-direction: column;
     align-items: baseline;
     padding: 1rem;
-    @media (min-width: 1025px) and (max-device-width:1500px) {
+    @media (min-width: 1025px) and (max-device-width: 1500px) {
       width: 90%;
-      height:260px;
+      height: 260px;
     }
     @media (min-width: 1920px) {
       width: 360px;

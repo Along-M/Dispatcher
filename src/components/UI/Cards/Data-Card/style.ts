@@ -28,9 +28,28 @@ export const ChartContainer = styled.div`
   align-self: center;
   /* width: 100%; */
   height: 100%;
+  &.sources-chart {
+    height: 50%;
+    position: relative;
+  }
   @media (min-width: 1024px) and (max-width: 1500px) {
     margin-top: 0.2rem;
     width: 90%;
     height: 80%;
   }
+`;
+export const SumContainer = styled.div`
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  top: 48%;
+`;
+export const Sum = styled.div`
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  font-family: ${globalFont};
 `;

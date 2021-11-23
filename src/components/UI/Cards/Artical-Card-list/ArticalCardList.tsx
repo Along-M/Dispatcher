@@ -5,13 +5,26 @@ import ArticalCard from "../artical-card/ArticalCard";
 import { NoDataFoundTypes } from "../../../../types/types";
 import NoData from "../../No-data-gif/NoData";
 import { Idata, artical } from "../../../../types/dataTypes";
+import FadingLoader from "../../loader/CardLoader";
+import MyLoader from "../../loader/CardLoader";
+import useWindowSize from "../../../../helpers/custom-hooks/useWindowSize";
+import MobileLoader from "../../mobile-loader/CardMobileLoader";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../store/store";
 
 export interface ArticalCardListProps {
   children?: React.ReactChild | React.ReactChild[];
   data: Idata | null;
+  className?: string;
 }
-const ArticalCardList = ({ data }: ArticalCardListProps) => {
-  const [dataFromApi, setDataFromApi] = useState(data);
+const ArticalCardList = ({ data, className }: ArticalCardListProps) => {
+  // const [dataFromApi, setDataFromApi] = useState(data);
+  const dataFromApi = useSelector((state: RootState) => state.dataFromApi.data);
+  const isLoading = useSelector(
+    (state: RootState) => state.isLoading.isLoading
+  );
+
+  const windowSize = useWindowSize();
 
   console.log("this is data from api ", data);
 
@@ -31,14 +44,24 @@ const ArticalCardList = ({ data }: ArticalCardListProps) => {
       );
     }
   );
-
+  const testArr = [1, 2, 3, 3, 5];
+  console.log("this is is loading", isLoading);
   return (
-    <CardListContainer>
-      {articalToDisplay}
-      {!articalToDisplay && <div>loading</div>}
-      {data?.totalResults === 0 && (
+    <CardListContainer className={className}>
+      {!isLoading && articalToDisplay}
+      {isLoading &&
+        testArr.map((test) => {
+          return windowSize.width > 680 ? <MyLoader /> : <MobileLoader />;
+        })}
+      {/* {!articalToDisplay &&
+        dataFromApi?.status !== "error" &&
+        testArr.map((test) => {
+          return windowSize.width > 680 ? <MyLoader /> : <MobileLoader />;
+        })} */}
+      {data?.totalResults === 0 && !isLoading && (
         <NoData type={NoDataFoundTypes.ARTICALCARD} />
       )}
+      {!data?.articles && <NoData type={NoDataFoundTypes.MainError} />}
     </CardListContainer>
   );
 };

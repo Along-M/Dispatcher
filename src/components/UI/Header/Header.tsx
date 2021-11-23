@@ -22,8 +22,13 @@ import useWindowSize from "../../../helpers/custom-hooks/useWindowSize";
 export interface HeaderProps {
   children?: React.ReactChild | React.ReactChild[];
   openSearchSideBar: (bool: boolean) => void;
+  onClick: () => void;
 }
-const Header = ({ children, openSearchSideBar }: HeaderProps): JSX.Element => {
+const Header = ({
+  children,
+  openSearchSideBar,
+  onClick,
+}: HeaderProps): JSX.Element => {
   const windowSize = useWindowSize();
   // const isMobile = windowSize.width <= 680 ? true : false;
   const [isSearchSidebarOpen, setIsSearchSidebarOpen] = useState<boolean>(
@@ -38,7 +43,7 @@ const Header = ({ children, openSearchSideBar }: HeaderProps): JSX.Element => {
   //   setIsSearchSidebarOpen(false);
   // };
   return (
-    <HeaderContainer>
+    <HeaderContainer onClick={onClick}>
       {/* <MobileSearchBar
         isOpen={isSearchSidebarOpen}
         closeSidebar={closeSearchSideBar}

@@ -8,6 +8,7 @@ import {
   ArrowIcon,
   ExitIcon,
   SearchIcon,
+  SearchsideBarDataContainer,
 } from "./style";
 import LastSearchResults from "../../last-search-results/LastSearchResults";
 // import LastSearchResults from "../../../last-search-results/LastSearchResults";
@@ -19,18 +20,35 @@ import { RootState } from "../../../../store/store";
 import { filterActions } from "../../../../store/FiltersSlice";
 import ArticalCardList from "../../Cards/artical-card-list/ArticalCardList";
 import MobileFilterBar from "../mobile-filter-top-bar/MobileFilterBar";
+import { filterSideBarActions } from "../../../../store/filterSideBarSlice";
+import { CardsContainer } from "../../../Views/Home-page/style";
+import { isLoadingActions } from "../../../../store/isLoadingSlice";
 
 export interface MobileSearchBarProps {
   isOpen?: boolean;
   closeSidebar: () => void;
+  openSideBarfilters: () => void;
 }
 
-const MobileSearchBar = ({ isOpen, closeSidebar }: MobileSearchBarProps) => {
+const MobileSearchBar = ({
+  isOpen,
+  closeSidebar,
+  openSideBarfilters,
+}: MobileSearchBarProps) => {
   const dispatch = useDispatch();
   const dataFromApi = useSelector((state: RootState) => state.dataFromApi.data);
+  const isLoading = useSelector(
+    (state: RootState) => state.isLoading.isLoading
+  );
+  const filterSideBarState = useSelector(
+    (state: RootState) => state.filtersSideBar
+  );
   const filters = useSelector((state: RootState) => state.filters);
   const [lastSearches, setLastSearches] = useState<string[]>([]);
   const [isSearching, setIsSearching] = useState<boolean>(false);
+  const [isFilterSideBarOpen, setIsFilterSideBarOpen] = useState<boolean>(
+    false
+  );
   const [searchInputValue, setsearchInputValue] = useState<
     undefined | string
   >();
@@ -67,8 +85,11 @@ const MobileSearchBar = ({ isOpen, closeSidebar }: MobileSearchBarProps) => {
       setshowSearchIcon(false);
       return;
     }
-    setshowSearchIcon(true);
+    dispatch(isLoadingActions.setIsLoadingToTrue({}));
+    console.log("this is is loading inside search mobile", isLoading);
     getFilteredData(searchInputValue);
+    setIsSearching(true);
+    setshowSearchIcon(true);
     // let trasformedSearchInputVal = transformInputVal(searchInputValue);
     if (searchInputValue !== trasformedSearchInputVal) {
       console.log("searchInputValue", searchInputValue);
@@ -107,25 +128,32 @@ const MobileSearchBar = ({ isOpen, closeSidebar }: MobileSearchBarProps) => {
 
   const handleInputChange = (event: any) => {
     console.log("event.target.value ", event.target.value);
-    if (event.target.value === "") {
-      setIsSearching(false);
-    } else {
-      setIsSearching(true);
-    }
+    setIsSearching(false);
     setsearchInputValue(event.target.value);
     dispatch(filterActions.addFreeSearchVal({ value: event.target.value }));
     setshowSearchIcon(false);
   };
 
+  const closeFilterSideBar = () => {
+    dispatch(filterSideBarActions.closeFilterSideBar({}));
+  };
+
   return (
     <SearchSideBarContainer
+      // onClick={closeFilterSideBar}
       className={isOpen ? "search-side-bar-open" : "search-side-bar-closed"}
     >
       <SearchInputContainer
         onSubmit={handleFreeSearchSubmit}
         autoComplete="off"
       >
-        <ArrowIcon src={ArrowLeft} onClick={closeSidebar} />
+        <ArrowIcon
+          src={ArrowLeft}
+          onClick={() => {
+            closeSidebar();
+            closeFilterSideBar();
+          }}
+        />
         <SearchInput
           placeholder="Search"
           id="free-search-input-mobile"
@@ -146,11 +174,19 @@ const MobileSearchBar = ({ isOpen, closeSidebar }: MobileSearchBarProps) => {
         )}
         {showSearchIcon && searchInputValue && <SearchIcon src={Search} />}
       </SearchInputContainer>
+
       {isSearching && (
-        <>
-          <MobileFilterBar /> <ArticalCardList data={dataFromApi} />
-        </>
+        <SearchsideBarDataContainer>
+          <MobileFilterBar openSideBar={() => openSideBarfilters()} />
+          <CardsContainer onClick={closeFilterSideBar}>
+            <ArticalCardList
+              data={dataFromApi}
+              className="mobile-artical-container"
+            />
+          </CardsContainer>
+        </SearchsideBarDataContainer>
       )}
+      {/* {isSearching && <ArticalCardList data={dataFromApi} />} */}
       {!isSearching && (
         <LastSearchResults
           lastSearchesOptions={lastSearches}

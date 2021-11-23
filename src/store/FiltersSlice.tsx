@@ -52,6 +52,10 @@ const filtersSlice = createSlice({
       state.FreeSearchVal = action.payload.value;
       console.log("lthis is action in add free srarch va", state.FreeSearchVal);
     },
+    changeIsFreeSearchActive(state, action) {
+      state.isFreeSearchActive = action.payload.value;
+      console.log("isFreeSearchActive", state.FreeSearchVal);
+    },
   },
 });
 

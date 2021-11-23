@@ -12,12 +12,15 @@ export const CardContentContainer = styled.div`
   padding: 1rem;
   height: 13rem;
   justify-content: space-between;
+  width: 100%;
   @media (max-width: 600px) {
     height: 300px;
     padding: 0.5rem;
+    width: unset;
   }
   @media (max-width: 680px) and (min-width: 376px) {
     height: 100%;
+    width: unset;
   }
 `;
 
@@ -73,4 +76,29 @@ export const Img = styled.img`
 export const CardContent = styled.p`
   margin: 0;
   color: #5a5a89;
+  /* white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 412px; */
+  @media (max-width: 900px) and (min-width: 680px) {
+    color: #5a5a89;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 400px;
+  }
+  @media (max-width: 1400px) and (min-width: 1024px) {
+    color: #5a5a89;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px;
+  }
+  @media (max-width: 1650px) and (min-width: 1400px) {
+    color: #5a5a89;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 300px;
+  }
 `;

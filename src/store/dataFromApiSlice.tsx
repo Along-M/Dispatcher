@@ -10,6 +10,9 @@ const datafromApiSlice = createSlice({
     replaceArticalData: (state, action) => {
       state.data = action.payload;
     },
+    // setIsLoadingState: (state, action) => {
+    //     state.data = ;
+    // },
   },
 });
 

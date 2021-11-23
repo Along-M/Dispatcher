@@ -34,12 +34,12 @@ export const SearchInputContainer = styled.form`
   width: 100%;
   background: white;
   padding-left: 20px;
-  height: 75px;
+  height: 59px;
   align-items: center;
   justify-content: center;
   background: #ffffff;
   border: 1px solid #d9dbe9;
-  box-shadow: 0px 32px 64px rgba(0, 0, 0, 0.05);
+  /* box-shadow: 0px 32px 64px rgba(0, 0, 0, 0.05); */
 `;
 
 export const SearchInput = styled.input`
@@ -61,5 +61,9 @@ export const ExitIcon = styled.img`
 `;
 export const SearchIcon = styled.img`
   padding-right: 35px;
+  cursor: pointer;
+`;
+export const SearchsideBarDataContainer = styled.div`
+  height: 500px;
   cursor: pointer;
 `;

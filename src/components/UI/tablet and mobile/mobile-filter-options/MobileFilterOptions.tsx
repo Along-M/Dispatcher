@@ -14,12 +14,14 @@ export interface MobileFilterOptionsProps {
   filterType: string;
   filtersCategory: string;
   optionSelected?: string;
+  filterOptionToDisplay: string;
 }
 
 const MobileFilterOptions = ({
   option,
   filterType,
   filtersCategory,
+  filterOptionToDisplay,
 }: MobileFilterOptionsProps) => {
   const dispatch = useDispatch();
   const filtersState = useSelector((state: RootState) => state.filters);
@@ -94,7 +96,7 @@ const MobileFilterOptions = ({
       className={isSelected ? "selected" : "not-selected"}
     >
       {filterType !== FilterSubCategories.DATES && (
-        <Option id={"option" + option}>{option}</Option>
+        <Option id={"option" + option}>{filterOptionToDisplay}</Option>
       )}
       {/* {filterType == FilterSubCategories.DATES && <DatePickerOptions />} */}
     </FilterOptionsCointainer>

@@ -13,6 +13,11 @@ import {
 import Tag from "../../tags/Tag";
 import Button from "../../Button/Button";
 import { useFormatDate } from "../../../../helpers/custom-hooks/useDateForamt";
+// import imgError from "../../../../assets/icons/imgError.png";
+// import imgError from "../../../../assets/icons/imgError.png";
+import imgError from "../../../../assets/icons/Screen.png";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../store/store";
 
 export interface StoryCardProps {
   children?: React.ReactChild | React.ReactChild[];
@@ -36,11 +41,16 @@ const ArticalCard = ({
   url,
 }: StoryCardProps): JSX.Element => {
   const date = useFormatDate(publishedAt);
+  const filtersState = useSelector((state: RootState) => state.filters);
+
+  // const filterCurrentCategory =
 
   const openArticalNewTab = (url: string) => {
     window.open(url);
   };
-
+  if (!imgUrl) {
+    imgUrl = imgError;
+  }
   return (
     <CardContainer>
       <Img src={imgUrl} />
@@ -48,7 +58,7 @@ const ArticalCard = ({
         <CardHeaderContainer>
           <Date>{date}</Date>
           {/* <Date>Friday Jun 25, 2021</Date> */}
-          <Tag>{tagContent}</Tag>
+          {/* <Tag>{tagContent}</Tag> */}
         </CardHeaderContainer>
         <Title>{title}</Title>
         <SubTitle>{subTitle}</SubTitle>

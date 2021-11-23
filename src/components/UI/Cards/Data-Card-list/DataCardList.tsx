@@ -83,19 +83,22 @@ const DataCardList = ({ children, articles }: DataCardListProps) => {
         chartData={sourcesChartData}
         chartType={ChartType.Doughnut}
         chartOptions={ChartsData.Sources.options}
+        articles={articles}
       ></DataCard>
       <DataCard
         title="Dates"
         chartData={DatesChartData}
         chartType={ChartType.Line}
         chartOptions={ChartsData.Dates.options}
+        articles={articles}
       ></DataCard>
-      <DataCard
+      {/* <DataCard
         title="Tags"
         chartData={TagsChartData.chartDataState}
         chartType={ChartType.Bar}
         chartOptions={TagsChartData.options}
-      ></DataCard>
+        articles={articles}
+      ></DataCard> */}
       {/* <DataCard title="Dates" chartData={DatesChartData}></DataCard>
       <DataCard title="Tags" chartData={TagsChartData}></DataCard> */}
     </CardListContainer>

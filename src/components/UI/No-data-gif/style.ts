@@ -25,3 +25,34 @@ export const NoDataText = styled.p`
     margin-top: 0.6rem;
   }
 `;
+export const Image = styled.img`
+  align-self: center;
+  margin-top: 10%;
+  width: 50%;
+`;
+export const MainErrorContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+  margin: 0 auto;
+  @media (min-width: 1024px) and (max-width: 1500px) {
+    font-size: 1rem;
+    margin-top: 0.6rem;
+  }
+`;
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 auto;
+  @media (min-width: 1024px) and (max-width: 1500px) {
+    font-size: 1rem;
+    margin-top: 0.6rem;
+  }
+`;
+
+// export const MainErrorImage = styled.img`
+//   align-self: center;
+//   margin-top: 10%;
+//   width: 30%;
+// `;

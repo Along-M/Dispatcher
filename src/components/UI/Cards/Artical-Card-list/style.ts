@@ -4,13 +4,19 @@ export const CardListContainer = styled.section`
   display: flex;
   flex-direction: column;
   align-items: baseline;
-  background: #F8F8FF;
+  background: #f8f8ff;
   gap: 1.5rem;
   overflow-y: scroll;
-  margin-right:10px;
+  margin-right: 10px;
   padding-right: 20px;
   height: 100vh;
   width: 70%;
+  &.mobile-artical-container {
+    width: 90%;
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+  }
   /* &::-webkit-scrollbar {
     background: none;
     width: 5px;
@@ -27,10 +33,11 @@ export const CardListContainer = styled.section`
     overflow: unset;
     margin: 0;
     padding: 0;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     width: unset;
     height: unset;
+    align-items: center;
+    justify-content: center;
     /* padding: 0 20px; */
   }
 `;
-

@@ -16,11 +16,13 @@ import {
 } from "../../../../types/filterTypes copy";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import MobileFilterOptions from "../mobile-filter-options/MobileFilterOptions";
 import { SearchInFilter } from "../../../../types/filterTypes copy";
 import { getFilteredDatafromApi } from "../../../../store/data-actions";
 import DatePickerOptions from "../../date-picker/DatePicker";
+import useClickOutside from "../../../../helpers/custom-hooks/useClickOutside";
+import { buildFilterOptions } from "../../../../helpers/helper-functions/helper-functions";
 
 export interface FilterSideBarProps {
   isOpen?: boolean;
@@ -92,11 +94,13 @@ const FilterSideBar = ({ isOpen, closeFilterSideBar }: FilterSideBarProps) => {
     // if (currentFilterType === FilterSubCategories.DATES) {
     //   return <DatePickerOptions isMobile={true} />;
     // }
+    let filterOptionToDisplay = buildFilterOptions(option, currentFilterType);
     return (
       <MobileFilterOptions
         key={option + "" + index}
         option={option}
         filterType={currentFilterType}
+        filterOptionToDisplay={filterOptionToDisplay}
         filtersCategory={currentFilterCategory}
       ></MobileFilterOptions>
     );

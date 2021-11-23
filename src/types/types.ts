@@ -14,6 +14,8 @@ export enum CardTypes {
 export enum NoDataFoundTypes {
   DATACARD = "No-data-found",
   ARTICALCARD = "No-articals-found",
+  Error = "Error",
+  MainError = "Main-Error",
 }
 
 export enum Colors {

@@ -18,6 +18,9 @@ import {
 } from "../../../store/data-actions";
 import { getSourcesFilterOptions } from "../../../store/filters-actions";
 import useOutsideClick from "../../../helpers/custom-hooks/useClickOutside";
+import FilterSideBar from "../../UI/tablet and mobile/mobile-filter-sidebar/FilterSideBar";
+import useClickOutside from "../../../helpers/custom-hooks/useClickOutside";
+import { filterSideBarActions } from "../../../store/filterSideBarSlice";
 
 export interface HomePageProps {
   children?: React.ReactChild | React.ReactChild[];
@@ -29,15 +32,25 @@ const HomePage = ({ children }: HomePageProps): JSX.Element => {
   //   "Top Headlines in Israel"
   // );
   const dataFromApi = useSelector((state: RootState) => state.dataFromApi.data);
+  const filterSideBarState = useSelector(
+    (state: RootState) => state.filtersSideBar
+  );
   const filtersState = useSelector((state: RootState) => state.filters);
+  const isSearching = filtersState.isFreeSearchActive;
   const [isSearchSidebarOpen, setIsSearchSidebarOpen] = useState<boolean>(
     false
   );
+  const [isFilterSideBarOpen, setIsFilterSideBarOpen] = useState<boolean>(
+    false
+  );
+  const [isFreeSearchActive, setisFreeSearchActive] = useState<boolean>(false);
   const windowSize = useWindowSize();
   const isMobile = windowSize.width <= 1024 ? true : false;
   const ref = useRef<HTMLDivElement>(null);
+  // const filterSideBarContainer = useRef(null);
+  // useClickOutside(filterSideBarContainer, setIsSearchSidebarOpen(false));
   // Call hook passing in the ref and a function to call on outside click
-
+  console.log("filterSideBarState.isOpen &&", filterSideBarState.isOpen);
   useEffect(() => {
     dispatch(getInitialDatafromApi());
     // dispatch(getSourcesFilterOptions());
@@ -45,17 +58,25 @@ const HomePage = ({ children }: HomePageProps): JSX.Element => {
 
   useEffect(() => {
     setisInitial(false);
-    if (!isMobile && !isInitial) {
+    if (!isMobile && !isInitial && !isSearching) {
       console.log("use effect in homapage");
       dispatch(getFilteredDatafromApi());
     }
   }, [filtersState]);
 
-  const openSideBar = () => {
-    setIsSearchSidebarOpen(true);
-  };
+  // const openSideBar = () => {
+  //   setIsSearchSidebarOpen(true);
+  // };
   const closeSearchSideBar = (): void => {
     setIsSearchSidebarOpen(false);
+  };
+  const closeFilterSideBar = (): void => {
+    dispatch(filterSideBarActions.closeFilterSideBar({}));
+  };
+  const openFilterSideBar = () => {
+    dispatch(filterSideBarActions.openFilterSideBar({}));
+
+    setIsFilterSideBarOpen(true);
   };
 
   return (
@@ -64,19 +85,27 @@ const HomePage = ({ children }: HomePageProps): JSX.Element => {
         <MobileSearchBar
           isOpen={isSearchSidebarOpen}
           closeSidebar={closeSearchSideBar}
+          openSideBarfilters={openFilterSideBar}
+        />
+      )}
+      {windowSize.width <= 1024 && (
+        <FilterSideBar
+          isOpen={filterSideBarState.isOpen}
+          closeFilterSideBar={closeFilterSideBar}
         />
       )}
       <Header
         openSearchSideBar={(bool: boolean) => setIsSearchSidebarOpen(bool)}
+        onClick={closeFilterSideBar}
       />
       <MainBodyCointainer>
         {!isMobile && <FilterList isInitial={isInitial}></FilterList>}
-        {isMobile && <MobileFilterBar />}
-        {/* {windowSize.width > 1024 && <FilterList></FilterList>}
-        {windowSize.width <= 1024 && <MobileFilterBar />} */}
-        <CardsHeaders totalResults={dataFromApi?.totalResults}></CardsHeaders>
-        {/* <CardsHeaders>"TOP HEADLINS IN ISRAEL"</CardsHeaders> */}
-        <CardsContainer>
+        {isMobile && <MobileFilterBar openSideBar={openFilterSideBar} />}
+        <CardsHeaders
+          totalResults={dataFromApi?.totalResults}
+          onClick={closeFilterSideBar}
+        ></CardsHeaders>
+        <CardsContainer onClick={closeFilterSideBar}>
           <ArticalCardList data={dataFromApi} />
           <DataCardList articles={dataFromApi?.articles}></DataCardList>
         </CardsContainer>
