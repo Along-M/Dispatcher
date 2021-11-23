@@ -54,29 +54,9 @@ const Search = ({ children, type, dropDownOptions }: SearchProps) => {
     localStorage.setItem("lastSearches", JSON.stringify(lastSearches));
   }, [lastSearches]);
 
-  // useOutsideClick(ref, () => {
-  //   console.log("clicked outside");
-  //   setisLastSearchesOpen(false);
-  // });
   const toggleLastSearchesDiv = (): void => {
     setisLastSearchesOpen(!isLastSearchesOpen);
   };
-  // const openLastSearches = (): void => {
-  //   setisLastSearchesOpen(true);
-  // };
-  // const closeLastSearches = (): void => {
-  //   setisLastSearchesOpen(false);
-  // };
-
-  // const ItemAlreadyExistsInLocalstorage = (
-  //   lastSearches: string[],
-  //   inputVal: string
-  // ): boolean => {
-  //   if (lastSearches.includes(inputVal)) {
-  //     return true;
-  //   }
-  //   return false;
-  // };
 
   const handleLastSearchOptionSelected = (option: string) => {
     setsearchInputValue(option);
@@ -85,16 +65,11 @@ const Search = ({ children, type, dropDownOptions }: SearchProps) => {
 
   const handleFreeSearchSubmit = (event: any) => {
     event.preventDefault();
-    console.log("hi", searchInputValue);
     dispatch(filterActions.changeIsFreeSearchActive({ value: false }));
-    // const inputVal = searchInputVal.current?.value;
     if (!searchInputValue) {
-      console.log("there is no input val");
       return;
     }
     getFilteredData();
-    console.log("there is input val");
-    console.log(filtersState);
     if (ItemAlreadyExistsInLocalstorage(lastSearches, searchInputValue)) {
       return;
     }

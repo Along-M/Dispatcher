@@ -33,7 +33,6 @@ const LastSearchResults = ({
     const newLastSearchesArr = lastSearchesOptions.filter(
       (name) => name !== option
     );
-    console.log("newLastSearchesArr", newLastSearchesArr);
     changeLastSearches(newLastSearchesArr);
   };
 

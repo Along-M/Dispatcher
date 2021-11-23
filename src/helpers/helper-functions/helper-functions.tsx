@@ -17,11 +17,9 @@ export const urlBuilder = async (filtersState: filtersInitialState) => {
   for (let [key, value] of Object.entries(currentfiltersState)) {
     if (currentfiltersState[key].selectedOptions !== "") {
       if (key == "Dates") {
-        console.log("in url builder", currentfiltersState[key].selectedOptions);
         const selectedDateArr = currentfiltersState[key].selectedOptions.split(
           " To "
         );
-        console.log("this is the new option", selectedDateArr);
         params +=
           "from=" + selectedDateArr[0] + "&to=" + selectedDateArr[1] + "&";
       } else {
@@ -47,19 +45,16 @@ export const urlBuilder = async (filtersState: filtersInitialState) => {
         const url = `${
           urlStart + filtersCurrentCategory
         }?q=${freeSearchVal}&${params}apiKey=${apiKey}`;
-        console.log("this is the url with source and no q: ", url);
         return url;
       }
       const url = `${
         urlStart + filtersCurrentCategory
       }?q=${freeSearchVal}&${params}apiKey=${apiKey}`;
-      console.log("this is the url: ", url);
       return url;
     }
     const url = `${
       urlStart + filtersCurrentCategory
     }?q=${freeSearchVal}&${params}apiKey=${apiKey}`;
-    console.log("this is the url: ", url);
     return url;
   }
 };
@@ -87,10 +82,10 @@ export const transformErrorMessage = (
       return "You have made too many requests, plaese try again in a few minutes.";
       break;
     case "sourceDoesNotExist":
-      return "The source you are looking for does not exist, please try a new source.";
+      return "The source you are looking for does not exist, please try a new one.";
       break;
     case "parameterInvalid":
-      return "Sorry, the parameters you enterened are not valid in our api. please enter a new search.";
+      return "Sorry, the parameters you entered are not valid in our api. please enter a new search.";
       break;
     case "sourceDoesNotExist":
       return "Sorry, the parameters you enterened are not valid in our api.";
@@ -105,10 +100,10 @@ export const transformErrorMessage = (
       return "The api key is Exhausted.";
       break;
     case "parametersIncompatible":
-      return "Our Api does not support these filter parameters combination, please dont filter source with country or category.";
+      return "Please dont filter source with country or category.";
       break;
     case "parametersMissing":
-      return "When searching in Everything category, You need to have a free search value in order to activate the filters.";
+      return "When searching in Everything, You need to have a free search value in order to activate the filters.";
       break;
     default:
       return "Sorry, This seems like a problem on our end, we will be right back.";

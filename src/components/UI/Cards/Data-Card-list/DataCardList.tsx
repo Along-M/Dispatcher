@@ -52,12 +52,10 @@ const DataCardList = ({ children, articles }: DataCardListProps) => {
     const datesNameArray = _.groupBy(articles, function (article: any) {
       return new Date(moment(article.publishedAt).format("MMM D"));
     });
-    // console.log("this is dateArray", datesNameArray);
     let dateArray: any = [];
     Object.keys(datesNameArray).map((date) => {
       dateArray.push(moment(date).format("MMM D"));
     });
-    // console.log("this is dateArray", dateArray);
     setDatesChartData({
       ...DatesChartData,
       labels: dateArray.map((date: string) => {
@@ -74,7 +72,6 @@ const DataCardList = ({ children, articles }: DataCardListProps) => {
     });
   };
 
-  console.log("this is sourcesChartData", sourcesChartData);
   return (
     <CardListContainer>
       {/* {dataCardList} */}

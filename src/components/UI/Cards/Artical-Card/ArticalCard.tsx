@@ -43,6 +43,12 @@ const ArticalCard = ({
   const date = useFormatDate(publishedAt);
   const filtersState = useSelector((state: RootState) => state.filters);
 
+  const containsHeb = (title: string) => {
+    return /[\u0590-\u05FF]/.test(title);
+  };
+
+  console.log("this is title in title", containsHeb(title));
+
   // const filterCurrentCategory =
 
   const openArticalNewTab = (url: string) => {
@@ -55,14 +61,24 @@ const ArticalCard = ({
     <CardContainer>
       <Img src={imgUrl} />
       <CardContentContainer>
-        <CardHeaderContainer>
-          <Date>{date}</Date>
+        <CardHeaderContainer
+          className={containsHeb(title) ? "direction-rtl" : ""}
+        >
+          <Date className={containsHeb(title) ? "direction-rtl" : ""}>
+            {date}
+          </Date>
           {/* <Date>Friday Jun 25, 2021</Date> */}
           {/* <Tag>{tagContent}</Tag> */}
         </CardHeaderContainer>
-        <Title>{title}</Title>
-        <SubTitle>{subTitle}</SubTitle>
-        <CardContent>{cardContent}</CardContent>
+        <Title className={containsHeb(title) ? "direction-rtl" : ""}>
+          {title}
+        </Title>
+        <SubTitle className={containsHeb(title) ? "direction-rtl" : ""}>
+          {subTitle}
+        </SubTitle>
+        <CardContent className={containsHeb(title) ? "direction-rtl" : ""}>
+          {cardContent}
+        </CardContent>
         <Button
           variant={ButtonTypes.PRIMARY}
           withIcon={true}

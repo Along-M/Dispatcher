@@ -18,6 +18,8 @@ import { RootState } from "../../../store/store";
 import DatePickerOptions from "../date-picker/DatePicker";
 import { buildFilterOptions } from "../../../helpers/helper-functions/helper-functions";
 import { createSelectorCreator } from "reselect";
+import { getFilteredDatafromApi } from "../../../store/data-actions";
+import useWindowSize from "../../../helpers/custom-hooks/useWindowSize";
 
 export interface FilterProps {
   title: string;
@@ -36,6 +38,7 @@ const Filter = ({
   filterType,
   disabled,
 }: FilterProps): JSX.Element => {
+  const windowSize = useWindowSize();
   const dispatch = useDispatch();
   const filtersState = useSelector((state: RootState) => state.filters);
   const filterCurrentCategory = filtersState.FilterGroupState;
@@ -44,7 +47,6 @@ const Filter = ({
   const [filterTitle, setfilterTitle] = useState<string>(title);
   let isSelected = false;
   let filterOption;
-  console.log("filtersState", filtersState);
   useEffect(() => {
     if (selectedOption) {
       filterOption = buildFilterOptions(selectedOption, filterType);
@@ -76,6 +78,14 @@ const Filter = ({
             selectedOption: selectedOption,
           })
         );
+
+    if (
+      filterType == FilterSubCategories.SORT_BY &&
+      selectedOption !== filterCurrentState[filterType].selectedOptions &&
+      windowSize.width < 1024
+    ) {
+      dispatch(getFilteredDatafromApi());
+    }
   };
 
   const handleDateFilterOptions = (): void => {

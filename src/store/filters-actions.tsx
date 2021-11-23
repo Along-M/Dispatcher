@@ -26,7 +26,6 @@ export const getSourcesFilterOptions = () => {
 
       dispatch(filterActions.insertSourcesFilterOptions(SourcesFilterOptions));
     } catch (err) {
-      console.log("error in getting data ", err);
       return err;
     }
   };

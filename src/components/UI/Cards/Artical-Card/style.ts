@@ -5,6 +5,9 @@ export const CardHeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  &.direction-rtl {
+    direction: rtl;
+  }
 `;
 export const CardContentContainer = styled.div`
   display: flex;
@@ -32,6 +35,9 @@ export const Title = styled.h2`
   color: #14142b;
   margin: 0;
   flex-grow: 0;
+  &.direction-rtl {
+    direction: rtl;
+  }
 `;
 
 export const SubTitle = styled.h4`
@@ -40,6 +46,9 @@ export const SubTitle = styled.h4`
   line-height: 22px;
   margin: 0;
   color: rgba(90, 90, 137, 0.5);
+  &.direction-rtl {
+    direction: rtl;
+  }
 `;
 
 export const Date = styled.h4`
@@ -53,6 +62,9 @@ export const Date = styled.h4`
   letter-spacing: 0.25px;
   color: rgba(90, 90, 137, 0.5);
   flex: none;
+  &.direction-rtl {
+    direction: rtl;
+  }
 `;
 
 export const Img = styled.img`
@@ -76,29 +88,62 @@ export const Img = styled.img`
 export const CardContent = styled.p`
   margin: 0;
   color: #5a5a89;
+  &.direction-rtl {
+    direction: rtl;
+  }
   /* white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 412px; */
-  @media (max-width: 900px) and (min-width: 680px) {
+  @media (max-width: 900px) and (min-width: 769px) {
     color: #5a5a89;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 400px;
+    max-width: 60vw;
   }
-  @media (max-width: 1400px) and (min-width: 1024px) {
+  @media (max-width: 1400px) and (min-width: 1025px) {
     color: #5a5a89;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 250px;
   }
-  @media (max-width: 1650px) and (min-width: 1400px) {
+  @media (max-width: 1400px) and (min-width: 1200px) {
     color: #5a5a89;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 300px;
+    max-width: 30vw;
+  }
+  @media (max-width: 1200px) and (min-width: 1024px) {
+    color: #5a5a89;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 26vw;
+  }
+  /* @media (max-width: 1200px) and (min-width: 1024px) {
+    color: #5a5a89;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 265px;
+  } */
+  @media (max-width: 1550px) and (min-width: 1400px) {
+    color: #5a5a89;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* max-width: 450px; */
+    max-width: 32vw;
+  }
+  @media (max-width: 1024px) and (min-width: 768px) {
+    /* color: #5a5a89;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; */
+    /* max-width: 450px; */
+    /* max-width: 70vw; */
   }
 `;

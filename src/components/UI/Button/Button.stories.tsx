@@ -12,9 +12,7 @@ const Template: Story<ButtonProps> = (args) => <Button {...args} />;
 export const V1 = Template.bind({});
 V1.args = {
   children: "sfd",
-  onClick: () => {
-    console.log("works");
-  },
+  onClick: () => {},
 };
 
 export const V2 = Template.bind({});

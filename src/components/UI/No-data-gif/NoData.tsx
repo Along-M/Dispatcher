@@ -29,7 +29,6 @@ const NoData = ({ type }: NoDataProps) => {
       setErrMessage(errorMessage);
     }
   }, [dataFromApi]);
-  console.log("this is dataatatftadfasdfasf", dataFromApi);
   return (
     <>
       {type === NoDataFoundTypes.DATACARD && (

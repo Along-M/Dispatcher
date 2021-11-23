@@ -26,8 +26,6 @@ const ArticalCardList = ({ data, className }: ArticalCardListProps) => {
 
   const windowSize = useWindowSize();
 
-  console.log("this is data from api ", data);
-
   const articalToDisplay = data?.articles?.map(
     (artical: artical, index: number) => {
       return (
@@ -45,7 +43,6 @@ const ArticalCardList = ({ data, className }: ArticalCardListProps) => {
     }
   );
   const testArr = [1, 2, 3, 3, 5];
-  console.log("this is is loading", isLoading);
   return (
     <CardListContainer className={className}>
       {!isLoading && articalToDisplay}

@@ -50,7 +50,6 @@ const HomePage = ({ children }: HomePageProps): JSX.Element => {
   // const filterSideBarContainer = useRef(null);
   // useClickOutside(filterSideBarContainer, setIsSearchSidebarOpen(false));
   // Call hook passing in the ref and a function to call on outside click
-  console.log("filterSideBarState.isOpen &&", filterSideBarState.isOpen);
   useEffect(() => {
     dispatch(getInitialDatafromApi());
     // dispatch(getSourcesFilterOptions());
@@ -59,7 +58,6 @@ const HomePage = ({ children }: HomePageProps): JSX.Element => {
   useEffect(() => {
     setisInitial(false);
     if (!isMobile && !isInitial && !isSearching) {
-      console.log("use effect in homapage");
       dispatch(getFilteredDatafromApi());
     }
   }, [filtersState]);

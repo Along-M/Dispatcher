@@ -16,7 +16,7 @@ export const FilterCointainer = styled.div`
   &.disabled {
     cursor: not-allowed;
     pointer-events: none;
-    background-color: #f1f1f1;
+    /* background-color: #f1f1f1; */
     /* height: 45px !important; */
   }
 
@@ -78,7 +78,7 @@ export const OptionsContainer = styled.div`
   @media (max-width: 1024px) {
     width: 100%;
     height: 90px;
-    margin-left: -15px;
+    /* margin-left: -15px; */
     margin-top: 0;
   }
 `;

@@ -90,10 +90,6 @@ const FilterSideBar = ({ isOpen, closeFilterSideBar }: FilterSideBarProps) => {
   });
 
   const currentOptionsList = currentFilterOptions?.map((option, index) => {
-    // console.log("currentFilterType : ", currentFilterType);
-    // if (currentFilterType === FilterSubCategories.DATES) {
-    //   return <DatePickerOptions isMobile={true} />;
-    // }
     let filterOptionToDisplay = buildFilterOptions(option, currentFilterType);
     return (
       <MobileFilterOptions

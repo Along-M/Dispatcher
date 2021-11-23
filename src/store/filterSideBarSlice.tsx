@@ -10,10 +10,16 @@ const filterSideBarSlice = createSlice({
   initialState: initialState,
   reducers: {
     closeFilterSideBar: (state, action) => {
+      if (state.isOpen == false) {
+        return;
+      }
       console.log("this is filtersidebar slice", action);
       state.isOpen = false;
     },
     openFilterSideBar: (state, action) => {
+      if (state.isOpen == true) {
+        return;
+      }
       state.isOpen = true;
     },
   },

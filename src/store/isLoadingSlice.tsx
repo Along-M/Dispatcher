@@ -11,14 +11,9 @@ const isLoadingSlice = createSlice({
   reducers: {
     setIsLoadingToFalse: (state, action) => {
       state.isLoading = false;
-      console.log("this is isLoading slice", state.isLoading);
     },
     setIsLoadingToTrue: (state, action) => {
       state.isLoading = true;
-      console.log(
-        "this is isLoading slice setting it to true",
-        state.isLoading
-      );
     },
   },
 });

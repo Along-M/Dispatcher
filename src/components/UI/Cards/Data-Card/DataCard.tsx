@@ -29,7 +29,6 @@ const DataCard = ({
   chartOptions,
   articles,
 }: DataCardProps) => {
-  console.log("this is chart data", chartData);
   return (
     <CardContainer className="data-card">
       <DataCardTitle>{title}</DataCardTitle>

@@ -20,7 +20,6 @@ export const getInitialDatafromApi = () => {
       dispatch(articalDataActions.replaceArticalData(apiData));
       dispatch(isLoadingActions.setIsLoadingToFalse({}));
     } catch (err) {
-      console.log("error in getting data ", err);
       // return;
       dispatch(isLoadingActions.setIsLoadingToFalse({}));
       return err;
@@ -33,13 +32,13 @@ export const getFilteredDatafromApi = () => {
     const currentfiltersState = await getState().filters;
     const url = await urlBuilder(currentfiltersState);
     if (!url) {
-      console.log("no parameters to disply inside get data from api");
+      dispatch(isLoadingActions.setIsLoadingToFalse({}));
       return;
     }
     const fetchData = async () => {
       const apiResponse = await fetch(`${url}`);
-
       const apiData = await apiResponse.json();
+      // dispatch(isLoadingActions.setIsLoadingToFalse({}));
       return apiData;
     };
     try {

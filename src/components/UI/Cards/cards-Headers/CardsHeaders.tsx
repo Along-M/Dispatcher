@@ -17,11 +17,12 @@ const CardsHeaders = ({
 }: CardsHeadersProps) => {
   const [isInitial, setisInitial] = useState(true);
   const dataFromApi = useSelector((state: RootState) => state.dataFromApi.data);
-  console.log("dataFromApi in cards headers ", dataFromApi);
-  console.log("dataFromApi in cards headers ", dataFromApi);
-  console.log("dataFromApi in cards headers ", dataFromApi);
-  console.log("isInitial in cards headers ", isInitial);
   const filtersState = useSelector((state: RootState) => state.filters);
+  const isLoading = useSelector(
+    (state: RootState) => state.isLoading.isLoading
+  );
+  const isSearching = filtersState.isFreeSearchActive;
+
   const filtersCurrentState = filtersState[filtersState.FilterGroupState];
   useEffect(() => {
     let filterParams = "";
@@ -32,32 +33,31 @@ const CardsHeaders = ({
       }
     }
     // if(filtersState.FreeSearchVal !== )
-    if (filterParams !== "" || filtersState.FreeSearchVal !== "") {
+    if (
+      filterParams !== "" ||
+      (filtersState.FreeSearchVal !== "" && !isSearching)
+    ) {
       setisInitial(false);
     }
   }, [filtersState]);
 
   return (
     <>
-      {isInitial && dataFromApi?.articles.length != 0 && (
-        <CardsNumberOfSearchResults
-          className="top-headlines-header"
-          onClick={onClick}
-        >
-          TOP HEADLINES IN ISRAEL
-        </CardsNumberOfSearchResults>
-      )}
-      {/* {!isInitial && dataFromApi?.articles.length && (
-        <CardsNumberOfSearchResults
-          className="top-headlines-header"
-          onClick={onClick}
-        >
-          TOP HEADLINES IN ISRAEL
-        </CardsNumberOfSearchResults>
-      )} */}
+      {isInitial &&
+        dataFromApi?.articles?.length != 0 &&
+        dataFromApi?.status !== "error" && (
+          <CardsNumberOfSearchResults
+            className="top-headlines-header"
+            onClick={onClick}
+          >
+            TOP HEADLINES IN ISRAEL
+          </CardsNumberOfSearchResults>
+        )}
+
       {!isInitial &&
         dataFromApi?.totalResults !== 0 &&
-        dataFromApi?.status !== "error" && (
+        dataFromApi?.status !== "error" &&
+        !isLoading && (
           <CardsNumberOfSearchResults onClick={onClick}>
             {dataFromApi?.totalResults} Total results
           </CardsNumberOfSearchResults>

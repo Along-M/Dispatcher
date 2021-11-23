@@ -57,7 +57,6 @@ const MobileSearchBar = ({
     trasformedSearchInputVal,
     settrasformedSearchInputVal,
   ] = useState<string>("");
-  console.log("filters in mobile side bar", filters);
   useEffect(() => {
     const lastSearchesFromLocalStorage = localStorage.getItem("lastSearches");
     if (!lastSearchesFromLocalStorage) {
@@ -79,21 +78,17 @@ const MobileSearchBar = ({
 
   const handleFreeSearchSubmit = (event: any) => {
     event.preventDefault();
-    console.log("we have submited the form");
     // const inputVal = searchInputVal.current?.value;
     if (!searchInputValue) {
       setshowSearchIcon(false);
       return;
     }
     dispatch(isLoadingActions.setIsLoadingToTrue({}));
-    console.log("this is is loading inside search mobile", isLoading);
     getFilteredData(searchInputValue);
     setIsSearching(true);
     setshowSearchIcon(true);
     // let trasformedSearchInputVal = transformInputVal(searchInputValue);
     if (searchInputValue !== trasformedSearchInputVal) {
-      console.log("searchInputValue", searchInputValue);
-      console.log("trasformedSearchInputVal", trasformedSearchInputVal);
       transformInputVal(searchInputValue);
       setsearchInputValue(trasformedSearchInputVal);
     }
@@ -116,8 +111,6 @@ const MobileSearchBar = ({
 
   const transformInputVal = (inputVal: string): void => {
     const transformesInputVal = `"${inputVal.toUpperCase()}"`;
-    console.log("transformesInputVal", inputVal);
-    console.log("transformesInputVal", transformesInputVal);
     settrasformedSearchInputVal(transformesInputVal);
   };
 
@@ -127,7 +120,6 @@ const MobileSearchBar = ({
   };
 
   const handleInputChange = (event: any) => {
-    console.log("event.target.value ", event.target.value);
     setIsSearching(false);
     setsearchInputValue(event.target.value);
     dispatch(filterActions.addFreeSearchVal({ value: event.target.value }));
