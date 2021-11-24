@@ -11,6 +11,8 @@ import { NoDataFoundTypes } from "../../../../types/types";
 import NoData from "../../No-data-gif/NoData";
 import Chart from "../../Charts/Chart";
 import { ChartType, IChartData } from "../../Charts/ChartType";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../store/store";
 
 export interface DataCardProps {
   // children?: React.ReactChild | React.ReactChild[];
@@ -29,6 +31,11 @@ const DataCard = ({
   chartOptions,
   articles,
 }: DataCardProps) => {
+  const isLoading = useSelector(
+    (state: RootState) => state.isLoading.isLoading
+  );
+  const dataFromApi = useSelector((state: RootState) => state.dataFromApi.data);
+
   return (
     <CardContainer className="data-card">
       <DataCardTitle>{title}</DataCardTitle>
@@ -49,8 +56,13 @@ const DataCard = ({
           />
         </ChartContainer>
       )}
-      {articles?.length === 0 && <NoData type={NoDataFoundTypes.DATACARD} />}
-      {!articles && <NoData type={NoDataFoundTypes.Error} />}
+      {articles?.length === 0 && !isLoading && (
+        <NoData type={NoDataFoundTypes.DATACARD} />
+      )}
+      {dataFromApi?.status == "error" && !isLoading && (
+        <NoData type={NoDataFoundTypes.DATACARD} />
+      )}
+      {/* {!articles && <NoData type={NoDataFoundTypes.Error} />} */}
     </CardContainer>
   );
 };

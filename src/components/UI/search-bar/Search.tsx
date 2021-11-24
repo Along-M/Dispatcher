@@ -65,7 +65,12 @@ const Search = ({ children, type, dropDownOptions }: SearchProps) => {
 
   const handleFreeSearchSubmit = (event: any) => {
     event.preventDefault();
+    console.log("filtersState in search", filtersState);
     dispatch(filterActions.changeIsFreeSearchActive({ value: false }));
+    console.log(
+      "filtersState in search after changing the free search val",
+      filtersState
+    );
     if (!searchInputValue) {
       return;
     }
@@ -86,9 +91,15 @@ const Search = ({ children, type, dropDownOptions }: SearchProps) => {
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log("tjhis is event target: ", event.target.value);
+    if (event.target.value === "") {
+      dispatch(filterActions.changeIsFreeSearchActive({ value: false }));
+      dispatch(filterActions.addFreeSearchVal({ value: event.target.value }));
+    } else {
+      dispatch(filterActions.addFreeSearchVal({ value: event.target.value }));
+      dispatch(filterActions.changeIsFreeSearchActive({ value: true }));
+    }
     setsearchInputValue(event.target.value);
-    dispatch(filterActions.addFreeSearchVal({ value: event.target.value }));
-    dispatch(filterActions.changeIsFreeSearchActive({ value: true }));
   };
   return (
     <SearchBarContainer

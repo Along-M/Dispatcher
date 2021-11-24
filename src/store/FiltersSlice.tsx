@@ -54,7 +54,6 @@ const filtersSlice = createSlice({
     },
     changeIsFreeSearchActive(state, action) {
       state.isFreeSearchActive = action.payload.value;
-      // console.log("isFreeSearchActive", state.FreeSearchVal);
     },
   },
 });

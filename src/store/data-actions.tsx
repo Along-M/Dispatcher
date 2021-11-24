@@ -21,6 +21,7 @@ export const getInitialDatafromApi = () => {
       dispatch(isLoadingActions.setIsLoadingToFalse({}));
     } catch (err) {
       // return;
+      console.log("real error in getting data", err);
       dispatch(isLoadingActions.setIsLoadingToFalse({}));
       return err;
     }
@@ -33,12 +34,20 @@ export const getFilteredDatafromApi = () => {
     const url = await urlBuilder(currentfiltersState);
     if (!url) {
       dispatch(isLoadingActions.setIsLoadingToFalse({}));
+      console.log("no url in getting data ");
       return;
     }
     const fetchData = async () => {
+      // if (prevUrl == url) {
+      //   console.log("this is weird", url);
+      //   console.log(prevUrl);
+      //   return;
+      // }
       const apiResponse = await fetch(`${url}`);
+      // prevUrl = url;
       const apiData = await apiResponse.json();
       // dispatch(isLoadingActions.setIsLoadingToFalse({}));
+      console.log("error in getting data ", apiData);
       return apiData;
     };
     try {
@@ -46,7 +55,7 @@ export const getFilteredDatafromApi = () => {
       dispatch(articalDataActions.replaceArticalData(apiData));
       dispatch(isLoadingActions.setIsLoadingToFalse({}));
     } catch (err) {
-      console.log("error in getting data ", err);
+      console.log("real error in getting data ", err);
       dispatch(isLoadingActions.setIsLoadingToFalse({}));
       return err;
     }

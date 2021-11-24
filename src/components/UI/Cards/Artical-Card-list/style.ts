@@ -35,7 +35,7 @@ export const CardListContainer = styled.section`
     padding: 0;
     /* margin: 0 auto; */
     width: unset;
-    height: unset;
+    height: fit-content;
     align-items: center;
     justify-content: center;
     /* padding: 0 20px; */

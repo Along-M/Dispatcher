@@ -14,8 +14,11 @@ export const FilterCointainer = styled.div`
   z-index: 1;
   cursor: pointer;
   &.disabled {
-    cursor: not-allowed;
+    /* cursor: not-allowed; */
     pointer-events: none;
+    background: rgba(0, 0, 0, 0.08);
+    opacity: 0.6;
+    cursor: not-allowed;
     /* background-color: #f1f1f1; */
     /* height: 45px !important; */
   }

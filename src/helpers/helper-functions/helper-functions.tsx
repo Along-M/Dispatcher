@@ -32,7 +32,7 @@ export const urlBuilder = async (filtersState: filtersInitialState) => {
     const url = `${
       urlStart + filtersCurrentCategory
     }?q=${freeSearchVal}&${params}apiKey=${apiKey}`;
-    console.log("this is the url:in nothin ", url);
+    // console.log("this is the url:in nothin ", url);
     // return url;
     return;
   } else {

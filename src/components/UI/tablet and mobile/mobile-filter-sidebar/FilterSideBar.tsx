@@ -76,6 +76,7 @@ const FilterSideBar = ({ isOpen, closeFilterSideBar }: FilterSideBarProps) => {
     if (filterSubCategory === FilterSubCategories.SORT_BY) {
       return;
     }
+
     return (
       <MobileFilter
         title={currentFilters[currentFilter].title}

@@ -4,7 +4,10 @@ import { filterActions } from "../../../store/FiltersSlice";
 import DropdownArrow from "../../../assets/icons/dropdown-arrow.svg";
 import DropdownDateArrow from "../../../assets/icons/date.svg";
 import ClearDateOptionIcon from "../../../assets/icons/close.svg";
-import { FilterSubCategories } from "../../../types/filterTypes copy";
+import {
+  FilterCategories,
+  FilterSubCategories,
+} from "../../../types/filterTypes copy";
 import {
   FilterCointainer,
   DropdownSelect,
@@ -45,6 +48,7 @@ const Filter = ({
   const filterCurrentState = filtersState[filterCurrentCategory];
   const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
   const [filterTitle, setfilterTitle] = useState<string>(title);
+  const [isDisabled, setIsdisabled] = useState<boolean>(false);
   let isSelected = false;
   let filterOption;
   useEffect(() => {
@@ -56,6 +60,28 @@ const Filter = ({
     }
     // selectedOption ? setfilterTitle(selectedOption) : setfilterTitle(title);
   }, [selectedOption]);
+
+  useEffect(() => {
+    if (
+      filterCurrentCategory == FilterCategories.TOP_HEADLINES &&
+      filterType == FilterSubCategories.SOURCES
+    ) {
+      filterCurrentState[FilterSubCategories.COUNTRY].selectedOptions !== "" ||
+      filterCurrentState[FilterSubCategories.CATEGORY].selectedOptions !== ""
+        ? setIsdisabled(true)
+        : setIsdisabled(false);
+    } else if (
+      (filterCurrentCategory == FilterCategories.TOP_HEADLINES &&
+        filterType == FilterSubCategories.COUNTRY) ||
+      filterType == FilterSubCategories.CATEGORY
+    ) {
+      filterCurrentState[FilterSubCategories.SOURCES].selectedOptions !== ""
+        ? setIsdisabled(true)
+        : setIsdisabled(false);
+    } else {
+      setIsdisabled(false);
+    }
+  }, [filterCurrentState]);
 
   const toggleFilterDropdown = (): void => {
     setIsFilterOpen(!isFilterOpen);
@@ -101,6 +127,34 @@ const Filter = ({
     toggleFilterDropdown();
   };
 
+  // let isDisabled =
+  //   (filterCurrentCategory == FilterCategories.TOP_HEADLINES &&
+  //     filterType == FilterSubCategories.SOURCES &&
+  //     filterCurrentState[FilterSubCategories.COUNTRY].selectedOptions !== "") ||
+  //   filterCurrentState[FilterSubCategories.CATEGORY].selectedOptions !== ""
+  //     ? true
+  //     : false;
+
+  //   if (
+  //     (filtertype == FilterSubCategories.SOURCES &&
+  //       currentFilters[FilterSubCategories.COUNTRY].selectedOptions !== "") ||
+  //     currentFilters[FilterSubCategories.CATEGORY].selectedOptions !== ""
+  //   ) {
+  //     setIsDisabled(true);
+  //   } else if (
+  //     filtertype == FilterSubCategories.COUNTRY ||
+  //     filtertype == FilterSubCategories.CATEGORY
+  //   ) {
+  //     if (
+  //       currentFilters[FilterSubCategories.SOURCES].selectedOptions !== ""
+  //     ) {
+  //       setIsDisabled(true);
+  //     }
+  //   } else {
+  //     setIsDisabled(false);
+  //   }
+  // }
+
   // const filterOptionToDisplay = buildFilterOptions(option, filterType)
 
   const optionsList = options?.map((option) => {
@@ -123,7 +177,7 @@ const Filter = ({
     <FilterCointainer
       id={id}
       onClick={toggleFilterDropdown}
-      className={disabled ? "disabled" : "not-disabled"}
+      className={isDisabled ? "disabled" : "not-disabled"}
     >
       <DropdownSelect>
         {/* <DropdownSelect onClick={toggleFilterDropdown}> */}

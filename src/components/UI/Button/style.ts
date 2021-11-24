@@ -20,6 +20,7 @@ export const StyledBtn = styled.button`
   background: #0058b9;
   align-self: flex-end;
   justify-content: center;
+  cursor: pointer;
   &:hover {
     opacity: 0.8;
   }
@@ -47,9 +48,12 @@ export const StyledBtn = styled.button`
       margin-left: 8px;
     }
   }
-  @media (max-width: 680px) {
+  @media (max-width: 600px) {
     align-self: unset;
     width: unset;
+    margin-top: 10px;
+    margin: 10px 0 10px 0;
+    justify-self: auto;
   }
   &.view-results-btn {
     padding: 20px 20px;

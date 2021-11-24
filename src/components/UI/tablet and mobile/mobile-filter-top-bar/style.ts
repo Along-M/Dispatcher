@@ -10,7 +10,14 @@ export const FilterTopBarContainer = styled.section`
   padding: 0 15px;
   z-index: 1;
 `;
-export const FilterIcon = styled.img``;
+export const SortBySpan = styled.span`
+  color: #5a5a89;
+  opacity: 0.3;
+`;
+export const FilterIcon = styled.img`
+  width: 28px;
+  height: 28px;
+`;
 // export const DropdownArrowIcon = styled.img`
 //   @media (min-width: 1025px) {
 //     display: none;

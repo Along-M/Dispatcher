@@ -45,7 +45,8 @@ const CardsHeaders = ({
     <>
       {isInitial &&
         dataFromApi?.articles?.length != 0 &&
-        dataFromApi?.status !== "error" && (
+        dataFromApi?.status !== "error" &&
+        !isLoading && (
           <CardsNumberOfSearchResults
             className="top-headlines-header"
             onClick={onClick}
@@ -68,6 +69,11 @@ const CardsHeaders = ({
         ></CardsNumberOfSearchResults>
       )}
       {dataFromApi?.status === "error" && (
+        <CardsNumberOfSearchResults
+          onClick={onClick}
+        ></CardsNumberOfSearchResults>
+      )}
+      {isLoading && (
         <CardsNumberOfSearchResults
           onClick={onClick}
         ></CardsNumberOfSearchResults>

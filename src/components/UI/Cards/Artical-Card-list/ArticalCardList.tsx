@@ -23,7 +23,8 @@ const ArticalCardList = ({ data, className }: ArticalCardListProps) => {
   const isLoading = useSelector(
     (state: RootState) => state.isLoading.isLoading
   );
-
+  console.log(isLoading);
+  console.log(dataFromApi);
   const windowSize = useWindowSize();
 
   const articalToDisplay = data?.articles?.map(
@@ -50,15 +51,17 @@ const ArticalCardList = ({ data, className }: ArticalCardListProps) => {
         testArr.map((test) => {
           return windowSize.width > 680 ? <MyLoader /> : <MobileLoader />;
         })}
-      {/* {!articalToDisplay &&
-        dataFromApi?.status !== "error" &&
-        testArr.map((test) => {
-          return windowSize.width > 680 ? <MyLoader /> : <MobileLoader />;
-        })} */}
-      {data?.totalResults === 0 && !isLoading && (
+      {dataFromApi?.totalResults === 0 && !isLoading && (
         <NoData type={NoDataFoundTypes.ARTICALCARD} />
       )}
-      {!data?.articles && <NoData type={NoDataFoundTypes.MainError} />}
+      {dataFromApi?.status == "error" && !isLoading && (
+        <NoData type={NoDataFoundTypes.ARTICALCARD} />
+      )}
+      {/* {(data?.totalResults === 0 && !isLoading) ||
+        (!data?.articles && !isLoading && (
+          <NoData type={NoDataFoundTypes.ARTICALCARD} />
+        ))} */}
+      {/* {!data?.articles && <NoData type={NoDataFoundTypes.MainError} />} */}
     </CardListContainer>
   );
 };

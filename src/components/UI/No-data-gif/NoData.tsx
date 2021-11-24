@@ -15,6 +15,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import { useEffect, useState } from "react";
 import { transformErrorMessage } from "../../../helpers/helper-functions/helper-functions";
+import ErrorModal from "../error-modal/ErrorModal";
 
 export interface NoDataProps {
   type: NoDataFoundTypes;
@@ -23,12 +24,12 @@ export interface NoDataProps {
 const NoData = ({ type }: NoDataProps) => {
   const dataFromApi = useSelector((state: RootState) => state.dataFromApi.data);
   const [errMessage, setErrMessage] = useState<string | undefined>();
-  useEffect(() => {
-    if (dataFromApi?.message) {
-      const errorMessage = transformErrorMessage(dataFromApi.code);
-      setErrMessage(errorMessage);
-    }
-  }, [dataFromApi]);
+  // useEffect(() => {
+  //   if (dataFromApi?.message) {
+  //     const errorMessage = transformErrorMessage(dataFromApi.code);
+  //     setErrMessage(errorMessage);
+  //   }
+  // }, [dataFromApi]);
   return (
     <>
       {type === NoDataFoundTypes.DATACARD && (
@@ -43,20 +44,10 @@ const NoData = ({ type }: NoDataProps) => {
           <NoDataText>We couldn’t find any matches for your query</NoDataText>
         </>
       )}
-      {dataFromApi?.status === "error" && type === NoDataFoundTypes.MainError && (
-        <MainErrorContainer>
-          <Image src={errorIcon} />
-          <NoDataText>
-            Opps...Something went wrong. <br /> {errMessage}
-          </NoDataText>
-        </MainErrorContainer>
-      )}
-      {dataFromApi?.status === "error" && type === NoDataFoundTypes.Error && (
-        <Container>
-          <Image src={errorIcon} />
-          {/* <NoDataText>Opps...Something went wrong.</NoDataText> */}
-        </Container>
-      )}
+
+      {/* {dataFromApi?.status === "error" && (
+        <ErrorModal message={errMessage} title={"Error"} />
+      )} */}
     </>
   );
 };

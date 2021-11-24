@@ -10,6 +10,15 @@ export const FilterCointainer = styled.div`
   padding: 0 20px;
   align-items: center;
   border-bottom: 1px solid #d9dbe9;
+  &.disabled {
+    /* cursor: not-allowed; */
+    pointer-events: none;
+    background: rgba(0, 0, 0, 0.08);
+    opacity: 0.6;
+    cursor: not-allowed;
+    /* background-color: #f1f1f1; */
+    /* height: 45px !important; */
+  }
 `;
 export const FilterHeader = styled.p`
   font-family: ${globalFont};

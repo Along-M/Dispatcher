@@ -21,6 +21,14 @@ import useOutsideClick from "../../../helpers/custom-hooks/useClickOutside";
 import FilterSideBar from "../../UI/tablet and mobile/mobile-filter-sidebar/FilterSideBar";
 import useClickOutside from "../../../helpers/custom-hooks/useClickOutside";
 import { filterSideBarActions } from "../../../store/filterSideBarSlice";
+import {
+  FilterCategories,
+  FilterSubCategories,
+} from "../../../types/filterTypes copy";
+import ErrorModal from "../../UI/error-modal/ErrorModal";
+import { transformErrorMessage } from "../../../helpers/helper-functions/helper-functions";
+import { useFormatDate } from "../../../helpers/custom-hooks/useDateForamt";
+import { Z_STREAM_ERROR } from "zlib";
 
 export interface HomePageProps {
   children?: React.ReactChild | React.ReactChild[];
@@ -28,13 +36,11 @@ export interface HomePageProps {
 const HomePage = ({ children }: HomePageProps): JSX.Element => {
   const dispatch = useDispatch();
   const [isInitial, setisInitial] = useState(true);
-  // const [cardsTitle, setcardsTitle] = useState<string | undefined>(
-  //   "Top Headlines in Israel"
-  // );
   const dataFromApi = useSelector((state: RootState) => state.dataFromApi.data);
   const filterSideBarState = useSelector(
     (state: RootState) => state.filtersSideBar
   );
+
   const filtersState = useSelector((state: RootState) => state.filters);
   const isSearching = filtersState.isFreeSearchActive;
   const [isSearchSidebarOpen, setIsSearchSidebarOpen] = useState<boolean>(
@@ -43,6 +49,8 @@ const HomePage = ({ children }: HomePageProps): JSX.Element => {
   const [isFilterSideBarOpen, setIsFilterSideBarOpen] = useState<boolean>(
     false
   );
+  const [errMessage, setErrMessage] = useState<string>();
+  const [error, setError] = useState<boolean>(false);
   const [isFreeSearchActive, setisFreeSearchActive] = useState<boolean>(false);
   const windowSize = useWindowSize();
   const isMobile = windowSize.width <= 1024 ? true : false;
@@ -52,7 +60,7 @@ const HomePage = ({ children }: HomePageProps): JSX.Element => {
   // Call hook passing in the ref and a function to call on outside click
   useEffect(() => {
     dispatch(getInitialDatafromApi());
-    // dispatch(getSourcesFilterOptions());
+    dispatch(getSourcesFilterOptions());
   }, [dispatch]);
 
   useEffect(() => {
@@ -60,7 +68,26 @@ const HomePage = ({ children }: HomePageProps): JSX.Element => {
     if (!isMobile && !isInitial && !isSearching) {
       dispatch(getFilteredDatafromApi());
     }
-  }, [filtersState]);
+  }, [
+    filtersState[FilterCategories.EVERYTHING],
+    filtersState[FilterCategories.TOP_HEADLINES],
+    // filtersState[FilterCategories.EVERYTHING][FilterSubCategories.SORT_BY],
+    // filtersState[FilterCategories.EVERYTHING][FilterSubCategories.SOURCES],
+    // filtersState[FilterCategories.EVERYTHING][FilterSubCategories.DATES],
+    // filtersState[FilterCategories.EVERYTHING][FilterSubCategories.LANGUAGE],
+    // filtersState[FilterCategories.TOP_HEADLINES][FilterSubCategories.CATEGORY],
+    // filtersState[FilterCategories.TOP_HEADLINES][FilterSubCategories.COUNTRY],
+    // filtersState[FilterCategories.TOP_HEADLINES][FilterSubCategories.SOURCES],
+  ]);
+  useEffect(() => {
+    if (dataFromApi?.message) {
+      const errorMessage = transformErrorMessage(dataFromApi.code);
+      setErrMessage(errorMessage);
+    }
+    if (dataFromApi?.status === "error") {
+      setError(true);
+    }
+  }, [dataFromApi]);
 
   // const openSideBar = () => {
   //   setIsSearchSidebarOpen(true);
@@ -73,7 +100,6 @@ const HomePage = ({ children }: HomePageProps): JSX.Element => {
   };
   const openFilterSideBar = () => {
     dispatch(filterSideBarActions.openFilterSideBar({}));
-
     setIsFilterSideBarOpen(true);
   };
 
@@ -107,6 +133,13 @@ const HomePage = ({ children }: HomePageProps): JSX.Element => {
           <ArticalCardList data={dataFromApi} />
           <DataCardList articles={dataFromApi?.articles}></DataCardList>
         </CardsContainer>
+        {error && (
+          <ErrorModal
+            message={errMessage}
+            title={"Error" + "-" + dataFromApi?.code}
+            closeModal={() => setError(false)}
+          />
+        )}
       </MainBodyCointainer>
     </>
   );

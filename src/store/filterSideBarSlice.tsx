@@ -13,7 +13,6 @@ const filterSideBarSlice = createSlice({
       if (state.isOpen == false) {
         return;
       }
-      console.log("this is filtersidebar slice", action);
       state.isOpen = false;
     },
     openFilterSideBar: (state, action) => {
