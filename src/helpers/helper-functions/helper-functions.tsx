@@ -58,6 +58,56 @@ export const urlBuilder = async (filtersState: filtersInitialState) => {
     return url;
   }
 };
+// export const urlBuilder = async (filtersState: filtersInitialState) => {
+//   const filtersCurrentCategory = filtersState.FilterGroupState;
+//   const currentfiltersState = filtersState[filtersCurrentCategory];
+//   const freeSearchVal = filtersState.FreeSearchVal;
+//   let params = "";
+
+//   for (let [key, value] of Object.entries(currentfiltersState)) {
+//     if (currentfiltersState[key].selectedOptions !== "") {
+//       if (key == "Dates") {
+//         const selectedDateArr = currentfiltersState[key].selectedOptions.split(
+//           " To "
+//         );
+//         params +=
+//           "from=" + selectedDateArr[0] + "&to=" + selectedDateArr[1] + "&";
+//       } else {
+//         params += key + "=" + currentfiltersState[key].selectedOptions + "&";
+//       }
+//     }
+//   }
+
+//   if (params === "" && !freeSearchVal) {
+//     const url = `${
+//       urlStart + filtersCurrentCategory
+//     }?q=${freeSearchVal}&${params}apiKey=${apiKey}`;
+//     // console.log("this is the url:in nothin ", url);
+//     // return url;
+//     return;
+//   } else {
+//     // if()
+//     if (filtersCurrentCategory == FilterCategories.EVERYTHING) {
+//       if (
+//         !freeSearchVal &&
+//         currentfiltersState[FilterSubCategories.SOURCES].selectedOptions
+//       ) {
+//         const url = `${
+//           urlStart + filtersCurrentCategory
+//         }?q=${freeSearchVal}&${params}apiKey=${apiKey}`;
+//         return url;
+//       }
+//       const url = `${
+//         urlStart + filtersCurrentCategory
+//       }?q=${freeSearchVal}&${params}apiKey=${apiKey}`;
+//       return url;
+//     }
+//     const url = `${
+//       urlStart + filtersCurrentCategory
+//     }?q=${freeSearchVal}&${params}apiKey=${apiKey}`;
+//     return url;
+//   }
+// };
 
 export const FormatDate = (dateToFormat: string): string => {
   const date = new Date(dateToFormat);
@@ -79,19 +129,19 @@ export const transformErrorMessage = (
 ): string => {
   switch (codeToTransform) {
     case "rateLimited":
-      return "You have made too many requests, plaese try again in a few minutes.";
+      return "429 - Too Many Requests: You have made too many requests, plaese try again in a few minutes.";
       break;
     case "sourceDoesNotExist":
       return "The source you are looking for does not exist, please try a new one.";
       break;
     case "parameterInvalid":
-      return "Sorry, the parameters you entered are not valid in our api. please enter a new search.";
+      return "400 - Bad Request: You are trying to request results too far in the past, please enter a new date search.";
       break;
     case "sourceDoesNotExist":
       return "Sorry, the parameters you enterened are not valid in our api.";
       break;
     case "sourcesTooMany":
-      return "Sorry, you can only choose one source at a time.";
+      return "400 - Bad Request: Sorry, you can only choose one source at a time.";
       break;
     case "apiKeyInvalid":
       return "This seems like a problem on our end, we will be right back.";
@@ -100,13 +150,13 @@ export const transformErrorMessage = (
       return "The api key is Exhausted.";
       break;
     case "parametersIncompatible":
-      return "Please dont filter source with country or category.";
+      return "400 - Bad Request: Please dont filter source with country or category.";
       break;
     case "parametersMissing":
-      return "When searching in Everything, You need to have a free search value in order to activate the filters.";
+      return "400 - Bad Request: When searching in Everything, You need to have a free search value in order to activate the filters.";
       break;
     default:
-      return "Sorry, This seems like a problem on our end, we will be right back.";
+      return "400 - Bad Request: Sorry, This seems like a problem on our end, we will be right back.";
   }
 };
 

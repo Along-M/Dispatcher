@@ -12,7 +12,7 @@ export const FilterCointainer = styled.div`
   border-radius: 10px;
   background: #ffff;
   z-index: 1;
-  cursor: pointer;
+  /* cursor: pointer; */
   &.disabled {
     /* cursor: not-allowed; */
     pointer-events: none;

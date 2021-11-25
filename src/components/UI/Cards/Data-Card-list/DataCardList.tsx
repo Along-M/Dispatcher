@@ -52,10 +52,15 @@ const DataCardList = ({ children, articles }: DataCardListProps) => {
     const datesNameArray = _.groupBy(articles, function (article: any) {
       return new Date(moment(article.publishedAt).format("MMM D"));
     });
+    console.log("dates in charts: ", datesNameArray);
     let dateArray: any = [];
     Object.keys(datesNameArray).map((date) => {
       dateArray.push(moment(date).format("MMM D"));
     });
+    dateArray.sort((a: any, b: any) =>
+      moment(a, "MMM DD").diff(moment(b, "MMM DD"))
+    );
+    console.log("dateArray", dateArray);
     setDatesChartData({
       ...DatesChartData,
       labels: dateArray.map((date: string) => {

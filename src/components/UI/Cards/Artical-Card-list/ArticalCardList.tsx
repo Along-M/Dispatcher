@@ -5,12 +5,12 @@ import ArticalCard from "../artical-card/ArticalCard";
 import { NoDataFoundTypes } from "../../../../types/types";
 import NoData from "../../No-data-gif/NoData";
 import { Idata, artical } from "../../../../types/dataTypes";
-import FadingLoader from "../../loader/CardLoader";
 import MyLoader from "../../loader/CardLoader";
 import useWindowSize from "../../../../helpers/custom-hooks/useWindowSize";
 import MobileLoader from "../../mobile-loader/CardMobileLoader";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 export interface ArticalCardListProps {
   children?: React.ReactChild | React.ReactChild[];
@@ -23,7 +23,7 @@ const ArticalCardList = ({ data, className }: ArticalCardListProps) => {
   const isLoading = useSelector(
     (state: RootState) => state.isLoading.isLoading
   );
-  console.log(isLoading);
+  // console.log(isLoading);
   console.log(dataFromApi);
   const windowSize = useWindowSize();
 
@@ -43,12 +43,35 @@ const ArticalCardList = ({ data, className }: ArticalCardListProps) => {
       );
     }
   );
-  const testArr = [1, 2, 3, 3, 5];
+  const loaderArr = [1, 2, 3, 3, 5];
   return (
-    <CardListContainer className={className}>
-      {!isLoading && articalToDisplay}
+    <CardListContainer className={className} id={"scrollableDiv"}>
+      {articalToDisplay && (
+        <InfiniteScroll
+          dataLength={articalToDisplay.length} //This is important field to render the next data
+          next={() => console.log("get me my data!")}
+          // next={fetchData}
+          hasMore={true}
+          loader={<h4>Loading...</h4>}
+          endMessage={
+            <p style={{ textAlign: "center" }}>
+              <b>Yay! You have seen it all</b>
+            </p>
+          }
+          // below props only if you need pull down functionality
+          // refreshFunction={this.refresh}
+          // pullDownToRefresh
+          pullDownToRefreshThreshold={10}
+          scrollableTarget="scrollableDiv"
+        >
+          {/* {items} */}
+          {!isLoading && articalToDisplay}
+        </InfiniteScroll>
+      )}
+
+      {/* {!isLoading && articalToDisplay} */}
       {isLoading &&
-        testArr.map((test) => {
+        loaderArr.map((loader) => {
           return windowSize.width > 680 ? <MyLoader /> : <MobileLoader />;
         })}
       {dataFromApi?.totalResults === 0 && !isLoading && (
@@ -57,11 +80,6 @@ const ArticalCardList = ({ data, className }: ArticalCardListProps) => {
       {dataFromApi?.status == "error" && !isLoading && (
         <NoData type={NoDataFoundTypes.ARTICALCARD} />
       )}
-      {/* {(data?.totalResults === 0 && !isLoading) ||
-        (!data?.articles && !isLoading && (
-          <NoData type={NoDataFoundTypes.ARTICALCARD} />
-        ))} */}
-      {/* {!data?.articles && <NoData type={NoDataFoundTypes.MainError} />} */}
     </CardListContainer>
   );
 };

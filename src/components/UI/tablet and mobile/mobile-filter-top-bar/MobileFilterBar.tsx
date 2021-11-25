@@ -26,6 +26,7 @@ const MobileFilterBar = ({ openSideBar }: MobileFilterBarProps) => {
   );
   const filterCurrentState = filtersState[filterCurrentCategory];
   const [isActiveFilters, setisActiveFilters] = useState<boolean>(false);
+  const [isDisabled, setIsdisabled] = useState<boolean>(false);
   const [isFilterSideBarOpen, setIsFilterSideBarOpen] = useState<any>(false);
 
   const filterTypeSortby = useSelector(
@@ -48,6 +49,18 @@ const MobileFilterBar = ({ openSideBar }: MobileFilterBarProps) => {
         : setisActiveFilters(false);
     }
   }, [filterCurrentState]);
+
+  useEffect(() => {
+    console.log("this is something we have to do");
+    if (
+      filterCurrentCategory == FilterCategories.EVERYTHING &&
+      filtersState.FreeSearchVal == ""
+    ) {
+      setIsdisabled(true);
+    } else {
+      setIsdisabled(false);
+    }
+  }, [filtersState]);
   const dispatch = useDispatch();
   const ref = useRef<HTMLDivElement>(null);
 
@@ -59,7 +72,7 @@ const MobileFilterBar = ({ openSideBar }: MobileFilterBarProps) => {
   };
   return (
     <FilterTopBarContainer>
-      {filterCurrentCategory == FilterCategories.TOP_HEADLINES ? (
+      {filterCurrentCategory == FilterCategories.TOP_HEADLINES || isDisabled ? (
         <SortBySpan>Sort-by</SortBySpan>
       ) : (
         <Filter

@@ -8,11 +8,12 @@ import {
 // will work in presentation if needed
 // export const apiKey = "456536dca78a4cceb68b8839fe9cd185";
 // for my personal account
-export const apiKey = "4c70f5154f5d4130a7e97eed44d74fe9";
-// export const apiKey = "2369f541606f4c6fa83adeb712c4c8b5";
+// export const apiKey = "4c70f5154f5d4130a7e97eed44d74fe9";
+export const apiKey = "2369f541606f4c6fa83adeb712c4c8b5";
 
 export const urlStart = "https://newsapi.org/v2/";
-export const defaultUrl = `https://newsapi.org/v2/top-headlines?country=il&apiKey=${apiKey}`;
+// export const defaultUrl = `https://newsapi.org/v2/top-headlines?country=il&apiKey=${apiKey}`;
+export const defaultUrl = `https://newsapi.org/v2/top-headlines?&page=1&pageSize=10&country=il&apiKey=${apiKey}`;
 export const SearchInFilter = {
   title: "Search-in",
   id: "search-in-filter",

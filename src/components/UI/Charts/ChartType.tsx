@@ -130,9 +130,9 @@ export const ChartsData: any =
           {
             label: "Dates",
             data: [],
-            borderColor: "blue",
+            borderColor: "#0058B9",
             backgroundColor: "rgba(126, 134, 247, 0.15)",
-            tension: 0.2,
+            tension: 0.5,
             pointRadius: 1,
             fill: true,
           },
@@ -141,7 +141,7 @@ export const ChartsData: any =
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        // tension: 0.2,
+        // tension: 1.2,
         // fill: true,
         pointBorderWidth: 2,
         plugins: {

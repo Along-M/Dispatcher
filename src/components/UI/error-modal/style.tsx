@@ -3,7 +3,7 @@ import globalFont from "../../../types/types";
 
 export const Modalcontainer = styled.div``;
 export const ModalContant = styled.div`
-  padding: 1rem;
+  padding: 0.5rem 1rem 1.5rem 1rem;
 `;
 
 export const ModalDiv = styled.div`
@@ -16,12 +16,13 @@ export const ModalDiv = styled.div`
   background: rgb(0 0 0 / 35%);
 `;
 export const ModalHeader = styled.header`
-  background: gray;
-  padding: 1rem;
+  /* background: gray; */
+  padding: 0.5rem 1rem 0.5rem 1rem;
 `;
 export const ModalH2header = styled.h2`
   margin: 0;
-  color: white;
+  color: black;
+  font-weight: 200;
   font-size: 24px;
   font-family: ${globalFont}; ;
 `;
@@ -30,15 +31,18 @@ export const P = styled.p`
   color: #5a5a89;
   font-size: 18px;
   font-family: ${globalFont};
+
+  /* padding: 0.8rem; */
 `;
 export const Footer = styled.footer`
-  padding: 1rem;
+  padding: 0rem 1rem 0.5rem 1rem;
   display: flex;
   justify-content: center;
+  background-color: #f8f8ff;
 `;
 export const Button = styled.button`
-  background: black;
-  border-radius: 5px;
+  background: transparent;
+  border-radius: 20px;
   width: 125px;
   border: none;
   height: 36px;
@@ -47,9 +51,8 @@ export const Button = styled.button`
   font-weight: 500;
   font-size: 14px;
   line-height: 26px;
-  color: white;
+  color: black;
   height: 36px;
-
   cursor: pointer;
 `;
 export const Card = styled.div`

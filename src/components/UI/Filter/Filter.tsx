@@ -51,6 +51,8 @@ const Filter = ({
   const [isDisabled, setIsdisabled] = useState<boolean>(false);
   let isSelected = false;
   let filterOption;
+
+  console.log("this is filter type in date filter:", filterType);
   useEffect(() => {
     if (selectedOption) {
       filterOption = buildFilterOptions(selectedOption, filterType);
@@ -83,6 +85,34 @@ const Filter = ({
     }
   }, [filterCurrentState]);
 
+  useEffect(() => {
+    console.log("this is something we have to do");
+    if (
+      filterCurrentCategory == FilterCategories.EVERYTHING &&
+      filterType !== FilterSubCategories.SOURCES &&
+      filtersState.FreeSearchVal == ""
+    ) {
+      setIsdisabled(true);
+      // filterCurrentState[FilterSubCategories.COUNTRY].selectedOptions !== "" ||
+      // filterCurrentState[FilterSubCategories.CATEGORY].selectedOptions !== ""
+      //   ? setIsdisabled(true)
+      //   : setIsdisabled(false);
+    } else {
+      setIsdisabled(false);
+    }
+    // else if (
+    //   (filterCurrentCategory == FilterCategories.TOP_HEADLINES &&
+    //     filterType == FilterSubCategories.COUNTRY) ||
+    //   filterType == FilterSubCategories.CATEGORY
+    // ) {
+    //   filterCurrentState[FilterSubCategories.SOURCES].selectedOptions !== ""
+    //     ? setIsdisabled(true)
+    //     : setIsdisabled(false);
+    // } else {
+    //   setIsdisabled(false);
+    // }
+  }, [filtersState]);
+
   const toggleFilterDropdown = (): void => {
     setIsFilterOpen(!isFilterOpen);
   };
@@ -114,7 +144,7 @@ const Filter = ({
     }
   };
 
-  const handleDateFilterOptions = (): void => {
+  const handleDateFilterOptions = (type?: string): void => {
     if (selectedOption && !isFilterOpen) {
       dispatch(
         filterActions.clearSelectedOption({
@@ -124,36 +154,12 @@ const Filter = ({
       );
       // setIsFilterOpen(false);
     }
+    if (type == "CLEAR") {
+      return;
+    }
     toggleFilterDropdown();
   };
-
-  // let isDisabled =
-  //   (filterCurrentCategory == FilterCategories.TOP_HEADLINES &&
-  //     filterType == FilterSubCategories.SOURCES &&
-  //     filterCurrentState[FilterSubCategories.COUNTRY].selectedOptions !== "") ||
-  //   filterCurrentState[FilterSubCategories.CATEGORY].selectedOptions !== ""
-  //     ? true
-  //     : false;
-
-  //   if (
-  //     (filtertype == FilterSubCategories.SOURCES &&
-  //       currentFilters[FilterSubCategories.COUNTRY].selectedOptions !== "") ||
-  //     currentFilters[FilterSubCategories.CATEGORY].selectedOptions !== ""
-  //   ) {
-  //     setIsDisabled(true);
-  //   } else if (
-  //     filtertype == FilterSubCategories.COUNTRY ||
-  //     filtertype == FilterSubCategories.CATEGORY
-  //   ) {
-  //     if (
-  //       currentFilters[FilterSubCategories.SOURCES].selectedOptions !== ""
-  //     ) {
-  //       setIsDisabled(true);
-  //     }
-  //   } else {
-  //     setIsDisabled(false);
-  //   }
-  // }
+  console.log("is filter open in date", isFilterOpen);
 
   // const filterOptionToDisplay = buildFilterOptions(option, filterType)
 
@@ -176,7 +182,7 @@ const Filter = ({
   return (
     <FilterCointainer
       id={id}
-      onClick={toggleFilterDropdown}
+      // onClick={toggleFilterDropdown}
       className={isDisabled ? "disabled" : "not-disabled"}
     >
       <DropdownSelect>
@@ -185,17 +191,33 @@ const Filter = ({
         {filterType !== FilterSubCategories.DATES && (
           <DropdownArrowIcon
             src={DropdownArrow}
-            // onClick={toggleFilterDropdown}
+            onClick={toggleFilterDropdown}
             // onClick={toggleFilterDropdown}
           />
         )}
-        {filterType == FilterSubCategories.DATES && (
+        {filterType == FilterSubCategories.DATES && !selectedOption && (
           <DropdownDateIcon
             src={DropdownDateArrow}
-            onClick={handleDateFilterOptions}
+            onClick={() => handleDateFilterOptions()}
             // onClick={toggleFilterDropdown}
           />
         )}
+        {filterType == FilterSubCategories.DATES &&
+          selectedOption &&
+          isFilterOpen && (
+            <DropdownDateIcon
+              src={DropdownDateArrow}
+              onClick={() => handleDateFilterOptions()}
+            />
+          )}
+        {filterType == FilterSubCategories.DATES &&
+          selectedOption &&
+          !isFilterOpen && (
+            <DropdownDateIcon
+              src={ClearDateOptionIcon}
+              onClick={() => handleDateFilterOptions("CLEAR")}
+            />
+          )}
       </DropdownSelect>
       {isFilterOpen && filterType !== FilterSubCategories.DATES && (
         <OptionsContainer>{optionsList}</OptionsContainer>
@@ -203,6 +225,9 @@ const Filter = ({
       {isFilterOpen && filterType == FilterSubCategories.DATES && (
         <DatePickerOptions />
       )}
+      {/* {isDisabled && filterType == FilterSubCategories.SORT_BY && (
+        <DatePickerOptions />
+      )} */}
     </FilterCointainer>
   );
 };

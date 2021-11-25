@@ -18,7 +18,14 @@ const DatePickerOptions = ({ isMobile }: DatePickerProps): JSX.Element => {
   const dispatch = useDispatch();
 
   const [startDate, setStartDate] = useState(new Date());
+  const [minDate, setminDate] = useState<Date>();
   const [endDate, setEndDate] = useState(null);
+
+  useEffect(() => {
+    let minDate = new Date().setMonth(new Date().getMonth() - 1);
+    const date = new Date(minDate);
+    setminDate(date);
+  }, []);
 
   useEffect(() => {
     if (startDate && endDate) {
@@ -34,17 +41,24 @@ const DatePickerOptions = ({ isMobile }: DatePickerProps): JSX.Element => {
     }
   }, [startDate, endDate]);
 
+  console.log(filtersState);
   const onChange = (dates: any) => {
+    console.log("somethis is wrong");
     const [start, end] = dates;
     setStartDate(start);
     setEndDate(end);
   };
+  console.log("NEW DARTE", new Date());
+  var d = new Date();
+  new Date().setMonth(new Date().getMonth() - 3);
+
   return (
-    <DateOptionsContainer
-      className={isMobile ? "mobile-date-picker" : "desktop-date-picker"}
-    >
+    // <DateOptionsContainer
+    //   className={isMobile ? "mobile-date-picker" : "desktop-date-picker"}
+    // >
+    <div className={isMobile ? "mobile-date" : undefined}>
       <DatePicker
-        className={"date-picker-secondary-conmtainer"}
+        // className={isMobile ? "" : "date-picker-secondary-conmtainer"}
         selected={startDate}
         onChange={onChange}
         startDate={startDate}
@@ -52,8 +66,12 @@ const DatePickerOptions = ({ isMobile }: DatePickerProps): JSX.Element => {
         selectsRange
         inline
         isClearable={true}
+        minDate={minDate}
+        // maxDate={new Date(), 5}
+        showDisabledMonthNavigation
       />
-    </DateOptionsContainer>
+    </div>
+    // </DateOptionsContainer>
   );
 };
 

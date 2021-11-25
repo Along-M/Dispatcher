@@ -7,9 +7,11 @@ export const CardContainer = styled.div`
   border-radius: 20px;
   height: 15rem;
   width: 100%;
+  margin-bottom: 24px;
   @media (max-width: 600px) and (min-width: 250px) {
     flex-direction: column;
     height: fit-content;
+    margin-bottom: 20px;
   }
   /* @media (max-width: 680px) and (min-width: 600px) {
     flex-direction: row;
@@ -22,6 +24,7 @@ export const CardContainer = styled.div`
     height: 500px;
   } */
   &.data-card {
+    margin-bottom: 0;
     width: 90%;
     height: 360px;
     flex-direction: column;

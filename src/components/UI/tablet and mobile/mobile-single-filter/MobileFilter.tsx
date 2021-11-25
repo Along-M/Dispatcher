@@ -51,6 +51,18 @@ const MobileFilter = ({
     }
   }, [filterCurrentState]);
 
+  useEffect(() => {
+    if (
+      filterCurrentCategory == FilterCategories.EVERYTHING &&
+      filterType !== FilterSubCategories.SOURCES &&
+      filtersState.FreeSearchVal == ""
+    ) {
+      setIsdisabled(true);
+    } else {
+      setIsdisabled(false);
+    }
+  }, [filtersState]);
+
   let filterOptionToDisplay;
   if (selectedOption) {
     filterOptionToDisplay = buildFilterOptions(selectedOption, filterType);

@@ -65,12 +65,12 @@ const Search = ({ children, type, dropDownOptions }: SearchProps) => {
 
   const handleFreeSearchSubmit = (event: any) => {
     event.preventDefault();
-    console.log("filtersState in search", filtersState);
+    // console.log("filtersState in search", filtersState);
     dispatch(filterActions.changeIsFreeSearchActive({ value: false }));
-    console.log(
-      "filtersState in search after changing the free search val",
-      filtersState
-    );
+    // console.log(
+    //   "filtersState in search after changing the free search val",
+    //   filtersState
+    // );
     if (!searchInputValue) {
       return;
     }

@@ -32,7 +32,7 @@ export const FilterSideBarContainer = styled.div`
     display: flex;
     flex-direction: column;
     height: 100vh;
-    background-color: #f8f8ff;
+    background-color: white;
     position: fixed;
     z-index: 99;
     right: 0;

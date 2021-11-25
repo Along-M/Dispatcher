@@ -5,7 +5,7 @@ export const CardListContainer = styled.section`
   flex-direction: column;
   align-items: baseline;
   background: #f8f8ff;
-  gap: 1.5rem;
+  /* gap: 1.5rem; */
   overflow-y: scroll;
   margin-right: 10px;
   padding-right: 20px;
