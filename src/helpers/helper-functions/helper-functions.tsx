@@ -44,70 +44,77 @@ export const urlBuilder = async (filtersState: filtersInitialState) => {
       ) {
         const url = `${
           urlStart + filtersCurrentCategory
-        }?q=${freeSearchVal}&${params}apiKey=${apiKey}`;
+        }?q=${freeSearchVal}&page=1&pageSize=10&${params}apiKey=${apiKey}`;
         return url;
       }
       const url = `${
         urlStart + filtersCurrentCategory
-      }?q=${freeSearchVal}&${params}apiKey=${apiKey}`;
+      }?q=${freeSearchVal}&page=1&pageSize=10&${params}apiKey=${apiKey}`;
       return url;
     }
     const url = `${
       urlStart + filtersCurrentCategory
-    }?q=${freeSearchVal}&${params}apiKey=${apiKey}`;
+    }?q=${freeSearchVal}&page=1&pageSize=10&${params}apiKey=${apiKey}`;
     return url;
   }
 };
-// export const urlBuilder = async (filtersState: filtersInitialState) => {
-//   const filtersCurrentCategory = filtersState.FilterGroupState;
-//   const currentfiltersState = filtersState[filtersCurrentCategory];
-//   const freeSearchVal = filtersState.FreeSearchVal;
-//   let params = "";
 
-//   for (let [key, value] of Object.entries(currentfiltersState)) {
-//     if (currentfiltersState[key].selectedOptions !== "") {
-//       if (key == "Dates") {
-//         const selectedDateArr = currentfiltersState[key].selectedOptions.split(
-//           " To "
-//         );
-//         params +=
-//           "from=" + selectedDateArr[0] + "&to=" + selectedDateArr[1] + "&";
-//       } else {
-//         params += key + "=" + currentfiltersState[key].selectedOptions + "&";
-//       }
-//     }
-//   }
+export const peginationUrlBuilder = async (
+  filtersState: filtersInitialState,
+  currentPageNumberParam: any
+) => {
+  const filtersCurrentCategory = filtersState.FilterGroupState;
+  const currentfiltersState = filtersState[filtersCurrentCategory];
+  const freeSearchVal = filtersState.FreeSearchVal;
+  let params = "";
 
-//   if (params === "" && !freeSearchVal) {
-//     const url = `${
-//       urlStart + filtersCurrentCategory
-//     }?q=${freeSearchVal}&${params}apiKey=${apiKey}`;
-//     // console.log("this is the url:in nothin ", url);
-//     // return url;
-//     return;
-//   } else {
-//     // if()
-//     if (filtersCurrentCategory == FilterCategories.EVERYTHING) {
-//       if (
-//         !freeSearchVal &&
-//         currentfiltersState[FilterSubCategories.SOURCES].selectedOptions
-//       ) {
-//         const url = `${
-//           urlStart + filtersCurrentCategory
-//         }?q=${freeSearchVal}&${params}apiKey=${apiKey}`;
-//         return url;
-//       }
-//       const url = `${
-//         urlStart + filtersCurrentCategory
-//       }?q=${freeSearchVal}&${params}apiKey=${apiKey}`;
-//       return url;
-//     }
-//     const url = `${
-//       urlStart + filtersCurrentCategory
-//     }?q=${freeSearchVal}&${params}apiKey=${apiKey}`;
-//     return url;
-//   }
-// };
+  for (let [key, value] of Object.entries(currentfiltersState)) {
+    if (currentfiltersState[key].selectedOptions !== "") {
+      if (key == "Dates") {
+        const selectedDateArr = currentfiltersState[key].selectedOptions.split(
+          " To "
+        );
+        params +=
+          "from=" + selectedDateArr[0] + "&to=" + selectedDateArr[1] + "&";
+      } else {
+        params += key + "=" + currentfiltersState[key].selectedOptions + "&";
+      }
+    }
+  }
+
+  if (params === "" && !freeSearchVal) {
+    // const url = `${
+    //   urlStart + filtersCurrentCategory
+    // }?q=${freeSearchVal}&${params}apiKey=${apiKey}`;
+    // const url = `${
+    //   urlStart + filtersCurrentCategory
+    // }?q=${freeSearchVal}&page=${currentPageNumberParam}&pageSize=10&${params}apiKey=${apiKey}`;
+    const url = `https://newsapi.org/v2/top-headlines?&page=${currentPageNumberParam}&pageSize=10&country=il&apiKey=${apiKey}`;
+    console.log("this is the url:in nothin ", url);
+    return url;
+    return;
+  } else {
+    if (filtersCurrentCategory == FilterCategories.EVERYTHING) {
+      if (
+        !freeSearchVal &&
+        currentfiltersState[FilterSubCategories.SOURCES].selectedOptions
+      ) {
+        const url = `${
+          urlStart + filtersCurrentCategory
+        }?q=${freeSearchVal}&page=${currentPageNumberParam}&pageSize=10&${params}apiKey=${apiKey}`;
+        return url;
+      }
+      const url = `${
+        urlStart + filtersCurrentCategory
+      }?q=${freeSearchVal}&page=${currentPageNumberParam}&pageSize=10&${params}apiKey=${apiKey}`;
+      return url;
+    }
+    const url = `${
+      urlStart + filtersCurrentCategory
+    }?q=${freeSearchVal}&page=${currentPageNumberParam}&pageSize=10&${params}apiKey=${apiKey}`;
+    return url;
+  }
+};
 
 export const FormatDate = (dateToFormat: string): string => {
   const date = new Date(dateToFormat);

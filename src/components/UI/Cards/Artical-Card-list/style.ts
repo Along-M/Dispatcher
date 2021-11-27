@@ -5,7 +5,7 @@ export const CardListContainer = styled.section`
   flex-direction: column;
   align-items: baseline;
   background: #f8f8ff;
-  /* gap: 1.5rem; */
+  gap: 1.5rem;
   overflow-y: scroll;
   margin-right: 10px;
   padding-right: 20px;
@@ -30,14 +30,39 @@ export const CardListContainer = styled.section`
   } */
 
   @media (max-width: 1024px) {
-    overflow: unset;
+    /* overflow: unset; */
+    /* margin: 0; */
+    /* padding: 0; */
+    /* margin: 0 auto; */
+    /* width: unset; */
+    /* height: fit-content; */
+    /* align-items: center; */
+    /* justify-content: center; */
+    /* overflow: scroll; */
+    /* height: 100%; */
+    /* height: unset; */
+    /* padding: 0 20px; */
+    /* height: calc(100vh - 50%); */
+    width: 100%;
+    padding-right: unset;
+    margin-right: unset;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  @media (max-width: 600px) {
+    /* overflow: unset; */
     margin: 0;
     padding: 0;
     /* margin: 0 auto; */
-    width: unset;
-    height: fit-content;
+    /* width: unset; */
+    /* height: fit-content; */
+    padding-left: 16px;
+    padding-right: 16px;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
+    overflow: scroll;
+    /* height: unset; */
+    /* height: 100%; */
     /* padding: 0 20px; */
   }
 `;

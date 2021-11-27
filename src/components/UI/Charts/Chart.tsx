@@ -10,12 +10,15 @@ export interface ChartProps {
   chartType: ChartType;
   state: IChartData;
   options: any;
+  sortedSources: any;
 }
-const Chart = ({ chartType, state, options }: ChartProps) => {
+const Chart = ({ chartType, state, options, sortedSources }: ChartProps) => {
   let totalSum: number;
   if (chartType === ChartType.Doughnut) {
     totalSum = state.datasets[0].data.reduce((acc, curr) => (acc += curr), 0);
   }
+  console.log("sortedSources", sortedSources);
+  console.log("state.labels", state.labels);
   return (
     <>
       {chartType === ChartType.Doughnut && (
@@ -32,7 +35,8 @@ const Chart = ({ chartType, state, options }: ChartProps) => {
             }}
             className="labels-wrapper"
           >
-            {state.labels.map((label, index) => {
+            {sortedSources.map((label: any, index: number) => {
+              console.log(label.number);
               return (
                 <div
                   style={{
@@ -63,14 +67,15 @@ const Chart = ({ chartType, state, options }: ChartProps) => {
                         marginRight: "10px",
                       }}
                     ></div>
-                    <div className="label-name">{label}</div>
+                    <div className="label-name">{label.label}</div>
                   </div>
                   <div
                     className="label-value"
                     style={{ fontSize: "15px", color: "#9FA2B4" }}
                   >
                     {Math.round(
-                      (state.datasets[0].data[index] * 100) / totalSum
+                      // (state.datasets[0].data[index] * 100) / totalSum
+                      (label.number * 100) / totalSum
                     )}
                     %
                   </div>

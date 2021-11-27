@@ -13,6 +13,7 @@ import Chart from "../../Charts/Chart";
 import { ChartType, IChartData } from "../../Charts/ChartType";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
+import _ from "lodash";
 
 export interface DataCardProps {
   // children?: React.ReactChild | React.ReactChild[];
@@ -35,6 +36,23 @@ const DataCard = ({
     (state: RootState) => state.isLoading.isLoading
   );
   const dataFromApi = useSelector((state: RootState) => state.dataFromApi.data);
+  console.log("chartType", chartType);
+
+  console.log("chartData", chartData.datasets[0].data);
+  console.log("chartData", chartData.labels);
+  console.log("chartOptions", chartOptions);
+  let obj: any = [];
+  chartData.labels.map((label, index) => {
+    console.log(index);
+    console.log(label);
+    // console.log(label);
+    obj[index] = { label: label, number: chartData.datasets[0].data[index] };
+  });
+  console.log("this is obj:", obj);
+
+  let sortedSources = _.orderBy(obj, ["number"], ["desc"]);
+  // => objects for [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 40]]
+  console.log("this is newObj:", sortedSources);
 
   return (
     <CardContainer className="data-card">
@@ -46,13 +64,16 @@ const DataCard = ({
         >
           {chartType === ChartType.Doughnut && (
             // <SumContainer>
-            <Sum>Sum</Sum>
+            // <Sum>{chartData.datasets[0].data}</Sum>
+            // <Sum>{_.sum(chartData.datasets[0].data)}</Sum>
+            <Sum>{chartData.labels.length}</Sum>
             // </SumContainer>
           )}
           <Chart
             chartType={chartType}
             state={chartData}
             options={chartOptions}
+            sortedSources={sortedSources}
           />
         </ChartContainer>
       )}

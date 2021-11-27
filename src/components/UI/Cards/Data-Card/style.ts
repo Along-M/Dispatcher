@@ -52,4 +52,5 @@ export const Sum = styled.div`
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   font-family: ${globalFont};
+  font-size: 12px;
 `;

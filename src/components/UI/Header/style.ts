@@ -44,11 +44,16 @@ export const UserAvatar = styled.div`
   @media (max-width: 1024px) {
     margin-left: 15px;
   }
-  @media (max-width: 680px) {
+  @media (max-width: 800px) {
     width: 35px;
     height: 35px;
     font-size: 14px;
   }
+  /* @media (max-width: 800px) {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+  } */
 `;
 
 export const Icon = styled.img`

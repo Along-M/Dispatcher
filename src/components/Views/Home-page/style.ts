@@ -18,12 +18,12 @@ export const MainBodyCointainer = styled.main`
 export const CardsContainer = styled.section`
   display: flex;
   max-width: 100%;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   @media (max-width: 1024px) {
-    padding: 0 20px;
-    justify-content: center;
+    /* padding: 0 20px; */
+    /* justify-content: center; */
   }
   @media (max-width: 680px) {
-    padding: 0 16px;
+    /* padding: 0 16px; */
   }
 `;

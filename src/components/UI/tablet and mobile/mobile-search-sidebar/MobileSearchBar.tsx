@@ -84,7 +84,9 @@ const MobileSearchBar = ({
       return;
     }
     dispatch(isLoadingActions.setIsLoadingToTrue({}));
+    dispatch(filterActions.addFreeSearchVal({ value: searchInputValue }));
     getFilteredData(searchInputValue);
+    console.log("filter state in mobile searcg", filters);
     setIsSearching(true);
     setshowSearchIcon(true);
     // let trasformedSearchInputVal = transformInputVal(searchInputValue);
@@ -120,9 +122,19 @@ const MobileSearchBar = ({
   };
 
   const handleInputChange = (event: any) => {
+    if (event.target.value === "") {
+      dispatch(filterActions.changeIsFreeSearchActive({ value: false }));
+      dispatch(filterActions.addFreeSearchVal({ value: event.target.value }));
+    } else {
+      // dispatch(filterActions.addFreeSearchVal({ value: event.target.value }));
+      dispatch(filterActions.changeIsFreeSearchActive({ value: true }));
+    }
+    // someStr.replace(/['"]+/g, '')
+    const tanrsformedInputVal = event.target.value.replace(/['"]+/g, "");
+    // .toLowerCase();
+    console.log("thisis event value", tanrsformedInputVal);
+    setsearchInputValue(tanrsformedInputVal);
     setIsSearching(false);
-    setsearchInputValue(event.target.value);
-    dispatch(filterActions.addFreeSearchVal({ value: event.target.value }));
     setshowSearchIcon(false);
   };
 

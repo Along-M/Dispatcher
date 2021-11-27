@@ -60,7 +60,7 @@ const HomePage = ({ children }: HomePageProps): JSX.Element => {
   // Call hook passing in the ref and a function to call on outside click
   useEffect(() => {
     dispatch(getInitialDatafromApi());
-    dispatch(getSourcesFilterOptions());
+    // dispatch(getSourcesFilterOptions());
   }, [dispatch]);
 
   useEffect(() => {
@@ -129,9 +129,19 @@ const HomePage = ({ children }: HomePageProps): JSX.Element => {
           totalResults={dataFromApi?.totalResults}
           onClick={closeFilterSideBar}
         ></CardsHeaders>
+        {/* {windowSize.width >= 1025 && (
+          <CardsContainer onClick={closeFilterSideBar}>
+            <ArticalCardList data={dataFromApi} />
+            <DataCardList articles={dataFromApi?.articles}></DataCardList>
+          </CardsContainer>
+        )}
+        {windowSize.width < 1025 && <ArticalCardList data={dataFromApi} />} */}
+
         <CardsContainer onClick={closeFilterSideBar}>
           <ArticalCardList data={dataFromApi} />
-          <DataCardList articles={dataFromApi?.articles}></DataCardList>
+          {windowSize.width >= 1025 && (
+            <DataCardList articles={dataFromApi?.articles}></DataCardList>
+          )}
         </CardsContainer>
         {error && (
           <ErrorModal

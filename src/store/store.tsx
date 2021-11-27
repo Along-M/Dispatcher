@@ -1,15 +1,17 @@
 import { configureStore } from "@reduxjs/toolkit";
 import filtersReducer from "./FiltersSlice";
-import dataFromApi from "./dataFromApiSlice";
-import filtersSideBar from "./filterSideBarSlice";
-import isLoading from "./isLoadingSlice";
+import dataFromApiReducer from "./dataFromApiSlice";
+import filtersSideBarReducer from "./filterSideBarSlice";
+import isLoadingReducer from "./isLoadingSlice";
+import pageNumberReducer from "./pageNumberSlice";
 
 const store = configureStore({
   reducer: {
     filters: filtersReducer,
-    dataFromApi: dataFromApi,
-    filtersSideBar: filtersSideBar,
-    isLoading: isLoading,
+    dataFromApi: dataFromApiReducer,
+    filtersSideBar: filtersSideBarReducer,
+    isLoading: isLoadingReducer,
+    pageNumber: pageNumberReducer,
   },
 });
 export default store;

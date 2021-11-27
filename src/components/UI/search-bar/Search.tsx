@@ -67,6 +67,8 @@ const Search = ({ children, type, dropDownOptions }: SearchProps) => {
     event.preventDefault();
     // console.log("filtersState in search", filtersState);
     dispatch(filterActions.changeIsFreeSearchActive({ value: false }));
+    console.log("filter state after adding free search val:", event.target);
+    console.log("filter state after adding free search val:", filtersState);
     // console.log(
     //   "filtersState in search after changing the free search val",
     //   filtersState
@@ -74,6 +76,7 @@ const Search = ({ children, type, dropDownOptions }: SearchProps) => {
     if (!searchInputValue) {
       return;
     }
+    dispatch(filterActions.addFreeSearchVal({ value: searchInputValue }));
     getFilteredData();
     if (ItemAlreadyExistsInLocalstorage(lastSearches, searchInputValue)) {
       return;
@@ -91,12 +94,12 @@ const Search = ({ children, type, dropDownOptions }: SearchProps) => {
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log("tjhis is event target: ", event.target.value);
+    // console.log("tjhis is event target: ", event.target.value);
     if (event.target.value === "") {
       dispatch(filterActions.changeIsFreeSearchActive({ value: false }));
       dispatch(filterActions.addFreeSearchVal({ value: event.target.value }));
     } else {
-      dispatch(filterActions.addFreeSearchVal({ value: event.target.value }));
+      // dispatch(filterActions.addFreeSearchVal({ value: event.target.value }));
       dispatch(filterActions.changeIsFreeSearchActive({ value: true }));
     }
     setsearchInputValue(event.target.value);
@@ -112,7 +115,12 @@ const Search = ({ children, type, dropDownOptions }: SearchProps) => {
         <SearchInput
           placeholder="Search"
           id="free-search-input"
-          onClick={toggleLastSearchesDiv}
+          // onClick={toggleLastSearchesDiv}
+          onFocus={() => {
+            console.log("focus in");
+            setisLastSearchesOpen(true);
+          }}
+          onBlur={() => setisLastSearchesOpen(false)}
           value={searchInputValue}
           onChange={(event) => handleInputChange(event)}
           // onChange={(event) => setsearchInputValue(event.target.value)}

@@ -2,7 +2,7 @@ export interface Idata {
   status: string;
   message?: string;
   code?: string;
-  isLoading: boolean;
+  // isLoading: boolean;
   totalResults: number;
   articles: {
     source: { id: string; name: string };

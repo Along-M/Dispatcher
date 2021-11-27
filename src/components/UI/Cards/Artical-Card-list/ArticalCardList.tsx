@@ -8,9 +8,10 @@ import { Idata, artical } from "../../../../types/dataTypes";
 import MyLoader from "../../loader/CardLoader";
 import useWindowSize from "../../../../helpers/custom-hooks/useWindowSize";
 import MobileLoader from "../../mobile-loader/CardMobileLoader";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { getPaginatedData } from "../../../../store/data-actions";
 
 export interface ArticalCardListProps {
   children?: React.ReactChild | React.ReactChild[];
@@ -19,6 +20,7 @@ export interface ArticalCardListProps {
 }
 const ArticalCardList = ({ data, className }: ArticalCardListProps) => {
   // const [dataFromApi, setDataFromApi] = useState(data);
+  const dispatch = useDispatch();
   const dataFromApi = useSelector((state: RootState) => state.dataFromApi.data);
   const isLoading = useSelector(
     (state: RootState) => state.isLoading.isLoading
@@ -46,12 +48,19 @@ const ArticalCardList = ({ data, className }: ArticalCardListProps) => {
   const loaderArr = [1, 2, 3, 3, 5];
   return (
     <CardListContainer className={className} id={"scrollableDiv"}>
-      {articalToDisplay && (
+      {/* <CardListContainer className={className} id={"scrollableDiv"}> */}
+      {articalToDisplay && articalToDisplay.length > 0 && (
         <InfiniteScroll
           dataLength={articalToDisplay.length} //This is important field to render the next data
-          next={() => console.log("get me my data!")}
+          next={() => {
+            console.log("get me my data!");
+            dispatch(getPaginatedData());
+          }}
           // next={fetchData}
-          hasMore={true}
+          hasMore={
+            // true
+            dataFromApi?.totalResults === articalToDisplay.length ? false : true
+          }
           loader={<h4>Loading...</h4>}
           endMessage={
             <p style={{ textAlign: "center" }}>
