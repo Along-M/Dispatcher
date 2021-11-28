@@ -64,12 +64,14 @@ export const DropdownDateIcon = styled.img`
   }
 `;
 export const OptionsContainer = styled.div`
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
   height: 125px;
   background: white;
   border-radius: 5px;
   overflow-y: scroll;
   overflow-x: hidden;
   margin-top: 5px;
+  cursor: pointer;
   &::-webkit-scrollbar {
     background: none;
     width: 6px;

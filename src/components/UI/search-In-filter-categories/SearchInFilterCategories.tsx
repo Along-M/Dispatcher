@@ -62,7 +62,7 @@ const SearchInFilterCategories = ({
         <DropdownArrowIcon src={DropdownArrow} />
       </DropdownSelect>
       {isFilterOpen && (
-        <OptionsContainer>
+        <OptionsContainer onClick={toggleFilterOptions}>
           {optionsList}
           {/* <Option
             onClick={(

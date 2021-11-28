@@ -21,6 +21,7 @@ import { Console } from "console";
 import { ItemAlreadyExistsInLocalstorage } from "../../../helpers/helper-functions/helper-functions";
 import { filterActions } from "../../../store/FiltersSlice";
 import { getFilteredDatafromApi } from "../../../store/data-actions";
+import useClickOutside from "../../../helpers/custom-hooks/useClickOutside";
 
 export interface SearchProps {
   dropDownOptions?: string[];
@@ -30,6 +31,8 @@ export interface SearchProps {
 
 const Search = ({ children, type, dropDownOptions }: SearchProps) => {
   const windowSize = useWindowSize();
+  // const formContainer = useRef<any>(null);
+
   const dispatch = useDispatch();
   const SearchInFilterTitle = useSelector(
     (state: RootState) => state.filters.FilterGroupState
@@ -54,6 +57,7 @@ const Search = ({ children, type, dropDownOptions }: SearchProps) => {
     localStorage.setItem("lastSearches", JSON.stringify(lastSearches));
   }, [lastSearches]);
 
+  // useClickOutside(formContainer, setisLastSearchesOpen(false));
   const toggleLastSearchesDiv = (): void => {
     setisLastSearchesOpen(!isLastSearchesOpen);
   };
@@ -61,18 +65,16 @@ const Search = ({ children, type, dropDownOptions }: SearchProps) => {
   const handleLastSearchOptionSelected = (option: string) => {
     setsearchInputValue(option);
     setisLastSearchesOpen(false);
+    dispatch(filterActions.changeIsFreeSearchActive({ value: false }));
+    dispatch(filterActions.addFreeSearchVal({ value: option }));
+    getFilteredData();
   };
 
   const handleFreeSearchSubmit = (event: any) => {
     event.preventDefault();
-    // console.log("filtersState in search", filtersState);
+    setisLastSearchesOpen(false);
     dispatch(filterActions.changeIsFreeSearchActive({ value: false }));
-    console.log("filter state after adding free search val:", event.target);
-    console.log("filter state after adding free search val:", filtersState);
-    // console.log(
-    //   "filtersState in search after changing the free search val",
-    //   filtersState
-    // );
+
     if (!searchInputValue) {
       return;
     }
@@ -81,7 +83,6 @@ const Search = ({ children, type, dropDownOptions }: SearchProps) => {
     if (ItemAlreadyExistsInLocalstorage(lastSearches, searchInputValue)) {
       return;
     }
-    setisLastSearchesOpen(false);
     setLastSearches((prevLastSearches) => [
       searchInputValue,
       ...prevLastSearches,
@@ -91,6 +92,15 @@ const Search = ({ children, type, dropDownOptions }: SearchProps) => {
   const getFilteredData = () => {
     // dispatch(filterActions.addFreeSearchVal({ value: searchInputValue }));
     dispatch(getFilteredDatafromApi());
+  };
+
+  const handleInputBlur = (event: any) => {
+    console.log("this ois blur event", event);
+  };
+  const handleInputClick = (event: any) => {
+    isLastSearchesOpen
+      ? setisLastSearchesOpen(false)
+      : setisLastSearchesOpen(true);
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -105,25 +115,15 @@ const Search = ({ children, type, dropDownOptions }: SearchProps) => {
     setsearchInputValue(event.target.value);
   };
   return (
-    <SearchBarContainer
-      // ref={ref}
-      onSubmit={handleFreeSearchSubmit}
-      autoComplete="off"
-    >
+    <SearchBarContainer onSubmit={handleFreeSearchSubmit} autoComplete="off">
       <SearchInputContainer>
         <Icon src={searchIcon} onClick={handleFreeSearchSubmit} />
         <SearchInput
           placeholder="Search"
           id="free-search-input"
-          // onClick={toggleLastSearchesDiv}
-          onFocus={() => {
-            console.log("focus in");
-            setisLastSearchesOpen(true);
-          }}
-          onBlur={() => setisLastSearchesOpen(false)}
+          onClick={handleInputClick}
           value={searchInputValue}
           onChange={(event) => handleInputChange(event)}
-          // onChange={(event) => setsearchInputValue(event.target.value)}
         ></SearchInput>
         {windowSize.width > 1024 && <Divider />}
         {windowSize.width > 1024 && (
@@ -137,13 +137,16 @@ const Search = ({ children, type, dropDownOptions }: SearchProps) => {
       </SearchInputContainer>
       {isLastSearchesOpen && lastSearches.length > 0 && (
         <LastSearchResults
+          // className={"lsat-searches-container"}
           lastSearchesOptions={lastSearches}
           changeLastSearches={(newLastSearchArr: string[]) =>
             setLastSearches(newLastSearchArr)
           }
           handleSearchSubmit={(option: string) => {
             handleLastSearchOptionSelected(option);
+            // handleFreeSearchSubmit(option);
           }}
+          // setisLastSearchesOpen={(param) => setisLastSearchesOpen(param)}
         />
       )}
     </SearchBarContainer>

@@ -36,23 +36,13 @@ const DataCard = ({
     (state: RootState) => state.isLoading.isLoading
   );
   const dataFromApi = useSelector((state: RootState) => state.dataFromApi.data);
-  console.log("chartType", chartType);
 
-  console.log("chartData", chartData.datasets[0].data);
-  console.log("chartData", chartData.labels);
-  console.log("chartOptions", chartOptions);
   let obj: any = [];
   chartData.labels.map((label, index) => {
-    console.log(index);
-    console.log(label);
-    // console.log(label);
     obj[index] = { label: label, number: chartData.datasets[0].data[index] };
   });
-  console.log("this is obj:", obj);
 
   let sortedSources = _.orderBy(obj, ["number"], ["desc"]);
-  // => objects for [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 40]]
-  console.log("this is newObj:", sortedSources);
 
   return (
     <CardContainer className="data-card">
@@ -66,7 +56,7 @@ const DataCard = ({
             // <SumContainer>
             // <Sum>{chartData.datasets[0].data}</Sum>
             // <Sum>{_.sum(chartData.datasets[0].data)}</Sum>
-            <Sum>{chartData.labels.length}</Sum>
+            <Sum>{chartData.labels.length} Sources</Sum>
             // </SumContainer>
           )}
           <Chart

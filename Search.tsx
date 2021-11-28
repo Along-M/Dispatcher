@@ -17,7 +17,14 @@ import { useState } from "react";
 
 const Search = (): JSX.Element => {
   const SearchFromDatabaseMock = ["Top Headline", "Everything"];
-  const recentSearchesMock = ["crypto", "soccer", "soc", "fdaad", "dgdf", "asddsf"];
+  const recentSearchesMock = [
+    "crypto",
+    "soccer",
+    "soc",
+    "fdaad",
+    "dgdf",
+    "asddsf",
+  ];
   const [isOpenSearches, setIsOpenSearches] = useState(false);
   const [searchInput, setSearchInput] = useState("");
 
@@ -40,9 +47,17 @@ const Search = (): JSX.Element => {
     <SearchContainer>
       <SearchLineContainer>
         <SearchIcon src={searchIcon} />
-        <SearchArea placeholder="Search" value={searchInput} onChange={onChangeHandler} />
+        <SearchArea
+          placeholder="Search"
+          value={searchInput}
+          onChange={onChangeHandler}
+        />
         <div className="vertical-div" />
-        <Filter type={FilterType.DROPDWON_LIST} category="Top Headline" filterOptions={SearchFromDatabaseMock}></Filter>
+        <Filter
+          type={FilterType.DROPDWON_LIST}
+          category="Top Headline"
+          filterOptions={SearchFromDatabaseMock}
+        ></Filter>
       </SearchLineContainer>
 
       {isOpenSearches && (

@@ -2,11 +2,19 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { buildFilterOptions } from "../../../../helpers/helper-functions/helper-functions";
 import { RootState } from "../../../../store/store";
+// import ClearDateOptionIcon from "../../../assets/icons/close.svg";
+import ClearDateOptionIcon from "../../../../assets/icons/close.svg";
+
 import {
   FilterCategories,
   FilterSubCategories,
 } from "../../../../types/filterTypes copy";
-import { FilterCointainer, FilterHeader, FilterSelectedOptions } from "./style";
+import {
+  FilterCointainer,
+  FilterHeader,
+  FilterSelectedOptions,
+  DropdownDateIcon,
+} from "./style";
 
 export interface MobileFilterProps {
   title: string;
@@ -55,10 +63,12 @@ const MobileFilter = ({
     if (
       filterCurrentCategory == FilterCategories.EVERYTHING &&
       filterType !== FilterSubCategories.SOURCES &&
+      filtersState[FilterCategories.EVERYTHING][FilterSubCategories.SOURCES]
+        .selectedOptions == "" &&
       filtersState.FreeSearchVal == ""
     ) {
       setIsdisabled(true);
-    } else {
+    } else if (filterCurrentCategory == FilterCategories.EVERYTHING) {
       setIsdisabled(false);
     }
   }, [filtersState]);
@@ -77,7 +87,16 @@ const MobileFilter = ({
       className={isDisabled ? "disabled" : "not-disabled"}
     >
       <FilterHeader>{title}</FilterHeader>
+      {/* <FilterSelectedOptions>{filterOptionToDisplay}</FilterSelectedOptions> */}
+      {/* <div> */}
       <FilterSelectedOptions>{filterOptionToDisplay}</FilterSelectedOptions>
+      {/* {selectedOption && filterType == FilterSubCategories.DATES && (
+          <DropdownDateIcon
+            src={ClearDateOptionIcon}
+            // onClick={() => handleDateFilterOptions("CLEAR")}
+          />
+        )} */}
+      {/* </div> */}
     </FilterCointainer>
   );
 };

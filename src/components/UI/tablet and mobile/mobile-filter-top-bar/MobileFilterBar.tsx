@@ -33,6 +33,7 @@ const MobileFilterBar = ({ openSideBar }: MobileFilterBarProps) => {
     (state: RootState) =>
       state.filters[FilterCategories.EVERYTHING][FilterSubCategories.SORT_BY]
   );
+  const isMobile = useSelector((state: RootState) => state.isMobile);
 
   useEffect(() => {
     if (filterCurrentCategory == FilterCategories.TOP_HEADLINES) {
@@ -51,12 +52,20 @@ const MobileFilterBar = ({ openSideBar }: MobileFilterBarProps) => {
   }, [filterCurrentState]);
 
   useEffect(() => {
-    console.log("this is something we have to do");
     if (
       filterCurrentCategory == FilterCategories.EVERYTHING &&
-      filtersState.FreeSearchVal == ""
+      filtersState.FreeSearchVal == "" &&
+      filtersState[filterCurrentCategory][FilterSubCategories.SOURCES]
+        .selectedOptions == ""
     ) {
       setIsdisabled(true);
+    } else if (
+      filterCurrentCategory == FilterCategories.EVERYTHING &&
+      filtersState.FreeSearchVal == "" &&
+      filtersState[filterCurrentCategory][FilterSubCategories.SOURCES]
+        .selectedOptions !== ""
+    ) {
+      setIsdisabled(false);
     } else {
       setIsdisabled(false);
     }
@@ -70,9 +79,12 @@ const MobileFilterBar = ({ openSideBar }: MobileFilterBarProps) => {
   const closeFilterSideBar = () => {
     // setIsFilterSideBarOpen(false);
   };
+
   return (
     <FilterTopBarContainer>
-      {filterCurrentCategory == FilterCategories.TOP_HEADLINES || isDisabled ? (
+      {isDisabled ||
+      filterCurrentCategory == FilterCategories.TOP_HEADLINES ||
+      !isMobile.isMobile ? (
         <SortBySpan>Sort-by</SortBySpan>
       ) : (
         <Filter

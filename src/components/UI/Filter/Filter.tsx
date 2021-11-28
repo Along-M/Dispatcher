@@ -23,6 +23,7 @@ import { buildFilterOptions } from "../../../helpers/helper-functions/helper-fun
 import { createSelectorCreator } from "reselect";
 import { getFilteredDatafromApi } from "../../../store/data-actions";
 import useWindowSize from "../../../helpers/custom-hooks/useWindowSize";
+import { filterSideBarActions } from "../../../store/filterSideBarSlice";
 
 export interface FilterProps {
   title: string;
@@ -52,7 +53,6 @@ const Filter = ({
   let isSelected = false;
   let filterOption;
 
-  console.log("this is filter type in date filter:", filterType);
   useEffect(() => {
     if (selectedOption) {
       filterOption = buildFilterOptions(selectedOption, filterType);
@@ -86,31 +86,17 @@ const Filter = ({
   }, [filterCurrentState]);
 
   useEffect(() => {
-    console.log("this is something we have to do");
     if (
       filterCurrentCategory == FilterCategories.EVERYTHING &&
       filterType !== FilterSubCategories.SOURCES &&
+      filtersState[FilterCategories.EVERYTHING][FilterSubCategories.SOURCES]
+        .selectedOptions == "" &&
       filtersState.FreeSearchVal == ""
     ) {
       setIsdisabled(true);
-      // filterCurrentState[FilterSubCategories.COUNTRY].selectedOptions !== "" ||
-      // filterCurrentState[FilterSubCategories.CATEGORY].selectedOptions !== ""
-      //   ? setIsdisabled(true)
-      //   : setIsdisabled(false);
-    } else {
+    } else if (filterCurrentCategory == FilterCategories.EVERYTHING) {
       setIsdisabled(false);
     }
-    // else if (
-    //   (filterCurrentCategory == FilterCategories.TOP_HEADLINES &&
-    //     filterType == FilterSubCategories.COUNTRY) ||
-    //   filterType == FilterSubCategories.CATEGORY
-    // ) {
-    //   filterCurrentState[FilterSubCategories.SOURCES].selectedOptions !== ""
-    //     ? setIsdisabled(true)
-    //     : setIsdisabled(false);
-    // } else {
-    //   setIsdisabled(false);
-    // }
   }, [filtersState]);
 
   const toggleFilterDropdown = (): void => {
@@ -121,6 +107,9 @@ const Filter = ({
     event: React.MouseEvent<HTMLElement>,
     selectedOption: string
   ): void => {
+    // if(filterType == FilterSubCategories.SORT_BY) {
+    //   filterType = FilterSubCategories.sort_by;
+    // }
     selectedOption == filterCurrentState[filterType].selectedOptions
       ? dispatch(
           filterActions.clearSelectedOption({
@@ -159,10 +148,8 @@ const Filter = ({
     }
     toggleFilterDropdown();
   };
-  console.log("is filter open in date", isFilterOpen);
 
   // const filterOptionToDisplay = buildFilterOptions(option, filterType)
-
   const optionsList = options?.map((option) => {
     let filterOptionToDisplay = buildFilterOptions(option, filterType);
     selectedOption == option ? (isSelected = true) : (isSelected = false);
@@ -220,7 +207,12 @@ const Filter = ({
           )}
       </DropdownSelect>
       {isFilterOpen && filterType !== FilterSubCategories.DATES && (
-        <OptionsContainer>{optionsList}</OptionsContainer>
+        <OptionsContainer
+          className={"option-container"}
+          onClick={toggleFilterDropdown}
+        >
+          {optionsList}
+        </OptionsContainer>
       )}
       {isFilterOpen && filterType == FilterSubCategories.DATES && (
         <DatePickerOptions />

@@ -17,8 +17,7 @@ const Chart = ({ chartType, state, options, sortedSources }: ChartProps) => {
   if (chartType === ChartType.Doughnut) {
     totalSum = state.datasets[0].data.reduce((acc, curr) => (acc += curr), 0);
   }
-  console.log("sortedSources", sortedSources);
-  console.log("state.labels", state.labels);
+
   return (
     <>
       {chartType === ChartType.Doughnut && (
@@ -36,7 +35,6 @@ const Chart = ({ chartType, state, options, sortedSources }: ChartProps) => {
             className="labels-wrapper"
           >
             {sortedSources.map((label: any, index: number) => {
-              console.log(label.number);
               return (
                 <div
                   style={{

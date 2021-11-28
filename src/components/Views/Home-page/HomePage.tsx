@@ -4,7 +4,7 @@ import CardsHeaders from "../../UI/Cards/cards-Headers/CardsHeaders";
 import DataCardList from "../../UI/Cards/Data-Card-list/DataCardList";
 import Filter from "../../UI/Filter/Filter";
 import Header from "../../UI/Header/Header";
-import { MainBodyCointainer, CardsContainer } from "./style";
+import { MainBodyCointainer, CardsContainer, SideBarBackground } from "./style";
 import FilterList from "../../UI/Filter-List/FilterList";
 import Search from "../../UI/search-bar/Search";
 import MobileSearchBar from "../../UI/tablet and mobile/mobile-search-sidebar/MobileSearchBar";
@@ -54,13 +54,10 @@ const HomePage = ({ children }: HomePageProps): JSX.Element => {
   const [isFreeSearchActive, setisFreeSearchActive] = useState<boolean>(false);
   const windowSize = useWindowSize();
   const isMobile = windowSize.width <= 1024 ? true : false;
-  const ref = useRef<HTMLDivElement>(null);
-  // const filterSideBarContainer = useRef(null);
-  // useClickOutside(filterSideBarContainer, setIsSearchSidebarOpen(false));
-  // Call hook passing in the ref and a function to call on outside click
+
   useEffect(() => {
     dispatch(getInitialDatafromApi());
-    // dispatch(getSourcesFilterOptions());
+    dispatch(getSourcesFilterOptions());
   }, [dispatch]);
 
   useEffect(() => {
@@ -112,12 +109,16 @@ const HomePage = ({ children }: HomePageProps): JSX.Element => {
           openSideBarfilters={openFilterSideBar}
         />
       )}
+      {filterSideBarState.isOpen && (
+        <SideBarBackground onClick={closeFilterSideBar}></SideBarBackground>
+      )}
       {windowSize.width <= 1024 && (
         <FilterSideBar
           isOpen={filterSideBarState.isOpen}
           closeFilterSideBar={closeFilterSideBar}
         />
       )}
+
       <Header
         openSearchSideBar={(bool: boolean) => setIsSearchSidebarOpen(bool)}
         onClick={closeFilterSideBar}
@@ -125,17 +126,18 @@ const HomePage = ({ children }: HomePageProps): JSX.Element => {
       <MainBodyCointainer>
         {!isMobile && <FilterList isInitial={isInitial}></FilterList>}
         {isMobile && <MobileFilterBar openSideBar={openFilterSideBar} />}
-        <CardsHeaders
-          totalResults={dataFromApi?.totalResults}
-          onClick={closeFilterSideBar}
-        ></CardsHeaders>
-        {/* {windowSize.width >= 1025 && (
-          <CardsContainer onClick={closeFilterSideBar}>
-            <ArticalCardList data={dataFromApi} />
-            <DataCardList articles={dataFromApi?.articles}></DataCardList>
-          </CardsContainer>
+        {windowSize.width >= 1024 && (
+          <CardsHeaders
+            totalResults={dataFromApi?.totalResults}
+            onClick={closeFilterSideBar}
+          ></CardsHeaders>
         )}
-        {windowSize.width < 1025 && <ArticalCardList data={dataFromApi} />} */}
+        {windowSize.width < 1024 && (
+          <CardsHeaders
+            totalResults={dataFromApi?.totalResults}
+            onClick={closeFilterSideBar}
+          ></CardsHeaders>
+        )}
 
         <CardsContainer onClick={closeFilterSideBar}>
           <ArticalCardList data={dataFromApi} />

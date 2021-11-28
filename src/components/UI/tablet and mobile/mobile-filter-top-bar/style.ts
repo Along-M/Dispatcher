@@ -13,6 +13,7 @@ export const FilterTopBarContainer = styled.section`
 export const SortBySpan = styled.span`
   color: #5a5a89;
   opacity: 0.3;
+  padding: 0 20px;
 `;
 export const FilterIcon = styled.img`
   width: 28px;

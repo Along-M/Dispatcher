@@ -21,38 +21,9 @@ const FilterList = ({ isInitial }: FilterListProps): JSX.Element => {
   const currentFilters = filtersState[filtersState.FilterGroupState];
   const currentFiltersCategory = filtersState.FilterGroupState;
   const [isDisabled, setIsDisabled] = useState(false);
-  // const windowSize = useWindowSize();
-  // // const isMobile = windowSize.width <= 1024 ? true : false;
 
-  // // useEffect(() => {
-  // //   console.log("filters listtttttt");
-  // //   if (!isMobile && !isInitial) {
-  // //     dispatch(getFilteredDatafromApi());
-  // //   }
-  // // }, [filtersState]);
   const currentFilterList = Object.keys(currentFilters).map((currentFilter) => {
     let filtertype = currentFilters[currentFilter].filterSubCategory;
-
-    // if (currentFiltersCategory == FilterCategories.TOP_HEADLINES) {
-    //   if (
-    //     (filtertype == FilterSubCategories.SOURCES &&
-    //       currentFilters[FilterSubCategories.COUNTRY].selectedOptions !== "") ||
-    //     currentFilters[FilterSubCategories.CATEGORY].selectedOptions !== ""
-    //   ) {
-    //     setIsDisabled(true);
-    //   } else if (
-    //     filtertype == FilterSubCategories.COUNTRY ||
-    //     filtertype == FilterSubCategories.CATEGORY
-    //   ) {
-    //     if (
-    //       currentFilters[FilterSubCategories.SOURCES].selectedOptions !== ""
-    //     ) {
-    //       setIsDisabled(true);
-    //     }
-    //   } else {
-    //     setIsDisabled(false);
-    //   }
-    // }
 
     return (
       <Filter

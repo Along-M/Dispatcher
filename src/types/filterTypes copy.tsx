@@ -29,8 +29,9 @@ export enum FilterSubCategories {
   // MOBILE_SORT_BY = "mobile-sort-by",
   LANGUAGE = "Language",
   DATES = "Dates",
-  SORT_BY = "Sort-by",
+  SORT_BY = "sortBy",
   SEARCH_IN = "Search-in",
+  // sort_by = "sortBy",
 }
 // export enum CountriesOptions {
 //   United Arab Emirates = 'ae',
@@ -161,7 +162,7 @@ export const FiltersInitialState: filtersInitialState = {
       title: "Sort-by",
       id: "sort-by-filter",
       filterSubCategory: FilterSubCategories.SORT_BY,
-      options: ["Relevancy", "Popularity", "PublishedAt"],
+      options: ["relevancy", "popularity", "publishedAt"],
       selectedOptions: "",
       isChecked: false,
     },

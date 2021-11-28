@@ -33,7 +33,6 @@ const filtersSlice = createSlice({
           ].selectedOptions = selectedOption);
     },
     clearSelectedOption(state, action) {
-      // console.log("we are in clear selected options");
       const filterCategory = action.payload.filterSubCategory;
       state[state.FilterGroupState][filterCategory].selectedOptions = "";
     },
@@ -45,12 +44,10 @@ const filtersSlice = createSlice({
       ].options = action.payload;
     },
     addFreeSearchVal(state, action) {
-      // console.log("this is action in add free srarch val", action);
       state.FreeSearchVal = action.payload.value;
     },
     removeSearchValFromRedux(state, action) {
       state.FreeSearchVal = action.payload.value;
-      // console.log("lthis is action in add free srarch va", state.FreeSearchVal);
     },
     changeIsFreeSearchActive(state, action) {
       state.isFreeSearchActive = action.payload.value;

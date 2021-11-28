@@ -8,6 +8,7 @@ import {
 import { useState } from "react";
 import { isLoadingActions } from "./isLoadingSlice";
 import { pageNumberActions } from "./pageNumberSlice";
+import { currentURLSliceActions } from "./currentURLSlice";
 
 // good functions
 export const getInitialDatafromApi = () => {
@@ -26,7 +27,6 @@ export const getInitialDatafromApi = () => {
       dispatch(isLoadingActions.setIsLoadingToFalse({}));
     } catch (err) {
       // return;
-      console.log("real error in getting data", err);
       dispatch(isLoadingActions.setIsLoadingToFalse({}));
       return err;
     }
@@ -37,22 +37,23 @@ export const getFilteredDatafromApi = () => {
     dispatch(isLoadingActions.setIsLoadingToTrue({}));
     dispatch(pageNumberActions.resetPageNumber({}));
     const currentfiltersState = await getState().filters;
-    console.log("no url in getting data filters state", currentfiltersState);
+    // console.log("no url in getting data filters state", currentfiltersState);
     const currentPageNumberParam = await getState().pageNumber;
-    console.log(
-      "this is page number in get filtereed data",
-      currentPageNumberParam
-    );
+    // console.log(
+    //   "this is page number in get filtereed data",
+    //   currentPageNumberParam
+    // );
     const url = await urlBuilder(currentfiltersState);
     if (!url) {
       dispatch(isLoadingActions.setIsLoadingToFalse({}));
-      console.log("no url in getting data ");
       return;
     }
     const fetchData = async () => {
+      dispatch(currentURLSliceActions.setURl({ action: url }));
+      console.log("happened", url);
+
       const apiResponse = await fetch(`${url}`);
       const apiData = await apiResponse.json();
-      console.log("error in getting data ", apiData);
       return apiData;
     };
     try {
@@ -61,7 +62,6 @@ export const getFilteredDatafromApi = () => {
       // dispatch(articalDataActions.handlePaginatedData(apiData));
       dispatch(isLoadingActions.setIsLoadingToFalse({}));
     } catch (err) {
-      console.log("real error in getting data ", err);
       dispatch(isLoadingActions.setIsLoadingToFalse({}));
       return err;
     }
@@ -71,11 +71,9 @@ export const getFilteredDatafromApi = () => {
 export const getPaginatedData = () => {
   return async (dispatch: AppDispatch, getState: any) => {
     // dispatch(isLoadingActions.setIsLoadingToTrue({}));
-    console.log("we are in get peginationn data");
     await dispatch(pageNumberActions.increasePageNumber({}));
     const currentfiltersState = await getState().filters;
     const currentPageNumberParam = await getState().pageNumber;
-    console.log("this is page number ", currentPageNumberParam);
     const url = await peginationUrlBuilder(
       currentfiltersState,
       currentPageNumberParam.pageNumberParam
@@ -83,14 +81,12 @@ export const getPaginatedData = () => {
     // const url = await urlBuilder(currentfiltersState);
     if (!url) {
       // dispatch(isLoadingActions.setIsLoadingToFalse({}));
-      console.log("no url in getting data ");
       return;
     }
     const fetchData = async () => {
       const apiResponse = await fetch(`${url}`);
       // console.log("no url in  pegination getting data ", url);
       const apiData = await apiResponse.json();
-      console.log("error in getting data pegination data", apiData);
 
       return apiData;
     };
@@ -98,10 +94,8 @@ export const getPaginatedData = () => {
       const apiData = await fetchData();
       // dispatch(articalDataActions.replaceArticalData(apiData));
       dispatch(articalDataActions.handlePaginatedData(apiData));
-      console.log("apiData in pegination data ", apiData);
       // dispatch(isLoadingActions.setIsLoadingToFalse({}));
     } catch (err) {
-      console.log("real error in getting data ", err);
       // dispatch(isLoadingActions.setIsLoadingToFalse({}));
       return err;
     }

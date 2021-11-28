@@ -25,8 +25,6 @@ const ArticalCardList = ({ data, className }: ArticalCardListProps) => {
   const isLoading = useSelector(
     (state: RootState) => state.isLoading.isLoading
   );
-  // console.log(isLoading);
-  console.log(dataFromApi);
   const windowSize = useWindowSize();
 
   const articalToDisplay = data?.articles?.map(
@@ -53,7 +51,6 @@ const ArticalCardList = ({ data, className }: ArticalCardListProps) => {
         <InfiniteScroll
           dataLength={articalToDisplay.length} //This is important field to render the next data
           next={() => {
-            console.log("get me my data!");
             dispatch(getPaginatedData());
           }}
           // next={fetchData}
@@ -61,11 +58,13 @@ const ArticalCardList = ({ data, className }: ArticalCardListProps) => {
             // true
             dataFromApi?.totalResults === articalToDisplay.length ? false : true
           }
-          loader={<h4>Loading...</h4>}
+          loader={!isLoading && <h4>Loading...</h4>}
           endMessage={
-            <p style={{ textAlign: "center" }}>
-              <b>Yay! You have seen it all</b>
-            </p>
+            articalToDisplay.length >= 10 && (
+              <p style={{ textAlign: "center" }}>
+                <b>Yay! You have seen it all</b>
+              </p>
+            )
           }
           // below props only if you need pull down functionality
           // refreshFunction={this.refresh}

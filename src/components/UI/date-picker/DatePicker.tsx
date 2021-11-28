@@ -41,14 +41,11 @@ const DatePickerOptions = ({ isMobile }: DatePickerProps): JSX.Element => {
     }
   }, [startDate, endDate]);
 
-  console.log(filtersState);
   const onChange = (dates: any) => {
-    console.log("somethis is wrong");
     const [start, end] = dates;
     setStartDate(start);
     setEndDate(end);
   };
-  console.log("NEW DARTE", new Date());
   var d = new Date();
   new Date().setMonth(new Date().getMonth() - 3);
 

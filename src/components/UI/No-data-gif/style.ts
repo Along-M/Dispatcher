@@ -5,7 +5,7 @@ export const NoChartDataIcon = styled.img`
   align-self: center;
   margin-top: 15%;
   @media (min-width: 1024px) and (max-width: 1500px) {
-    margin-top: 7.5%;
+    margin-top: 15%;
   }
 `;
 export const NoArticalIcon = styled.img`

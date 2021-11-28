@@ -29,12 +29,19 @@ export const urlBuilder = async (filtersState: filtersInitialState) => {
   }
 
   if (params === "" && !freeSearchVal) {
-    const url = `${
-      urlStart + filtersCurrentCategory
-    }?q=${freeSearchVal}&${params}apiKey=${apiKey}`;
-    // console.log("this is the url:in nothin ", url);
-    // return url;
-    return;
+    // const url = `${
+    //   urlStart + filtersCurrentCategory
+    // }?q=${freeSearchVal}&${params}apiKey=${apiKey}`;
+    // const url = `${
+    //   urlStart + filtersCurrentCategory
+    // }?q=${freeSearchVal}&page=1&pageSize=10&${params}apiKey=${apiKey}`;
+    // const url = `${
+    //   urlStart + filtersCurrentCategory
+    // }?q=${freeSearchVal}&page=1&pageSize=10&${params}apiKey=${apiKey}`;
+
+    const url = `https://newsapi.org/v2/top-headlines?&page=1&pageSize=10&country=il&apiKey=${apiKey}`;
+    return url;
+    // return;
   } else {
     // if()
     if (filtersCurrentCategory == FilterCategories.EVERYTHING) {
@@ -90,7 +97,6 @@ export const peginationUrlBuilder = async (
     //   urlStart + filtersCurrentCategory
     // }?q=${freeSearchVal}&page=${currentPageNumberParam}&pageSize=10&${params}apiKey=${apiKey}`;
     const url = `https://newsapi.org/v2/top-headlines?&page=${currentPageNumberParam}&pageSize=10&country=il&apiKey=${apiKey}`;
-    console.log("this is the url:in nothin ", url);
     return url;
     return;
   } else {
@@ -160,7 +166,7 @@ export const transformErrorMessage = (
       return "400 - Bad Request: Please dont filter source with country or category.";
       break;
     case "parametersMissing":
-      return "400 - Bad Request: When searching in Everything, You need to have a free search value in order to activate the filters.";
+      return "400 - Bad Request: When searching in Everything, You need to have a free search value or Sources filter active in order to activate the Country/Language/Dates filters.";
       break;
     default:
       return "400 - Bad Request: Sorry, This seems like a problem on our end, we will be right back.";
@@ -279,8 +285,14 @@ export const buildFilterOptions = (option: string, type: string): string => {
   }
   if (type == FilterSubCategories.SORT_BY) {
     switch (option) {
-      case "PublishedAt":
+      case "publishedAt":
         filterOption = "Published-At";
+        break;
+      case "popularity":
+        filterOption = "Popularity";
+        break;
+      case "relevancy":
+        filterOption = "Relevancy";
         break;
       default:
     }

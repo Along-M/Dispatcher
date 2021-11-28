@@ -33,3 +33,10 @@ export const FilterSelectedOptions = styled.span`
   line-height: 22px;
   color: rgba(90, 90, 137, 0.5);
 `;
+
+export const DropdownDateIcon = styled.img`
+  cursor: pointer;
+  /* @media (max-width: 1024px) {
+    padding-left: 10px;
+  } */
+`;

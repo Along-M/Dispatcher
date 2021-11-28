@@ -10,6 +10,7 @@ export const LastSearchesContainer = styled.div`
   position: relative;
   height: 125px;
   overflow: scroll;
+  box-shadow: 0px 4px 12px rgb(0 0 0 / 8%);
   @media (max-width: 680px) {
     /* padding: 0 20px; */
     /* padding: 0 20px; */

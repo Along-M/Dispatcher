@@ -35,6 +35,8 @@ export const OptionsContainer = styled.div`
   border-radius: 5px;
   overflow-y: scroll;
   margin-top: 5px;
+  box-shadow: 0px 4px 12px rgb(0 0 0 / 8%);
+
   &::-webkit-scrollbar {
     background: none;
     width: 6px;

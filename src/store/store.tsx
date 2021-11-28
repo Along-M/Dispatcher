@@ -4,6 +4,8 @@ import dataFromApiReducer from "./dataFromApiSlice";
 import filtersSideBarReducer from "./filterSideBarSlice";
 import isLoadingReducer from "./isLoadingSlice";
 import pageNumberReducer from "./pageNumberSlice";
+import cardsHeadersMobileReducer from "./cardsHeadersMobileSlice";
+import currentURLReducer from "./currentURLSlice";
 
 const store = configureStore({
   reducer: {
@@ -12,6 +14,8 @@ const store = configureStore({
     filtersSideBar: filtersSideBarReducer,
     isLoading: isLoadingReducer,
     pageNumber: pageNumberReducer,
+    isMobile: cardsHeadersMobileReducer,
+    currentURLReducer: currentURLReducer,
   },
 });
 export default store;

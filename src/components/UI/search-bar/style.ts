@@ -63,6 +63,7 @@ export const LastSearchesContainer = styled.div`
   position: relative;
   height: 125px;
   overflow: scroll;
+  box-shadow: 0px 4px 12px rgb(0 0 0 / 8%);
 `;
 export const LastSearchesHeaders = styled.div`
   display: flex;

@@ -57,8 +57,8 @@ export const UserAvatar = styled.div`
 `;
 
 export const Icon = styled.img`
+  cursor: pointer;
   &.settings-icon {
-    cursor: pointer;
     width: 26px;
     height: 26px;
     @media (max-width: 1024px) {

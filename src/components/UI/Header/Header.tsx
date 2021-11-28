@@ -42,26 +42,24 @@ const Header = ({
   // const closeSearchSideBar = (): void => {
   //   setIsSearchSidebarOpen(false);
   // };
+
+  const handleLogoClick = () => {
+    window.location.reload();
+  };
   return (
     <HeaderContainer onClick={onClick}>
-      {/* <MobileSearchBar
-        isOpen={isSearchSidebarOpen}
-        closeSidebar={closeSearchSideBar}
-      /> */}
       <LogoContainer>
-        <Icon src={logoIcon} />
+        <Icon src={logoIcon} onClick={handleLogoClick} />
       </LogoContainer>
       {windowSize.width > 680 && <Search />}
       <RightIconsContainer>
-        {/* {isMobile && ( */}
-        <MobileSearchIcon
+        {/* <MobileSearchIcon
           src={searchIcon}
           className="notification-icon"
           onClick={openSideBar}
-        />
-        {/* )} */}
-        <Icon src={settingsIcon} className="settings-icon" />
-        <Icon src={notificationIcon} className="notification-icon" />
+        /> */}
+        {/* <Icon src={settingsIcon} className="settings-icon" />
+        <Icon src={notificationIcon} className="notification-icon" /> */}
         <UserAvatar
           onClick={() => logout({ returnTo: window.location.origin })}
         >

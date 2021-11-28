@@ -8,6 +8,8 @@ import {
   RecentSearchedheader,
 } from "./style";
 import closeIcon from "../../../assets/icons/close.svg";
+import { useRef } from "react";
+import useClickOutside from "../../../helpers/custom-hooks/useClickOutside";
 // import useOutsideClick from "../../../helpers/custom-hooks/useClickOutside";
 // import { useRef } from "react";
 
@@ -17,6 +19,7 @@ export interface LastSearchResultsProps {
   closeLastSearchesDiv?: () => void;
   changeLastSearches: (newLastSearched: string[]) => void;
   handleSearchSubmit: (option: string) => void;
+  setisLastSearchesOpen?: (param: boolean) => void;
 }
 
 const LastSearchResults = ({
@@ -24,6 +27,7 @@ const LastSearchResults = ({
   closeLastSearchesDiv,
   changeLastSearches,
   handleSearchSubmit,
+  setisLastSearchesOpen,
 }: LastSearchResultsProps) => {
   const clearLastSearchesArray = (): void => {
     changeLastSearches([]);
@@ -57,7 +61,7 @@ const LastSearchResults = ({
   });
 
   return (
-    <LastSearchesContainer>
+    <LastSearchesContainer className={"lsat-searches-container"}>
       <LastSearchesHeaders>
         <RecentSearchedheader>RECENT SEARCHES</RecentSearchedheader>
         <ClearBtn onClick={clearLastSearchesArray}>CLEAR</ClearBtn>

@@ -27,3 +27,10 @@ export const CardsContainer = styled.section`
     /* padding: 0 16px; */
   }
 `;
+export const SideBarBackground = styled.div`
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  z-index: 98;
+`;

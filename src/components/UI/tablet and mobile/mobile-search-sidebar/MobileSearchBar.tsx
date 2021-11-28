@@ -74,6 +74,13 @@ const MobileSearchBar = ({
 
   const handleLastSearchOptionSelected = (option: string): void => {
     setsearchInputValue(option);
+    dispatch(filterActions.changeIsFreeSearchActive({ value: false }));
+    dispatch(filterActions.addFreeSearchVal({ value: option }));
+    getFilteredData();
+    setIsSearching(true);
+    setshowSearchIcon(true);
+    transformInputVal(option);
+    setsearchInputValue(trasformedSearchInputVal);
   };
 
   const handleFreeSearchSubmit = (event: any) => {
@@ -86,7 +93,6 @@ const MobileSearchBar = ({
     dispatch(isLoadingActions.setIsLoadingToTrue({}));
     dispatch(filterActions.addFreeSearchVal({ value: searchInputValue }));
     getFilteredData(searchInputValue);
-    console.log("filter state in mobile searcg", filters);
     setIsSearching(true);
     setshowSearchIcon(true);
     // let trasformedSearchInputVal = transformInputVal(searchInputValue);
@@ -107,7 +113,7 @@ const MobileSearchBar = ({
     ]);
   };
 
-  const getFilteredData = (searchInputValue: string) => {
+  const getFilteredData = (searchInputValue?: string) => {
     dispatch(getFilteredDatafromApi());
   };
 
@@ -132,7 +138,6 @@ const MobileSearchBar = ({
     // someStr.replace(/['"]+/g, '')
     const tanrsformedInputVal = event.target.value.replace(/['"]+/g, "");
     // .toLowerCase();
-    console.log("thisis event value", tanrsformedInputVal);
     setsearchInputValue(tanrsformedInputVal);
     setIsSearching(false);
     setshowSearchIcon(false);
@@ -200,6 +205,7 @@ const MobileSearchBar = ({
           handleSearchSubmit={(option: string) => {
             handleLastSearchOptionSelected(option);
           }}
+          // setisLastSearchesOpen={(param) => setisLastSearchesOpen(param)}
         />
       )}
     </SearchSideBarContainer>

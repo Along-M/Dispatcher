@@ -23,6 +23,7 @@ import { getFilteredDatafromApi } from "../../../../store/data-actions";
 import DatePickerOptions from "../../date-picker/DatePicker";
 import useClickOutside from "../../../../helpers/custom-hooks/useClickOutside";
 import { buildFilterOptions } from "../../../../helpers/helper-functions/helper-functions";
+import { cardsHeadersMobileActions } from "../../../../store/cardsHeadersMobileSlice";
 
 export interface FilterSideBarProps {
   isOpen?: boolean;
@@ -67,6 +68,7 @@ const FilterSideBar = ({ isOpen, closeFilterSideBar }: FilterSideBarProps) => {
   };
 
   const getFilteredData = () => {
+    dispatch(cardsHeadersMobileActions.setIsMobileToTrue({}));
     dispatch(getFilteredDatafromApi());
     closeFilterSideBar();
   };

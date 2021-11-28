@@ -18,7 +18,6 @@ const datafromApiSlice = createSlice({
       state.data = action.payload;
     },
     handlePaginatedData: (state, action) => {
-      console.log("data in peginated data:", state.data);
       if (state.data?.articles) {
         state.data = {
           ...action.payload,
