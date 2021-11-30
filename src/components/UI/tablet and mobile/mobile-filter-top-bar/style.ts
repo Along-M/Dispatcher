@@ -9,6 +9,7 @@ export const FilterTopBarContainer = styled.section`
   align-items: center;
   padding: 0 15px;
   z-index: 1;
+  border-bottom: 1px solid #d9dbe9;
 `;
 export const SortBySpan = styled.span`
   color: #5a5a89;

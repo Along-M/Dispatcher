@@ -29,6 +29,9 @@ import ErrorModal from "../../UI/error-modal/ErrorModal";
 import { transformErrorMessage } from "../../../helpers/helper-functions/helper-functions";
 import { useFormatDate } from "../../../helpers/custom-hooks/useDateForamt";
 import { Z_STREAM_ERROR } from "zlib";
+import { debounce } from "lodash";
+import _ from "lodash";
+import { cardsHeadersMobileActions } from "../../../store/cardsHeadersMobileSlice";
 
 export interface HomePageProps {
   children?: React.ReactChild | React.ReactChild[];
@@ -42,6 +45,8 @@ const HomePage = ({ children }: HomePageProps): JSX.Element => {
   );
 
   const filtersState = useSelector((state: RootState) => state.filters);
+  const currentFilterCategory = filtersState.FilterGroupState;
+
   const isSearching = filtersState.isFreeSearchActive;
   const [isSearchSidebarOpen, setIsSearchSidebarOpen] = useState<boolean>(
     false
@@ -55,19 +60,30 @@ const HomePage = ({ children }: HomePageProps): JSX.Element => {
   const windowSize = useWindowSize();
   const isMobile = windowSize.width <= 1024 ? true : false;
 
-  useEffect(() => {
-    dispatch(getInitialDatafromApi());
-    dispatch(getSourcesFilterOptions());
-  }, [dispatch]);
+  console.log(dataFromApi);
 
   useEffect(() => {
-    setisInitial(false);
-    if (!isMobile && !isInitial && !isSearching) {
+    // dispatch(getInitialDatafromApi());
+    // dispatch(getSourcesFilterOptions());
+  }, [dispatch]);
+
+  // const func = () => {
+  //   console.log("somne some");
+  // };
+  // _.debounce(func, 3000);
+  useEffect(() => {
+    // setisInitial(false);
+    console.log("this is is searching", isSearching);
+    if (!isMobile && !isSearching) {
       dispatch(getFilteredDatafromApi());
+      // debounce(dispatch(getFilteredDatafromApi()), [(wait = 5000)]);
+      // debounce(func, 2500);
+      // let func = dispatch(getFilteredDatafromApi());
     }
   }, [
     filtersState[FilterCategories.EVERYTHING],
     filtersState[FilterCategories.TOP_HEADLINES],
+    filtersState.FilterGroupState,
     // filtersState[FilterCategories.EVERYTHING][FilterSubCategories.SORT_BY],
     // filtersState[FilterCategories.EVERYTHING][FilterSubCategories.SOURCES],
     // filtersState[FilterCategories.EVERYTHING][FilterSubCategories.DATES],
@@ -76,6 +92,34 @@ const HomePage = ({ children }: HomePageProps): JSX.Element => {
     // filtersState[FilterCategories.TOP_HEADLINES][FilterSubCategories.COUNTRY],
     // filtersState[FilterCategories.TOP_HEADLINES][FilterSubCategories.SOURCES],
   ]);
+  // console.log("filtersState", filtersState);
+  // useEffect(() => {
+  //   if (currentFilterCategory == FilterCategories.TOP_HEADLINES) {
+  //     filtersState[currentFilterCategory][FilterSubCategories.COUNTRY]
+  //       .selectedOptions !== "" ||
+  //     filtersState[currentFilterCategory][FilterSubCategories.CATEGORY]
+  //       .selectedOptions !== "" ||
+  //     (filtersState[currentFilterCategory][FilterSubCategories.SOURCES]
+  //       .selectedOptions !== "" &&
+  //       windowSize.width >= 1024)
+  //       ? dispatch(cardsHeadersMobileActions.setIsMobileToTrue({}))
+  //       : dispatch(cardsHeadersMobileActions.setIsMobileToFale({}));
+  //   } else if (currentFilterCategory == FilterCategories.EVERYTHING) {
+  //     filtersState[currentFilterCategory][FilterSubCategories.DATES]
+  //       .selectedOptions !== "" ||
+  //     filtersState[currentFilterCategory][FilterSubCategories.LANGUAGE]
+  //       .selectedOptions !== "" ||
+  //     (filtersState[currentFilterCategory][FilterSubCategories.SOURCES]
+  //       .selectedOptions !== "" &&
+  //       windowSize.width >= 1024)
+  //       ? dispatch(cardsHeadersMobileActions.setIsMobileToTrue({}))
+  //       : dispatch(cardsHeadersMobileActions.setIsMobileToFale({}));
+  //   }
+  // }, [
+  //   filtersState[FilterCategories.EVERYTHING],
+  //   filtersState[FilterCategories.TOP_HEADLINES],
+  //   filtersState.FilterGroupState,
+  // ]);
   useEffect(() => {
     if (dataFromApi?.message) {
       const errorMessage = transformErrorMessage(dataFromApi.code);
@@ -98,6 +142,7 @@ const HomePage = ({ children }: HomePageProps): JSX.Element => {
   const openFilterSideBar = () => {
     dispatch(filterSideBarActions.openFilterSideBar({}));
     setIsFilterSideBarOpen(true);
+    // dispatch(cardsHeadersMobileActions.setIsMobileToFale({}));
   };
 
   return (

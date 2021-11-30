@@ -3,11 +3,14 @@ import styled from "styled-components";
 export const CardContainer = styled.div`
   display: flex;
   background: #ffffff;
-  box-shadow: 0px 32px 64px rgba(0, 0, 0, 0.05);
+  /* box shedow card container */
+  /* box-shadow: 0px 32px 64px rgba(0, 0, 0, 0.05); */
+  border: 1px solid #d9dbe9;
+
   border-radius: 20px;
   height: 15rem;
   width: 100%;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   @media (max-width: 600px) and (min-width: 250px) {
     flex-direction: column;
     height: fit-content;
@@ -26,10 +29,11 @@ export const CardContainer = styled.div`
   &.data-card {
     margin-bottom: 0;
     width: 90%;
-    height: 360px;
+    height: 330px;
     flex-direction: column;
     align-items: baseline;
     padding: 1rem;
+    margin-bottom: 20px;
     @media (min-width: 1025px) and (max-device-width: 1500px) {
       width: 90%;
       height: 260px;

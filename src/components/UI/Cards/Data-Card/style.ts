@@ -29,8 +29,14 @@ export const ChartContainer = styled.div`
   /* width: 100%; */
   height: 100%;
   &.sources-chart {
-    height: 50%;
+    height: 45%;
     position: relative;
+  }
+  @media (min-width: 1029px) {
+    &.sources-chart {
+      height: 45%;
+      position: relative;
+    }
   }
   @media (min-width: 1024px) and (max-width: 1500px) {
     margin-top: 0.2rem;

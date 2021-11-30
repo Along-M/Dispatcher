@@ -56,7 +56,7 @@ const DataCard = ({
             // <SumContainer>
             // <Sum>{chartData.datasets[0].data}</Sum>
             // <Sum>{_.sum(chartData.datasets[0].data)}</Sum>
-            <Sum>{chartData.labels.length} Sources</Sum>
+            <Sum>{chartData.labels.length} Total</Sum>
             // </SumContainer>
           )}
           <Chart

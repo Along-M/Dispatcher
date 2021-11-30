@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { filterActions } from "../../../store/FiltersSlice";
 import DropdownArrow from "../../../assets/icons/dropdown-arrow.svg";
@@ -24,6 +24,7 @@ import { createSelectorCreator } from "reselect";
 import { getFilteredDatafromApi } from "../../../store/data-actions";
 import useWindowSize from "../../../helpers/custom-hooks/useWindowSize";
 import { filterSideBarActions } from "../../../store/filterSideBarSlice";
+import useOutsideClick from "../../../helpers/custom-hooks/useClickOutside";
 
 export interface FilterProps {
   title: string;
@@ -52,6 +53,18 @@ const Filter = ({
   const [isDisabled, setIsdisabled] = useState<boolean>(false);
   let isSelected = false;
   let filterOption;
+
+  const dropDownRef = useRef<any>();
+
+  const handleBlur = (e: any) => {
+    if (isFilterOpen) {
+      setIsFilterOpen(false);
+    } else {
+      return;
+    }
+  };
+
+  useOutsideClick(dropDownRef, handleBlur);
 
   useEffect(() => {
     if (selectedOption) {
@@ -99,7 +112,20 @@ const Filter = ({
     }
   }, [filtersState]);
 
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     if (isDisabled) {
+  //       console.log("this is whre we shoulb be");
+  //       setIsFilterOpen(false);
+  //     } else {
+  //       console.log("this is not where we shoulb be");
+  //       return;
+  //     }
+  //   }, 5000);
+  // }, [filtersState]);
+
   const toggleFilterDropdown = (): void => {
+    console.log("toggleFilterDropdown");
     setIsFilterOpen(!isFilterOpen);
   };
 
@@ -127,6 +153,12 @@ const Filter = ({
     if (
       filterType == FilterSubCategories.SORT_BY &&
       selectedOption !== filterCurrentState[filterType].selectedOptions &&
+      windowSize.width < 1024
+    ) {
+      dispatch(getFilteredDatafromApi());
+    } else if (
+      filterType == FilterSubCategories.SORT_BY &&
+      selectedOption == filterCurrentState[filterType].selectedOptions &&
       windowSize.width < 1024
     ) {
       dispatch(getFilteredDatafromApi());
@@ -169,8 +201,10 @@ const Filter = ({
   return (
     <FilterCointainer
       id={id}
+      ref={dropDownRef}
       // onClick={toggleFilterDropdown}
       className={isDisabled ? "disabled" : "not-disabled"}
+      // onBlur={(e) => handleBlur(e)}
     >
       <DropdownSelect>
         {/* <DropdownSelect onClick={toggleFilterDropdown}> */}
@@ -208,7 +242,11 @@ const Filter = ({
       </DropdownSelect>
       {isFilterOpen && filterType !== FilterSubCategories.DATES && (
         <OptionsContainer
-          className={"option-container"}
+          className={
+            filterType == FilterSubCategories.SORT_BY
+              ? "sort-by-option-container"
+              : "option-container"
+          }
           onClick={toggleFilterDropdown}
         >
           {optionsList}

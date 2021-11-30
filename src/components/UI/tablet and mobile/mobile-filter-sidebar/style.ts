@@ -19,7 +19,7 @@ export const FilterSideBarContainer = styled.div`
   &.filter-side-bar-closed {
     position: fixed;
     /* right: -200%; */
-    transition: 1.1s;
+    transition: 0.6s;
     overflow-x: hidden;
     height: 100vh;
     z-index: 99;
@@ -28,7 +28,7 @@ export const FilterSideBarContainer = styled.div`
   }
   &.filter-side-bar-open {
     position: relative;
-    width: 80%;
+    width: 50vw;
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -38,7 +38,10 @@ export const FilterSideBarContainer = styled.div`
     right: 0;
     top: 0;
     overflow-x: hidden;
-    transition: 0.9s;
+    transition: 0.6s;
+    @media (max-width: 600px) {
+      width: 80vw;
+    }
   }
 `;
 
@@ -46,7 +49,7 @@ export const FilterHeaderContainer = styled.h2`
   display: flex;
   width: 100%;
   background: white;
-  height: 60px;
+  height: 59px;
   align-items: center;
   justify-content: center;
   background: #ffffff;
@@ -68,8 +71,11 @@ export const ArrowReturnToFilters = styled.img`
 
 export const ContentContainer = styled.div``;
 export const BtnContainer = styled.div`
-  padding: 20px 50px;
+  padding: 10px 50px;
   background-color: #f8f8ff;
   justify-content: center;
   display: flex;
+  @media (max-width: 1024px) {
+    padding: 20px 50px;
+  }
 `;

@@ -223,12 +223,6 @@ export const buildFilterOptions = (option: string, type: string): string => {
   }
   if (type == FilterSubCategories.COUNTRY) {
     switch (option) {
-      case "il":
-        filterOption = "Israel";
-        break;
-      case "ae":
-        filterOption = "United Arab Emirates";
-        break;
       case "ar":
         filterOption = "Argentina";
         break;
@@ -262,6 +256,9 @@ export const buildFilterOptions = (option: string, type: string): string => {
       case "cu":
         filterOption = "Cuba";
         break;
+      case "il":
+        filterOption = "Israel";
+        break;
       case "cz":
         filterOption = "Czechia";
         break;
@@ -279,6 +276,9 @@ export const buildFilterOptions = (option: string, type: string): string => {
         break;
       case "hk":
         filterOption = "Hong Kong";
+        break;
+      case "ae":
+        filterOption = "Arab Emirates";
         break;
       default:
     }

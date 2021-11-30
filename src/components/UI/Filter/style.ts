@@ -27,12 +27,24 @@ export const FilterCointainer = styled.div`
     &#sort-by-filter {
       display: block !important;
       height: 40px;
-      width: 110px;
+      width: 120px;
       border-radius: unset;
       display: flex;
       align-items: center;
       z-index: 0;
-      padding-left: 5px;
+      /* padding-left: 5px;   */
+    }
+    &#sort-by-filter div {
+      /* display: block !important;
+      height: 40px;
+      width: 110px;
+      border-radius: unset;
+      display: flex;
+      align-items: center;
+      z-index: 0; */
+      /* padding-left: 5px; */
+      justify-content: flex-start;
+      padding: 0 !important;
     }
   }
 `;
@@ -65,21 +77,38 @@ export const DropdownDateIcon = styled.img`
 `;
 export const OptionsContainer = styled.div`
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+  /* height: 86px; */
   height: 125px;
   background: white;
   border-radius: 5px;
-  overflow-y: scroll;
   overflow-x: hidden;
   margin-top: 5px;
   cursor: pointer;
+  overflow-y: hidden;
+  &.sort-by-option-container {
+    height: 90px;
+  }
+
+  &:hover {
+    overflow-y: overlay;
+  }
   &::-webkit-scrollbar {
     background: none;
-    width: 6px;
+    width: 5px;
   }
   &::-webkit-scrollbar-thumb {
-    border-radius: 6px;
+    border-radius: 5px;
+    background-color: red;
     background-color: #5a5a89;
   }
+  /* &::-webkit-scrollbar-thumb {
+    border: 10px transparent solid;
+  } */
+  /* &::-webkit-scrollbar-thumb:hover {
+    width: 0;
+    height: 0;
+  } */
+
   @media (max-width: 1024px) {
     width: 100%;
     height: 90px;

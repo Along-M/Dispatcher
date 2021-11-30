@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { getPaginatedData } from "../../../../store/data-actions";
+import "./infiniteScrool.css";
 
 export interface ArticalCardListProps {
   children?: React.ReactChild | React.ReactChild[];

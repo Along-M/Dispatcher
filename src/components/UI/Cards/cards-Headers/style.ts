@@ -20,12 +20,28 @@ export const CardsNumberOfSearchResults = styled.h4`
     font-size: 24px;
     line-height: 22px;
     color: #262146;
+    font-weight: 500;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    margin: 0;
   }
   @media (max-width: 1024px) {
-    padding: 0 20px;
+    padding: 15px 14px;
+    margin: 0;
+    &.top-headlines-header {
+      padding-top: 14px;
+      padding-bottom: 14px;
+      /* font-weight: 500; */
+    }
   }
   @media (max-width: 680px) {
-    padding: 0 16px;
+    margin: 0;
+    padding: 15px 16px;
     font-size: 18px !important;
+    &.top-headlines-header {
+      padding-top: 14px;
+      padding-bottom: 14px;
+      /* font-weight: 500; */
+    }
   }
 `;

@@ -12,7 +12,10 @@ import searchIcon from "../../../assets/icons/search.svg";
 import closeIcon from "../../../assets/icons/close.svg";
 import LastSearchResults from "../last-search-results/LastSearchResults";
 import SearchInFilterCategories from "../search-In-filter-categories/SearchInFilterCategories";
-import { SearchInFilter } from "../../../types/filterTypes copy";
+import {
+  FilterCategories,
+  SearchInFilter,
+} from "../../../types/filterTypes copy";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../store/store";
 import useOutsideClick from "../../../helpers/custom-hooks/useClickOutside";
@@ -41,6 +44,7 @@ const Search = ({ children, type, dropDownOptions }: SearchProps) => {
 
   // const ref = useRef<any>();
   const [isLastSearchesOpen, setisLastSearchesOpen] = useState<boolean>(false);
+  const [isWide, setIsWide] = useState<boolean>(false);
   const [lastSearches, setLastSearches] = useState<string[]>([]);
   const [searchInputValue, setsearchInputValue] = useState<
     undefined | string
@@ -57,6 +61,16 @@ const Search = ({ children, type, dropDownOptions }: SearchProps) => {
     localStorage.setItem("lastSearches", JSON.stringify(lastSearches));
   }, [lastSearches]);
 
+  useEffect(() => {
+    // console.log("free search val", filtersState.FreeSearchVal);
+    setsearchInputValue(filtersState.FreeSearchVal);
+    // localStorage.setItem("lastSearches", JSON.stringify(lastSearches));
+  }, [
+    filtersState[FilterCategories.EVERYTHING],
+    filtersState[FilterCategories.TOP_HEADLINES],
+    filtersState.FilterGroupState,
+  ]);
+
   // useClickOutside(formContainer, setisLastSearchesOpen(false));
   const toggleLastSearchesDiv = (): void => {
     setisLastSearchesOpen(!isLastSearchesOpen);
@@ -65,6 +79,7 @@ const Search = ({ children, type, dropDownOptions }: SearchProps) => {
   const handleLastSearchOptionSelected = (option: string) => {
     setsearchInputValue(option);
     setisLastSearchesOpen(false);
+    setIsWide(false);
     dispatch(filterActions.changeIsFreeSearchActive({ value: false }));
     dispatch(filterActions.addFreeSearchVal({ value: option }));
     getFilteredData();
@@ -73,6 +88,7 @@ const Search = ({ children, type, dropDownOptions }: SearchProps) => {
   const handleFreeSearchSubmit = (event: any) => {
     event.preventDefault();
     setisLastSearchesOpen(false);
+    setIsWide(false);
     dispatch(filterActions.changeIsFreeSearchActive({ value: false }));
 
     if (!searchInputValue) {
@@ -98,25 +114,39 @@ const Search = ({ children, type, dropDownOptions }: SearchProps) => {
     console.log("this ois blur event", event);
   };
   const handleInputClick = (event: any) => {
-    isLastSearchesOpen
-      ? setisLastSearchesOpen(false)
-      : setisLastSearchesOpen(true);
+    if (isLastSearchesOpen && searchInputValue == "") {
+      setisLastSearchesOpen(false);
+      // setIsWide(false);
+    } else {
+      setisLastSearchesOpen(true);
+      // setIsWide(true);
+    }
+    // isLastSearchesOpen
+    //   ? setisLastSearchesOpen(false)
+    //   : setisLastSearchesOpen(true);
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     // console.log("tjhis is event target: ", event.target.value);
     if (event.target.value === "") {
       dispatch(filterActions.changeIsFreeSearchActive({ value: false }));
-      dispatch(filterActions.addFreeSearchVal({ value: event.target.value }));
+      setIsWide(false);
+      // dispatch(filterActions.addFreeSearchVal({ value: event.target.value }));
     } else {
       // dispatch(filterActions.addFreeSearchVal({ value: event.target.value }));
-      dispatch(filterActions.changeIsFreeSearchActive({ value: true }));
+      // dispatch(filterActions.changeIsFreeSearchActive({ value: true }));
+      // setIsWide(true);
     }
     setsearchInputValue(event.target.value);
   };
   return (
-    <SearchBarContainer onSubmit={handleFreeSearchSubmit} autoComplete="off">
-      <SearchInputContainer>
+    <SearchBarContainer
+      onSubmit={handleFreeSearchSubmit}
+      autoComplete="off"
+      className={isWide ? "wide" : ""}
+    >
+      {/* <SearchInputContainer className={isWide ? "wide" : ""}>  */}
+      <SearchInputContainer className={"input-search-container"}>
         <Icon src={searchIcon} onClick={handleFreeSearchSubmit} />
         <SearchInput
           placeholder="Search"
@@ -124,6 +154,7 @@ const Search = ({ children, type, dropDownOptions }: SearchProps) => {
           onClick={handleInputClick}
           value={searchInputValue}
           onChange={(event) => handleInputChange(event)}
+          onFocus={() => setIsWide(true)}
         ></SearchInput>
         {windowSize.width > 1024 && <Divider />}
         {windowSize.width > 1024 && (

@@ -48,15 +48,31 @@ export const StyledBtn = styled.button`
       margin-left: 8px;
     }
   }
-  @media (max-width: 600px) {
-    align-self: unset;
+  @media (max-width: 1024px) {
+    /* align-self: unset;
     width: unset;
     margin-top: 10px;
     margin: 10px 0 10px 0;
     justify-self: auto;
+  } */
+    &.view-results-btn {
+      padding: 25px 1px;
+      width: 190px;
+    }
   }
-  &.view-results-btn {
-    padding: 20px 20px;
+  @media (max-width: 600px) {
+    align-self: unset;
+    width: unset;
+    margin-top: 10px;
+    margin: 10px 0 0px 0;
+    justify-self: auto;
+
+    &.view-results-btn {
+      padding: 20px 25px;
+      height: 50px;
+      width: 160px;
+      margin: 0;
+    }
   }
 `;
 

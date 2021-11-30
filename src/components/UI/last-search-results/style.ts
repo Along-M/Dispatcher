@@ -3,17 +3,21 @@ import globalFont from "../../../types/types";
 
 export const LastSearchesContainer = styled.div`
   border-radius: 10px;
-  width: 425px;
+  /* original design */
+  /* width: 425px; */
+  width: 100%;
   background: white;
   z-index: 2;
   margin-top: 2px;
   position: relative;
   height: 125px;
-  overflow: scroll;
+  /* overflow: scroll; */
+  overflow: overlay;
   box-shadow: 0px 4px 12px rgb(0 0 0 / 8%);
   @media (max-width: 680px) {
     /* padding: 0 20px; */
     /* padding: 0 20px; */
+    box-shadow: none;
     width: auto;
     border-radius: none;
     width: none;
@@ -22,6 +26,15 @@ export const LastSearchesContainer = styled.div`
     margin-top: unset;
     position: none;
     height: auto;
+  }
+  &::-webkit-scrollbar {
+    background: none;
+    width: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: red;
+    background-color: #5a5a89;
   }
 `;
 export const CloseIcon = styled.img`
@@ -52,7 +65,11 @@ export const LastSearchesHeaders = styled.div`
     color: #5a5a89;
     padding-top: 15px;
     margin: unset;
-    padding: 20px 20px;
+    /* padding: 20px 20px; */
+    padding-top: 20px;
+    padding-bottom: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
   }
 `;
 export const LastSearchesOptionContainer = styled.div`
@@ -63,7 +80,8 @@ export const LastSearchesOptionContainer = styled.div`
   font-size: 12px;
   line-height: 16px;
   color: #5a5a89;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
+  padding-top: 5px;
   /* margin-left: 15px;
   margin-right: 15px; */
   padding-left: 10px;
@@ -72,8 +90,10 @@ export const LastSearchesOptionContainer = styled.div`
   @media (max-width: 680px) {
     margin: unset;
     font-size: 14px;
-    padding: 20px;
+    padding: 20px 15px;
     border-bottom: 1px solid #d9dbe9;
+    margin-left: 5px;
+    margin-right: 5px;
   }
   :hover {
     background-color: rgba(90, 90, 137, 0.05);

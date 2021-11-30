@@ -29,7 +29,7 @@ const Chart = ({ chartType, state, options, sortedSources }: ChartProps) => {
           <div
             style={{
               overflow: "scroll",
-              height: "50%",
+              height: "65%",
               marginTop: "10px",
             }}
             className="labels-wrapper"

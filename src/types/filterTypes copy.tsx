@@ -173,7 +173,6 @@ export const FiltersInitialState: filtersInitialState = {
       id: "country-filter",
       filterSubCategory: FilterSubCategories.COUNTRY,
       options: [
-        "il",
         "ae",
         "ar",
         "at",
@@ -192,6 +191,7 @@ export const FiltersInitialState: filtersInitialState = {
         "gb",
         "gr",
         "hk",
+        "il",
       ],
       selectedOptions: "",
       isChecked: false,

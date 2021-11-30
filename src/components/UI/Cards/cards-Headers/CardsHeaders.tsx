@@ -27,7 +27,7 @@ const CardsHeaders = ({
   // const isSearching = filtersState.isFreeSearchActive;
   const windowSize = useWindowSize();
   // console.log("initUrl", initUrl);
-  console.log("is init", dataFromApi);
+  // console.log("is init", dataFromApi);
   // const filtersCurrentState = filtersState[filtersState.FilterGroupState];
   // useEffect(() => {
   //   let filterParams = "";
@@ -105,7 +105,7 @@ const CardsHeaders = ({
         !isLoading &&
         !initUrl.isInitialurl && (
           <CardsNumberOfSearchResults onClick={onClick}>
-            {"1 - " +
+            {"  " +
               dataFromApi?.articles?.length +
               " out of " +
               dataFromApi?.totalResults}{" "}
@@ -118,7 +118,7 @@ const CardsHeaders = ({
           className="top-headlines-header"
           onClick={onClick}
         >
-          TOP HEADLINES IN ISRAEL
+          Top Headlines in Israel
         </CardsNumberOfSearchResults>
       )}
       {windowSize.width <= 1024 && initUrl.isInitialurl && (
@@ -126,7 +126,7 @@ const CardsHeaders = ({
           className="top-headlines-header"
           onClick={onClick}
         >
-          TOP HEADLINES IN ISRAEL
+          Top Headlines in Israel
         </CardsNumberOfSearchResults>
       )}
       {totalResults === 0 && (

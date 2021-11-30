@@ -2,25 +2,50 @@ import styled from "styled-components";
 import globalFont from "../../../types/types";
 
 export const SearchBarContainer = styled.form`
-  width: 100%;
+  width: 423px;
+  transition: 0.6s;
+
+  /* original design */
+  /* width: 100%; */
   max-width: 1920px;
   z-index: 2;
   margin-top: 12.5px;
+  position: absolute;
+  left: 12.5%;
+  @media (min-width: 1024px) {
+    &.wide {
+      width: 660px;
+      transition: 0.6s;
+
+      /* position: unset; */
+    }
+    &.wide #free-search-input {
+      width: 440px;
+    }
+  }
   @media (max-width: 1024px) {
-    width: unset;
+    width: 423px;
+    position: unset;
   }
   @media (max-width: 680px) {
     display: none;
+    position: unset;
+    border-bottom: 1px solid #d9dbe9;
   }
   @media (min-width: 1920px) {
-    max-width: 1440px;
+    /* position: a; */
+    /* max-width: 1440px; */
+    left: calc((100% - 1440px) / 2);
+    /* calc((98.6% - 1440px)/2) */
   }
 `;
 export const SearchInputContainer = styled.div`
   align-items: center;
   z-index: 2;
   display: flex;
-  width: 423px;
+  width: 100%;
+  /* original design */
+  /* width: 423px; */
   background: white;
   border-radius: 10px;
   height: 50px;
@@ -32,7 +57,9 @@ export const SearchInput = styled.input`
   font-family: ${globalFont};
   font-size: 14px;
   line-height: 22px;
-  width: 60%;
+  /* original design */
+  /* width: 55%; */
+  width: 210px;
   border: none;
   outline: none;
   cursor: pointer;
@@ -41,8 +68,8 @@ export const SearchInput = styled.input`
 export const Icon = styled.img`
   background: white;
   border-radius: 10px 0px 0px 10px;
-  padding-right: 5px;
-  padding-left: 5px;
+  padding-right: 15px;
+  padding-left: 15px;
   cursor: pointer;
 `;
 export const Divider = styled.div`
@@ -56,7 +83,9 @@ export const Divider = styled.div`
 `;
 export const LastSearchesContainer = styled.div`
   border-radius: 10px;
-  width: 425px;
+  /* original design */
+  /* width: 425px; */
+  width: 100%;
   background: white;
   z-index: 2;
   margin-top: 2px;

@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { dataInitialState } from "../types/dataTypes";
 import { AppDispatch } from "./store";
 
-const cardheadersOnMobileInitialState = { isMobile: false };
+const cardheadersOnMobileInitialState = { isMobileSearchActive: false };
 
 // const filterSideBarSlice: initialState;
 const cardsHeadersMobileSlice = createSlice({
@@ -10,10 +10,10 @@ const cardsHeadersMobileSlice = createSlice({
   initialState: cardheadersOnMobileInitialState,
   reducers: {
     setIsMobileToTrue: (state, action) => {
-      state.isMobile = true;
+      state.isMobileSearchActive = true;
     },
     setIsMobileToFale: (state, action) => {
-      state.isMobile = false;
+      state.isMobileSearchActive = false;
     },
   },
 });

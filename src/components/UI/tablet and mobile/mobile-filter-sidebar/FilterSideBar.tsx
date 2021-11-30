@@ -16,7 +16,7 @@ import {
 } from "../../../../types/filterTypes copy";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import MobileFilterOptions from "../mobile-filter-options/MobileFilterOptions";
 import { SearchInFilter } from "../../../../types/filterTypes copy";
 import { getFilteredDatafromApi } from "../../../../store/data-actions";
@@ -39,6 +39,22 @@ const FilterSideBar = ({ isOpen, closeFilterSideBar }: FilterSideBarProps) => {
   const [currentFilterOptions, setcurrentFilterOptions] = useState<string[]>();
   const currentFilterCategory = filters.FilterGroupState;
   const currentFilters = filters[currentFilterCategory];
+
+  // useEffect(() => {
+  // if (currentFilterCategory == FilterCategories.TOP_HEADLINES) {
+  //   currentFilters[FilterSubCategories.COUNTRY].selectedOptions !== "" ||
+  //   currentFilters[FilterSubCategories.CATEGORY].selectedOptions !== "" ||
+  //   currentFilters[FilterSubCategories.SOURCES].selectedOptions !== ""
+  //     ? dispatch(cardsHeadersMobileActions.setIsMobileToTrue({}))
+  //     : dispatch(cardsHeadersMobileActions.setIsMobileToFale({}));
+  // } else if (currentFilterCategory == FilterCategories.EVERYTHING) {
+  //   currentFilters[FilterSubCategories.DATES].selectedOptions !== "" ||
+  //   currentFilters[FilterSubCategories.LANGUAGE].selectedOptions !== "" ||
+  //   currentFilters[FilterSubCategories.SOURCES].selectedOptions !== ""
+  //     ? dispatch(cardsHeadersMobileActions.setIsMobileToTrue({}))
+  //     : dispatch(cardsHeadersMobileActions.setIsMobileToFale({}));
+  // }
+  // }, [currentFilters]);
 
   const handleReturnToFiltersArrowClick = () => {
     setIsFilterClicked(false);
@@ -67,6 +83,28 @@ const FilterSideBar = ({ isOpen, closeFilterSideBar }: FilterSideBarProps) => {
     setCurrentFilterType(filterType);
   };
 
+  // const getFilteredData = () => {
+  //   if (currentFilterCategory == FilterCategories.TOP_HEADLINES) {
+  //     currentFilters[FilterSubCategories.COUNTRY].selectedOptions !== "" ||
+  //     currentFilters[FilterSubCategories.CATEGORY].selectedOptions !== "" ||
+  //     currentFilters[FilterSubCategories.SOURCES].selectedOptions !== ""
+  //       ? dispatch(cardsHeadersMobileActions.setIsMobileToTrue({}))
+  //       : console.log("some");
+  //     // : dispatch(cardsHeadersMobileActions.setIsMobileToFale({}));
+  //   } else if (currentFilterCategory == FilterCategories.EVERYTHING) {
+  //     currentFilters[FilterSubCategories.DATES].selectedOptions !== "" ||
+  //     currentFilters[FilterSubCategories.LANGUAGE].selectedOptions !== "" ||
+  //     currentFilters[FilterSubCategories.SOURCES].selectedOptions !== ""
+  //       ? dispatch(cardsHeadersMobileActions.setIsMobileToTrue({}))
+  //       : console.log("some");
+  //     // : dispatch(cardsHeadersMobileActions.setIsMobileToFale({}));
+  //   }
+  //   dispatch(cardsHeadersMobileActions.setIsMobileToTrue({}));
+  //   dispatch(getFilteredDatafromApi());
+  //   closeFilterSideBar();
+  // };
+
+  // the good function
   const getFilteredData = () => {
     dispatch(cardsHeadersMobileActions.setIsMobileToTrue({}));
     dispatch(getFilteredDatafromApi());

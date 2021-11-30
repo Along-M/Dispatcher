@@ -2,7 +2,8 @@ import styled from "styled-components";
 import globalFont from "../../../types/types";
 
 export const FilterCointainer = styled.div`
-  width: 175px;
+  /* width: 175px; */
+  width: 160px;
   height: 47px;
   font-family: ${globalFont};
   font-weight: 500;
@@ -33,9 +34,14 @@ export const OptionsContainer = styled.div`
   height: 75px;
   background: white;
   border-radius: 5px;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   margin-top: 5px;
   box-shadow: 0px 4px 12px rgb(0 0 0 / 8%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 6px;
+  width: 98%;
 
   &::-webkit-scrollbar {
     background: none;

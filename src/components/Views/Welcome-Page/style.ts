@@ -114,4 +114,5 @@ export const Divider = styled.div`
   border: 1px solid #d9dbe9;
   width: 100%;
   max-width: 1920px;
+  margin-bottom: 20px;
 `;

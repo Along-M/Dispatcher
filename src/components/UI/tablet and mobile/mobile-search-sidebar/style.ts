@@ -5,7 +5,7 @@ export const SearchSideBarContainer = styled.div`
   &.search-side-bar-closed {
     position: fixed;
     /* right: -200%; */
-    transition: 1.1s;
+    transition: 0.6s;
     overflow-x: hidden;
     height: 100vh;
     z-index: 99;
@@ -24,7 +24,7 @@ export const SearchSideBarContainer = styled.div`
     right: 0;
     top: 0;
     overflow-x: hidden;
-    transition: 0.9s;
+    transition: 0.6s;
   }
 `;
 
@@ -38,7 +38,7 @@ export const SearchInputContainer = styled.form`
   align-items: center;
   justify-content: center;
   background: #ffffff;
-  border: 1px solid #d9dbe9;
+  border-bottom: 1px solid #d9dbe9;
   /* box-shadow: 0px 32px 64px rgba(0, 0, 0, 0.05); */
 `;
 
@@ -66,4 +66,11 @@ export const SearchIcon = styled.img`
 export const SearchsideBarDataContainer = styled.div`
   height: 500px;
   cursor: pointer;
+`;
+export const SideBarBackground = styled.div`
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  z-index: 98;
 `;

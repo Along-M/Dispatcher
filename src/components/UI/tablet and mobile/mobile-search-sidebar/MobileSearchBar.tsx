@@ -9,6 +9,7 @@ import {
   ExitIcon,
   SearchIcon,
   SearchsideBarDataContainer,
+  SideBarBackground,
 } from "./style";
 import LastSearchResults from "../../last-search-results/LastSearchResults";
 // import LastSearchResults from "../../../last-search-results/LastSearchResults";
@@ -23,6 +24,7 @@ import MobileFilterBar from "../mobile-filter-top-bar/MobileFilterBar";
 import { filterSideBarActions } from "../../../../store/filterSideBarSlice";
 import { CardsContainer } from "../../../Views/Home-page/style";
 import { isLoadingActions } from "../../../../store/isLoadingSlice";
+import { FilterCategories } from "../../../../types/filterTypes copy";
 
 export interface MobileSearchBarProps {
   isOpen?: boolean;
@@ -71,6 +73,17 @@ const MobileSearchBar = ({
   useEffect(() => {
     setsearchInputValue(trasformedSearchInputVal);
   }, [trasformedSearchInputVal]);
+
+  // might comment out change pre presentation
+  // useEffect(() => {
+  //   // console.log("free search val", filtersState.FreeSearchVal);
+  //   setsearchInputValue(filters.FreeSearchVal);
+  //   // localStorage.setItem("lastSearches", JSON.stringify(lastSearches));
+  // }, [
+  //   filters[FilterCategories.EVERYTHING],
+  //   filters[FilterCategories.TOP_HEADLINES],
+  //   filters.FilterGroupState,
+  // ]);
 
   const handleLastSearchOptionSelected = (option: string): void => {
     setsearchInputValue(option);
@@ -130,7 +143,7 @@ const MobileSearchBar = ({
   const handleInputChange = (event: any) => {
     if (event.target.value === "") {
       dispatch(filterActions.changeIsFreeSearchActive({ value: false }));
-      dispatch(filterActions.addFreeSearchVal({ value: event.target.value }));
+      // dispatch(filterActions.addFreeSearchVal({ value: event.target.value }));
     } else {
       // dispatch(filterActions.addFreeSearchVal({ value: event.target.value }));
       dispatch(filterActions.changeIsFreeSearchActive({ value: true }));
@@ -186,6 +199,9 @@ const MobileSearchBar = ({
 
       {isSearching && (
         <SearchsideBarDataContainer>
+          {filterSideBarState.isOpen && (
+            <SideBarBackground onClick={closeFilterSideBar}></SideBarBackground>
+          )}
           <MobileFilterBar openSideBar={() => openSideBarfilters()} />
           <CardsContainer onClick={closeFilterSideBar}>
             <ArticalCardList

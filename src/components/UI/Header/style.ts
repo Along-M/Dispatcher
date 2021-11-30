@@ -7,20 +7,23 @@ export const HeaderContainer = styled.section`
   height: 4.6rem;
   justify-content: space-between;
   padding: 0 20px;
+  box-shadow: 0px 32px 64px rgba(0, 0, 0, 0.05);
 `;
 
 export const LogoContainer = styled.div`
   display: flex;
-  width: 15%;
+  width: 10%;
   align-items: center;
 `;
 
 export const RightIconsContainer = styled(LogoContainer)`
   align-items: center;
-  width: 15%;
+  /* original design */
+  /* width: 15%; */
+  width: 60%;
   justify-content: end;
   @media (max-width: 1024px) {
-    width: 20%;
+    width: 10%;
   }
   @media (max-width: 680px) {
     width: unset;
@@ -41,10 +44,13 @@ export const UserAvatar = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  &:hover + .LogOutDiv {
+    display: flex !important;
+  }
   @media (max-width: 1024px) {
     margin-left: 15px;
   }
-  @media (max-width: 800px) {
+  @media (max-width: 680px) {
     width: 35px;
     height: 35px;
     font-size: 14px;
@@ -82,4 +88,25 @@ export const MobileSearchIcon = styled.img`
     display: block;
     cursor: pointer;
   }
+`;
+export const LogOutDiv = styled.div`
+  display: none !important;
+  width: 87px;
+  height: 35px;
+  padding-left: 8px;
+  font-family: ${globalFont};
+  background: white;
+  border-radius: 50px;
+  color: #5a5a89;
+  font-size: 12px;
+  line-height: 16px;
+  font-family: ${globalFont};
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding-left: 8px;
+  position: absolute;
+  top: 7%;
+  z-index: 99;
+  right: 1%;
 `;
