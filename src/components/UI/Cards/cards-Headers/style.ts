@@ -15,6 +15,7 @@ export const CardsNumberOfSearchResults = styled.h4`
   line-height: 22px;
   letter-spacing: 0.25px;
   color: rgba(90, 90, 137, 0.5);
+  font-weight: 400;
   &.top-headlines-header {
     font-family: ${globalFont};
     font-size: 24px;
@@ -37,10 +38,12 @@ export const CardsNumberOfSearchResults = styled.h4`
   @media (max-width: 680px) {
     margin: 0;
     padding: 15px 16px;
-    font-size: 18px !important;
+    font-size: 14px !important;
+    font-weight: 400;
     &.top-headlines-header {
       padding-top: 14px;
       padding-bottom: 14px;
+      font-size: 18px !important;
       /* font-weight: 500; */
     }
   }

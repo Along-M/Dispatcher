@@ -6,12 +6,12 @@ import {
 
 // for the moveo email account
 // will work in presentation if needed
-// export const apiKey = "456536dca78a4cceb68b8839fe9cd185";
+export const apiKey = "456536dca78a4cceb68b8839fe9cd185";
 // for my personal account
 // export const apiKey = "4c70f5154f5d4130a7e97eed44d74fe9";
 // export const apiKey = "2369f541606f4c6fa83adeb712c4c8b5";
 // export const apiKey = "54ff8210a60c427393c70a91bd0c9b5b";
-export const apiKey = "1a2ebf23c0b643b38abae6d4c901ca8d";
+// export const apiKey = "1a2ebf23c0b643b38abae6d4c901ca8d";
 // export const apiKey = "7f7a213b13e64725af8b3f2962ecdc83";
 
 export const urlStart = "https://newsapi.org/v2/";

@@ -18,8 +18,9 @@ export const getSourcesFilterOptions = () => {
     };
     try {
       const sourcesFromApi = await fetchData();
+      // console.log("sourcesFromApi", sourcesFromApi);
       const SourcesFilterOptions = sourcesFromApi.sources.map(
-        (source: { name: string }) => {
+        (source: { name: string; id: string }) => {
           return source.name;
         }
       );

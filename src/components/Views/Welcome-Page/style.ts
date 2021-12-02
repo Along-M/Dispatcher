@@ -83,13 +83,17 @@ export const WelcomePageHeader = styled.h1`
   font-weight: 300;
   font-size: 48px;
   line-height: 22px;
+  margin: 0 0 24px 0;
   color: #5a5a89;
   @media (max-width: 1024px) {
     font-size: 42px;
+    margin: 48px 0 24px 0;
   }
   @media (max-width: 680px) {
     font-size: 32px;
     width: unset;
+    margin: unset;
+    margin: 40px 0 24px 0;
   }
 `;
 export const WelcomePageText = styled.h2`
@@ -99,6 +103,7 @@ export const WelcomePageText = styled.h2`
   line-height: 50px;
   letter-spacing: 0.25px;
   color: #5a5a89;
+  width: 720px;
   margin: 0;
   @media (max-width: 1024px) {
     font-size: 32px;

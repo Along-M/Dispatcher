@@ -13,11 +13,13 @@ import {
   Divider,
 } from "./style";
 import { useAuth0 } from "@auth0/auth0-react";
+import useWindowSize from "../../../helpers/custom-hooks/useWindowSize";
 
 export interface WelcomePageProps {}
 
 const WelcomePage = (): JSX.Element => {
   const { loginWithRedirect } = useAuth0();
+  const windowSize = useWindowSize();
 
   return (
     <>
@@ -29,8 +31,9 @@ const WelcomePage = (): JSX.Element => {
           <TextContainer>
             <WelcomePageHeader>Welcome to Dispatcher</WelcomePageHeader>
             <WelcomePageText>
-              Locate articles and breaking news headlines from news sources and
-              blogs across the web
+              Locate articles and breaking news headlines from{" "}
+              {windowSize.width <= 1024 && windowSize.width >= 600 && <br />}{" "}
+              news sources and blogs across the web
             </WelcomePageText>
           </TextContainer>
           <BtnContainer>

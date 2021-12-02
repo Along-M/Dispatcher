@@ -56,8 +56,10 @@ export const StyledBtn = styled.button`
     justify-self: auto;
   } */
     &.view-results-btn {
-      padding: 25px 1px;
+      padding: 20px 1px;
       width: 190px;
+      transition: 0.6s;
+      height: 46px;
     }
   }
   @media (max-width: 600px) {
@@ -69,9 +71,10 @@ export const StyledBtn = styled.button`
 
     &.view-results-btn {
       padding: 20px 25px;
-      height: 50px;
-      width: 160px;
+      height: 46px;
+      width: 157px;
       margin: 0;
+      transition: 0.6s;
     }
   }
 `;

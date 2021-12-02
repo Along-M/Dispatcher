@@ -10,9 +10,11 @@ export const LastSearchesContainer = styled.div`
   z-index: 2;
   margin-top: 2px;
   position: relative;
-  height: 125px;
+  /* height: 125px; */
+  height: fit-content;
+  padding-bottom: 5px;
   /* overflow: scroll; */
-  overflow: overlay;
+  overflow: hidden;
   box-shadow: 0px 4px 12px rgb(0 0 0 / 8%);
   @media (max-width: 680px) {
     /* padding: 0 20px; */
@@ -26,6 +28,7 @@ export const LastSearchesContainer = styled.div`
     margin-top: unset;
     position: none;
     height: auto;
+    min-width: 100vw;
   }
   &::-webkit-scrollbar {
     background: none;

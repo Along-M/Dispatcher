@@ -10,6 +10,8 @@ export const FilterCointainer = styled.div`
   padding: 0 20px;
   align-items: center;
   border-bottom: 1px solid #d9dbe9;
+  height: 44px !important;
+  cursor: pointer;
   &.disabled {
     /* cursor: not-allowed; */
     pointer-events: none;
@@ -18,6 +20,12 @@ export const FilterCointainer = styled.div`
     cursor: not-allowed;
     /* background-color: #f1f1f1; */
     /* height: 45px !important; */
+  }
+  @media (max-width: 1024px) {
+    height: 44px !important;
+    cursor: pointer;
+    min-width: 190px;
+    /* width: 100%; */
   }
 `;
 export const FilterHeader = styled.p`
@@ -36,7 +44,7 @@ export const FilterSelectedOptions = styled.span`
 
 export const DropdownDateIcon = styled.img`
   cursor: pointer;
-  /* @media (max-width: 1024px) {
+  /* /* @media (max-width: 1024px) {
     padding-left: 10px;
-  } */
+  } * */
 `;

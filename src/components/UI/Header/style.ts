@@ -44,9 +44,9 @@ export const UserAvatar = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  &:hover + .LogOutDiv {
+  /* &:hover + .LogOutDiv {
     display: flex !important;
-  }
+  } */
   @media (max-width: 1024px) {
     margin-left: 15px;
   }
@@ -90,13 +90,14 @@ export const MobileSearchIcon = styled.img`
   }
 `;
 export const LogOutDiv = styled.div`
-  display: none !important;
-  width: 87px;
-  height: 35px;
+  /* display: none !important; */
+  display: flex;
+  width: 95px;
+  height: 32px;
   padding-left: 8px;
   font-family: ${globalFont};
   background: white;
-  border-radius: 50px;
+  border-radius: 10px;
   color: #5a5a89;
   font-size: 12px;
   line-height: 16px;
@@ -106,7 +107,8 @@ export const LogOutDiv = styled.div`
   cursor: pointer;
   padding-left: 8px;
   position: absolute;
-  top: 7%;
+  /* top: calc(20% - 74px); */
+  top: 68px;
   z-index: 99;
   right: 1%;
 `;

@@ -50,10 +50,11 @@ export const getFilteredDatafromApi = () => {
     }
     const fetchData = async () => {
       dispatch(currentURLSliceActions.setURl({ action: url }));
-      console.log("happened", url);
+      // console.log("happened", url);
 
       const apiResponse = await fetch(`${url}`);
       const apiData = await apiResponse.json();
+      // console.log(apiData);
       return apiData;
     };
     try {

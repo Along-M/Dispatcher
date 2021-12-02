@@ -40,9 +40,17 @@ const Header = ({
   const { logout } = useAuth0();
   // const logOutDiv = useRef<HTMLDivElement>(null);
   // useOutsideClick(logOutDiv, setShowLogOutDiv(false));
-  const closeLogOutDiv = () => {
-    setShowLogOutDiv(false);
+
+  const userAvatar = useRef<any>();
+
+  const closeLogOutDivOnClickOutside = () => {
+    if (showLogOutDiv) {
+      setShowLogOutDiv(false);
+    } else {
+      return;
+    }
   };
+  useOutsideClick(userAvatar, closeLogOutDivOnClickOutside);
 
   const openSideBar = () => {
     openSearchSideBar(true);
@@ -53,6 +61,10 @@ const Header = ({
 
   const handleLogoClick = () => {
     window.location.reload();
+  };
+
+  const toggleShowLogOutDiv = () => {
+    setShowLogOutDiv(!showLogOutDiv);
   };
   return (
     <HeaderContainer onClick={onClick}>
@@ -69,18 +81,18 @@ const Header = ({
         {/* <Icon src={settingsIcon} className="settings-icon" />
         <Icon src={notificationIcon} className="notification-icon" /> */}
         <UserAvatar
-          onClick={() => logout({ returnTo: window.location.origin })}
-          // onClick={() => setShowLogOutDiv(true)}
+          // onClick={() => logout({ returnTo: window.location.origin })}
+          onClick={toggleShowLogOutDiv}
+          ref={userAvatar}
           // ref={logOutDiv}
         >
           AG
         </UserAvatar>
-        {/* {showLogOutDiv && ( */}
-        {windowSize.width > 1024 && (
+        {showLogOutDiv && (
           <LogOutDiv
-            // onClick={() => logout({ returnTo: window.location.origin })}
+            onClick={() => logout({ returnTo: window.location.origin })}
             // ref={logOutDiv}
-            className={"LogOutDiv"}
+            // className={"LogOutDiv"}
           >
             Sign Out
           </LogOutDiv>

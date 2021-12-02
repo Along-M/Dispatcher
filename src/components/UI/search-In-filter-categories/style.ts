@@ -80,4 +80,5 @@ export const FilterHeader = styled.span`
   font-size: 14px;
   line-height: 22px;
   color: #5a5a89;
+  width: 112px;
 `;

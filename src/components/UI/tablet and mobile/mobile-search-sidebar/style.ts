@@ -34,7 +34,7 @@ export const SearchInputContainer = styled.form`
   width: 100%;
   background: white;
   padding-left: 20px;
-  height: 59px;
+  height: 73px;
   align-items: center;
   justify-content: center;
   background: #ffffff;

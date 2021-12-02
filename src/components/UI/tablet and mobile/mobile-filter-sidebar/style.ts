@@ -49,7 +49,6 @@ export const FilterHeaderContainer = styled.h2`
   display: flex;
   width: 100%;
   background: white;
-  height: 59px;
   align-items: center;
   justify-content: center;
   background: #ffffff;
@@ -63,13 +62,33 @@ export const FilterHeaderContainer = styled.h2`
   justify-content: start;
   padding-left: 20px;
   margin: 0;
+  height: 74px;
+  @media (max-width: 1024px) {
+    font-size: 14px;
+    /* height: 45px !important; */
+    &.main-side-bar-header {
+      font-size: 16px;
+      height: 74px;
+    }
+  }
 `;
 
 export const ArrowReturnToFilters = styled.img`
   padding-right: 15px;
+  cursor: pointer;
 `;
 
-export const ContentContainer = styled.div``;
+export const ContentContainer = styled.div`
+  min-width: 50vw;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  @media (max-width: 600px) {
+    min-width: 80vw;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+`;
 export const BtnContainer = styled.div`
   padding: 10px 50px;
   background-color: #f8f8ff;
@@ -77,5 +96,6 @@ export const BtnContainer = styled.div`
   display: flex;
   @media (max-width: 1024px) {
     padding: 20px 50px;
+    min-width: 190px;
   }
 `;

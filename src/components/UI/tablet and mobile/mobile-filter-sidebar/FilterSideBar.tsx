@@ -148,7 +148,9 @@ const FilterSideBar = ({ isOpen, closeFilterSideBar }: FilterSideBarProps) => {
       className={isOpen ? "filter-side-bar-open" : "filter-side-bar-closed"}
     >
       <ContentContainer>
-        <FilterHeaderContainer>
+        <FilterHeaderContainer
+          className={SideBartitle == "FILTER" ? "main-side-bar-header" : ""}
+        >
           {isFilterClicked && (
             <ArrowReturnToFilters
               src={ArrowLeft}

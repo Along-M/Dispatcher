@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import DropdownArrow from "../../../assets/icons/dropdown-arrow.svg";
 import {
@@ -14,6 +14,7 @@ import {
   DropdownArrowIcon,
   Option,
 } from "./style";
+import useOutsideClick from "../../../helpers/custom-hooks/useClickOutside";
 
 export interface FilterCategoriesProps {
   id: string;
@@ -34,6 +35,17 @@ const SearchInFilterCategories = ({
   const toggleFilterOptions = () => {
     setIsFilterOpen(!isFilterOpen);
   };
+
+  const searchInFilterContainer = useRef<any>();
+
+  const closeFilter = () => {
+    if (isFilterOpen) {
+      setIsFilterOpen(false);
+    } else {
+      return;
+    }
+  };
+  useOutsideClick(searchInFilterContainer, closeFilter);
   const handleOptionClick = (event: any, selectedCategory: string) => {
     setTitle(event.target.innerHTML);
     dispatch(
@@ -56,7 +68,7 @@ const SearchInFilterCategories = ({
   });
 
   return (
-    <FilterCointainer id={id}>
+    <FilterCointainer id={id} ref={searchInFilterContainer}>
       <DropdownSelect onClick={toggleFilterOptions}>
         <FilterHeader>{filterTitle}</FilterHeader>
         <DropdownArrowIcon src={DropdownArrow} />

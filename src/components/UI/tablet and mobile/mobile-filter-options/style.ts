@@ -10,6 +10,8 @@ export const FilterOptionsCointainer = styled.div`
   padding: 0 20px;
   align-items: center;
   border-bottom: 1px solid #d9dbe9;
+  height: 44px;
+  cursor: pointer;
   &.selected {
     background: rgba(90, 90, 137, 0.05);
   }

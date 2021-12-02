@@ -297,5 +297,19 @@ export const buildFilterOptions = (option: string, type: string): string => {
       default:
     }
   }
+  // if (type == FilterSubCategories.SOURCES) {
+  //   switch (option) {
+  //     case "abc-news":
+  //       filterOption = "Published-At";
+  //       break;
+  //     case "abc-news-au":
+  //       filterOption = "Popularity";
+  //       break;
+  //     case "aftenposten":
+  //       filterOption = "Relevancy";
+  //       break;
+  //     default:
+  //   }
+  // }
   return filterOption;
 };

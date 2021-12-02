@@ -10,6 +10,12 @@ export const FilterCointainer = styled.div`
   padding: 0 20px;
   align-items: center;
   border-bottom: 1px solid #d9dbe9;
+  @media (max-width: 1024px) {
+    height: 44px !important;
+    cursor: pointer;
+    min-width: 190px;
+    /* width: 100%; */
+  }
 `;
 export const FilterHeader = styled.p`
   font-family: ${globalFont};

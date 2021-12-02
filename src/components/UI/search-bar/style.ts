@@ -3,7 +3,7 @@ import globalFont from "../../../types/types";
 
 export const SearchBarContainer = styled.form`
   width: 423px;
-  transition: 0.6s;
+  transition: 0.3s;
 
   /* original design */
   /* width: 100%; */
@@ -15,12 +15,13 @@ export const SearchBarContainer = styled.form`
   @media (min-width: 1024px) {
     &.wide {
       width: 660px;
-      transition: 0.6s;
+      transition: 0.3s;
 
       /* position: unset; */
     }
     &.wide #free-search-input {
       width: 440px;
+      transition: 0.3s;
     }
   }
   @media (max-width: 1024px) {
@@ -63,6 +64,7 @@ export const SearchInput = styled.input`
   border: none;
   outline: none;
   cursor: pointer;
+  transition: 0.3s;
 `;
 
 export const Icon = styled.img`

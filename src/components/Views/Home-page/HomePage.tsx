@@ -60,11 +60,9 @@ const HomePage = ({ children }: HomePageProps): JSX.Element => {
   const windowSize = useWindowSize();
   const isMobile = windowSize.width <= 1024 ? true : false;
 
-  console.log(dataFromApi);
-
   useEffect(() => {
     // dispatch(getInitialDatafromApi());
-    // dispatch(getSourcesFilterOptions());
+    dispatch(getSourcesFilterOptions());
   }, [dispatch]);
 
   // const func = () => {
@@ -73,7 +71,6 @@ const HomePage = ({ children }: HomePageProps): JSX.Element => {
   // _.debounce(func, 3000);
   useEffect(() => {
     // setisInitial(false);
-    console.log("this is is searching", isSearching);
     if (!isMobile && !isSearching) {
       dispatch(getFilteredDatafromApi());
       // debounce(dispatch(getFilteredDatafromApi()), [(wait = 5000)]);

@@ -25,6 +25,7 @@ export const CardsContainer = styled.section`
   }
   @media (max-width: 680px) {
     /* padding: 0 16px; */
+    min-width: 100vw;
   }
 `;
 export const SideBarBackground = styled.div`

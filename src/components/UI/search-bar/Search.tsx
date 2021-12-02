@@ -49,6 +49,22 @@ const Search = ({ children, type, dropDownOptions }: SearchProps) => {
   const [searchInputValue, setsearchInputValue] = useState<
     undefined | string
   >();
+
+  const formContainer = useRef<any>();
+
+  const closeWideSearchedAndLastSearces = (e: any) => {
+    if (isWide) {
+      setIsWide(false);
+      if (isLastSearchesOpen) {
+        setisLastSearchesOpen(false);
+      }
+    } else {
+      return;
+    }
+  };
+
+  useOutsideClick(formContainer, closeWideSearchedAndLastSearces);
+
   useEffect(() => {
     const lastSearchesFromLocalStorage = localStorage.getItem("lastSearches");
     if (!lastSearchesFromLocalStorage) {
@@ -110,17 +126,19 @@ const Search = ({ children, type, dropDownOptions }: SearchProps) => {
     dispatch(getFilteredDatafromApi());
   };
 
-  const handleInputBlur = (event: any) => {
-    console.log("this ois blur event", event);
+  const handleInputFocuse = (event: any) => {
+    setIsWide(true);
+    setisLastSearchesOpen(true);
   };
+
   const handleInputClick = (event: any) => {
-    if (isLastSearchesOpen && searchInputValue == "") {
-      setisLastSearchesOpen(false);
-      // setIsWide(false);
-    } else {
-      setisLastSearchesOpen(true);
-      // setIsWide(true);
-    }
+    // if (isLastSearchesOpen && searchInputValue == "") {
+    //   setisLastSearchesOpen(false);
+    //   // setIsWide(false);
+    // } else {
+    //   setisLastSearchesOpen(true);
+    //   // setIsWide(true);
+    // }
     // isLastSearchesOpen
     //   ? setisLastSearchesOpen(false)
     //   : setisLastSearchesOpen(true);
@@ -130,9 +148,11 @@ const Search = ({ children, type, dropDownOptions }: SearchProps) => {
     // console.log("tjhis is event target: ", event.target.value);
     if (event.target.value === "") {
       dispatch(filterActions.changeIsFreeSearchActive({ value: false }));
-      setIsWide(false);
+      // setIsWide(false);
       // dispatch(filterActions.addFreeSearchVal({ value: event.target.value }));
     } else {
+      setIsWide(true);
+      setisLastSearchesOpen(true);
       // dispatch(filterActions.addFreeSearchVal({ value: event.target.value }));
       // dispatch(filterActions.changeIsFreeSearchActive({ value: true }));
       // setIsWide(true);
@@ -144,6 +164,7 @@ const Search = ({ children, type, dropDownOptions }: SearchProps) => {
       onSubmit={handleFreeSearchSubmit}
       autoComplete="off"
       className={isWide ? "wide" : ""}
+      ref={formContainer}
     >
       {/* <SearchInputContainer className={isWide ? "wide" : ""}>  */}
       <SearchInputContainer className={"input-search-container"}>
@@ -154,7 +175,7 @@ const Search = ({ children, type, dropDownOptions }: SearchProps) => {
           onClick={handleInputClick}
           value={searchInputValue}
           onChange={(event) => handleInputChange(event)}
-          onFocus={() => setIsWide(true)}
+          onFocus={handleInputFocuse}
         ></SearchInput>
         {windowSize.width > 1024 && <Divider />}
         {windowSize.width > 1024 && (
