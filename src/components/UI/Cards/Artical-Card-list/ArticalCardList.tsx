@@ -61,11 +61,11 @@ const ArticalCardList = ({ data, className }: ArticalCardListProps) => {
           }
           loader={!isLoading && <h4>Loading...</h4>}
           endMessage={
-            articalToDisplay.length >= 10 && (
-              <p style={{ textAlign: "center" }}>
-                <b>Yay! You have seen it all</b>
-              </p>
-            )
+            // articalToDisplay.length >= 10 && (
+            <p style={{ textAlign: "center" }}>
+              <b>Yay! You have seen it all</b>
+            </p>
+            // )
           }
           // below props only if you need pull down functionality
           // refreshFunction={this.refresh}
