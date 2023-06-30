@@ -1,0 +1,9 @@
+.labels-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 1500px) {
+  .labels-wrapper {
+    height: 63% !important;
+  }
+}
