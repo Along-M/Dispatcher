@@ -1,7 +1,8 @@
 import * as React from "react";
 import { useState } from "react";
-import { CardListContainer } from "./style";
-import ArticalCard from "../artical-card/ArticalCard";
+// import { CardListContainer } from "./style";
+// import { CardListContainer } from "./style";
+import ArticalCard from "../Artical-Card/ArticalCard";
 import { NoDataFoundTypes } from "../../../../types/types";
 import NoData from "../../No-data-gif/NoData";
 import { Idata, artical } from "../../../../types/dataTypes";
@@ -13,6 +14,7 @@ import { RootState } from "../../../../store/store";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { getPaginatedData } from "../../../../store/data-actions";
 import "./infiniteScrool.css";
+import { CardListContainer } from "./style";
 
 export interface ArticalCardListProps {
   children?: React.ReactChild | React.ReactChild[];
