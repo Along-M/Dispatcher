@@ -1,20 +1,18 @@
 import { Meta, Story } from "@storybook/react";
-import Button, { ButtonProps } from "./Button";
+import Filter, { FilterProps } from "./Filter";
+import DropdownArrow from "../../../assets/icons/dropdown-arrow.svg";
 
 export default {
-  component: Button,
-  title: "Components/Button",
+  component: Filter,
+  title: "Components/Filter",
 } as Meta;
 
 // args in TS way
-const Template: Story<ButtonProps> = (args) => <Button {...args} />;
+const Template: Story<FilterProps> = (args) => <Filter {...args} />;
 
 export const V1 = Template.bind({});
 V1.args = {
   children: "sfd",
-  onClick: () => {
-    console.log("works");
-  },
 };
 
 export const V2 = Template.bind({});
